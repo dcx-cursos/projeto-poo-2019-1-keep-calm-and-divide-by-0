@@ -1,67 +1,57 @@
-import java.util.ArrayList;
-import java.util.List;
+package bancoMobiliario;
+
+import java.util.Random;
+
 
 public class Jogador {
-
 	private String nome;
 	private String cor;
-	private int carteira;
-	private int posicao;
-	private List<Propriedade> propriedades;
-
+	private Carteira carteira = new Carteira(1500);
+	private int posicao = 0;
+	private int diasNaPrisao = 0;
+	//private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
+	
+	Random r = new Random();
+	
 	public Jogador(String nome, String cor) {
-		super();
 		this.nome = nome;
 		this.cor = cor;
-		this.carteira = 1500;
-		this.posicao = 1;
-		this.propriedades = new ArrayList<Propriedade>();
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public int getCarteira() {
-		return carteira;
-	}
-
-	public void setCarteira(int carteira) {
-		this.carteira = carteira;
-	}
-
-	public int getPosicao() {
-		return posicao;
-	}
-
-	public void setPosicao(int posicao) {
-		this.posicao = posicao;
-	}
-
-	public List<Propriedade> getPropriedades() {
-		return propriedades;
-	}
-
-	public void setPropriedades(List<Propriedade> propriedades) {
-		this.propriedades = propriedades;
-	}
-
-	@Override
-	public String toString() {
-		return " Jogador : " + nome + ", cor : " + cor;
 	}
 	
-
-}
+	public int getPosicao() {
+		return this.posicao;
+	}
+	
+	public String getCor() {
+		return this.cor;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public int lancaDado() {
+		return r.nextInt(6)+1;
+	}
+	
+	public void setPosicao(int numDadoUm, int numDadoDois) {
+		this.posicao = numDadoUm+numDadoDois;
+	}
+	
+	public void irParaPrisao() {
+		this.diasNaPrisao = 3;
+	}
+	
+	public int getDiasNaPrisao() {
+		return this.diasNaPrisao;
+	}
+	
+	public void setDiasNaPrisao() {
+		this.diasNaPrisao -= 1;
+	}
+	
+	public void compraPropriedade(int valorCompraPropriedade) {
+		this.carteira.debitar(valorCompraPropriedade);
+		//this.propriedades.add(propriedade);
+	}
+	}
