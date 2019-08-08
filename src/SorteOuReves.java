@@ -1,7 +1,7 @@
 
 import java.util.Random;
 
-public class SorteReves {
+public class SorteOuReves {
 	
 	public static void main (String[] args) {
 		
