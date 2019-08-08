@@ -1,28 +1,21 @@
+package bancoMobiliario;
 
-public class Companhia implements Posicionavel, Propriedade {
-
+public class Companhia implements InterfCompanhia {
+	
 	private String nome;
-	private int posicao;
 	private int precoCompra;
 	private int Hipoteca;
 	private int Multiplicador;
 	private Jogador dono = null;
+	private String TIPO = "COMPANHIA";
 
-	public Companhia(String nome, int posicao, int precoCompra, int hipoteca, int multiplicador ) {
+	public Companhia(String nome, int precoCompra, int hipoteca, int multiplicador ) {
 		this.nome = nome;
-		this.posicao = posicao;
 		this.precoCompra = precoCompra;
 		Hipoteca = hipoteca;
 		Multiplicador = multiplicador;
 
 	}
-
-	
-
-	public int getPosicao() {
-		return posicao;
-	}
-
 
 
 	public String getNome() {
@@ -57,10 +50,6 @@ public class Companhia implements Posicionavel, Propriedade {
 		Multiplicador = multiplicador;
 	}
 
-	public void setposicao(int posicao) {
-		this.posicao = posicao;
-	}
-
 	public Jogador getDono() {
 		return dono;
 	}
@@ -69,14 +58,25 @@ public class Companhia implements Posicionavel, Propriedade {
 		this.dono = dono;
 	}
 
+	@Override
+	public String toString() {
+		return "Companhia :" + nome + ", preco para compra=" + precoCompra + ", Hipoteca :"
+				+ Hipoteca + ", Multiplicador : " + Multiplicador + ", dono : " + dono ;
+	}
 
 
 	@Override
-	public String toString() {
-		return "Companhia :" + nome + ", posicao : " + posicao + ", preco para compra=" + precoCompra + ", Hipoteca :"
-				+ Hipoteca + ", Multiplicador : " + Multiplicador + ", dono : " + dono ;
+	public boolean existeDono() {
+		if(this.dono != null) {
+			return true;
+		}
+		return false;
 	}
-	
-	
+
+
+	@Override
+	public String getTipo() {
+		return TIPO;
+	}
 
 }

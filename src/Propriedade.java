@@ -1,10 +1,17 @@
+package bancoMobiliario;
 
 public interface Propriedade {
-
-	public int getPrecoCompra();
-
+	
+	public String getNome();
+	
 	public Jogador getDono();
-
-	public int getHipoteca();
+	
+	public void setDono(Jogador newJogador);
+	
+	public int getPrecoCompra();
+	
+	public boolean existeDono();
+	
+	public String getTipo();
 
 }

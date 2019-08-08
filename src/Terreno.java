@@ -1,8 +1,8 @@
+package bancoMobiliario;
 
-public class Terreno implements Posicionavel, Propriedade {
+public class Terreno implements InterfTerreno {
 
 	private String nome;
-	private int posicao;
 	private int precoCompra;
 	private int aluguelSemCasa;
 	private int aluguelUmaCasa;
@@ -14,13 +14,13 @@ public class Terreno implements Posicionavel, Propriedade {
 	private int precoCasa;
 	private int numCasas;
 	private int aluguel;
+	private String TIPO = "TERRENO";
 	private Jogador dono = null;
 
-	public Terreno(String nome, int posicao, int precoCompra, int aluguelSemCasa, int aluguelUmaCasa,
+	public Terreno(String nome, int precoCompra, int aluguelSemCasa, int aluguelUmaCasa,
 			int aluguelDuasCasas, int aluguelTresCasas, int aluguelQuatroCasas, int aluguelHotel, int hipoteca,
 			int precoCasa, int numCasas, int aluguel) {
 		this.nome = nome;
-		this.posicao = posicao;
 		this.precoCompra = precoCompra;
 		this.aluguelSemCasa = aluguelSemCasa;
 		this.aluguelUmaCasa = aluguelUmaCasa;
@@ -134,26 +134,21 @@ public class Terreno implements Posicionavel, Propriedade {
 		return dono;
 	}
 
+	@Override
 	public void setDono(Jogador dono) {
 		this.dono = dono;
 	}
 
-	public void setposicao(int posicao) {
-		this.posicao = posicao;
-	}
-
-	public int getPosicao() {
-		return posicao;
+	@Override
+	public boolean existeDono() {
+		if(this.dono != null) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public String toString() {
-		return "Terreno nome : " + nome + ", posicao : " + posicao + ", preço compra : " + precoCompra + ", aluguel sem casa :"
-				+ aluguelSemCasa + ", aluguel Uma Casa=" + aluguelUmaCasa + ", aluguel Duas Casas=" + aluguelDuasCasas
-				+ ", aluguelTresCasas=" + aluguelTresCasas + ", aluguelQuatroCasas=" + aluguelQuatroCasas
-				+ ", aluguel Hotel=" + aluguelHotel + ", hipoteca=" + hipoteca + ", preco da Casa=" + precoCasa
-				+ ", numeros de casas=" + numCasas + ", preço do aluguel : " + aluguel ;
+	public String getTipo() {
+		return TIPO;
 	}
-
-
 }

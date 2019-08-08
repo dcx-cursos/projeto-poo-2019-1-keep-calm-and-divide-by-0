@@ -1,15 +1,16 @@
 package bancoMobiliario;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
 public class Jogador {
 	private String nome;
 	private String cor;
-	private Carteira carteira = new Carteira(1500);
+	private int carteira = 1500;
 	private int posicao = 0;
 	private int diasNaPrisao = 0;
-	//private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
+	private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
 	
 	Random r = new Random();
 	
@@ -35,7 +36,11 @@ public class Jogador {
 	}
 	
 	public void setPosicao(int numDadoUm, int numDadoDois) {
-		this.posicao = numDadoUm+numDadoDois;
+		if((this.posicao+(numDadoUm+numDadoDois)>39)) {
+			this.posicao = (this.posicao+(numDadoUm+numDadoDois)) - 40;
+		}else {
+			this.posicao += numDadoUm+numDadoDois;
+		}
 	}
 	
 	public void irParaPrisao() {
@@ -46,12 +51,21 @@ public class Jogador {
 		return this.diasNaPrisao;
 	}
 	
-	public void setDiasNaPrisao() {
-		this.diasNaPrisao -= 1;
+	public void setDiasNaProsao(int numDias) {
+		this.diasNaPrisao -= numDias;
 	}
 	
-	public void compraPropriedade(int valorCompraPropriedade) {
-		this.carteira.debitar(valorCompraPropriedade);
-		//this.propriedades.add(propriedade);
+	public void compraPropriedade(int valorCompraPropriedade, Propriedade propriedade) {
+		this.carteira -= valorCompraPropriedade;
+		this.propriedades.add(propriedade);
 	}
+	
+	public void vendePropriedade(int valorCompraPropriedade, Propriedade propriedade) {
+		this.carteira += valorCompraPropriedade;
+		this.propriedades.remove(propriedade);
 	}
+	
+	public int getCarteira() {
+		return this.carteira;
+	}
+}
