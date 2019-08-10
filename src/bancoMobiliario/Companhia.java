@@ -72,6 +72,11 @@ public class Companhia implements Propriedade {
 		}
 		return false;
 	}
+	
+	@Override
+	public String getInformacoesStatus() {
+		return String.valueOf(this.Multiplicador);
+	}
 
 
 	@Override
