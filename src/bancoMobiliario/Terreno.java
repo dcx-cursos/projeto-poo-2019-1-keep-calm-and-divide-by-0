@@ -146,6 +146,11 @@ public class Terreno implements Propriedade {
 		}
 		return false;
 	}
+	
+	@Override
+	public String getInformacoesStatus() {
+		return String.valueOf(this.aluguel);
+	}
 
 	@Override
 	public String getTipo() {
