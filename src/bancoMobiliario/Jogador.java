@@ -78,11 +78,40 @@ public class Jogador  {
 		return this.carteira;
 	}
 	
-	public String getStatus(Propriedade propriedade) {
-		return "O status de " + this.getNome()+" - " + this.getCor() + " é o seguinte:\n"
-				+ "Situado na posição "+this.getPosicao()+" - " + "Nome da propriedade" +"\n"
-						+ "Possui "+this.getCarteira() + "$ \n"
-								+ "Propriedades " + "Lista de todas as propriedades";
+	/**
+	 * Testar o metodo para ver se funciona desta forma
+	 * Algumas condições do metodo podem ser realocadas no main
+	 */
+	public String getStatus(Jogador jogador ,ArrayList<Propriedade> propriedades) {
+		Propriedade localPropriedade = propriedades.get(this.posicao);//Propriedade do local do jogador
+		String propriedadesJogador = "";//Variavel para guardar o nome das propriedades que o jogador possui
+		if(this.propriedades.isEmpty()) {//Se o vetor de propriedades do jogador estiver vazio faça...
+			propriedadesJogador += "Jogador não tem nenhuma propriedade ainda\n";
+			
+		}else {// Se não estiver vazio faça...
+			for(int i = 0; i <this.propriedades.size(); i++) {
+				Propriedade propriedade = this.propriedades.get(i);//Propriedade da lista de propriedades que o jogador possui
+					if(propriedade.getTipo().equals("TERRENO")) {//Se for fo tipo TERRENO faça
+						propriedadesJogador += "["+propriedade.getNome()+"] - propriedade "+this.cor+", aluguel "+propriedade.getInformacoesStatus();
+					}else {//Se não é então é companhia
+						propriedadesJogador += "["+propriedade.getNome()+"] - multiplicador "+propriedade.getInformacoesStatus();
+					}
+			}
+		}
+		
+		if((getPosicao()!=0 && getPosicao()!=2)&&(getPosicao()!=12 && getPosicao()!=16)&&(getPosicao()!=18 && getPosicao()!=20)
+				&&(getPosicao()!=24 && getPosicao()!=27)&&(getPosicao()!=30 && getPosicao()!=37)) {//Excluí todas as posições que são null. Podem haver modificações pra ela retornar somente o nome dessas posições 
+			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
+					+ "Situado na posição "+this.getPosicao()+" - "+localPropriedade.getNome()+"\n"
+							+ "Possui "+this.getCarteira() + "$ \n"
+									+ "Títulos:\n" + propriedadesJogador;
+			
+		}else {//Se for uma dessas então retorne...
+			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
+					+ "Situado na posição "+this.getPosicao()+"\n"
+							+ "Possui "+this.getCarteira() + "$ \n"
+									+ "Títulos:\n" + propriedadesJogador;
+		}
 	}
 
 }
