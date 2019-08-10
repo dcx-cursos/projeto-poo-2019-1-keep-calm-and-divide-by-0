@@ -12,6 +12,8 @@ public interface Propriedade {
 	
 	public boolean existeDono();
 	
+	public String getInformacoesStatus();
+	
 	public String getTipo();
 
 }
