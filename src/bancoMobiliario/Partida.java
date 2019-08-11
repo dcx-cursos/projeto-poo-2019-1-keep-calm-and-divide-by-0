@@ -26,7 +26,7 @@ public class Partida{
 					// TODO Auto-generated catch block
 					System.err.printf("%nException: %s%n",e);
 					leitor.nextLine();
-					System.out.printf("Você precisa digitar inteiros. Profavor tente denovo.%n%n");
+					System.out.printf("Você precisa digitar números inteiros. Profavor tente denovo.%n%n");
 				}
 			}while(continueLoop);
 			
