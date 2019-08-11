@@ -6,18 +6,23 @@ import java.util.List;
 public class SisJogo {
 	private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
 	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
+	private ArrayList<String> cores = new ArrayList<String>();
 	//ArrayList<SorteOuReves> cartas = new ArrayList<SorteOuReves>();
 	
 	/**
 	 * 
 	 * @param novoJogador informaçoes do novo jogador , nome e cor do seu peao
+	 * @throws CorInvalidaException 
 	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja tenha escolhida a mesma cor , visto que nao pode ter jogadores com a mesma cor
 	 */
-	public void gravaJogador(Jogador novoJogador) throws JogadorComACorEscolhidaExiteException {
-		if (ExixteJogadorComEstaCorPiao(novoJogador.getCor()) == false) { // nao existe jogador que escolheu esta cor
-			this.jogadores.add(novoJogador);
+	public void gravaJogador(Jogador novoJogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
+		if (ExisteJogadorComEstaCorPiao(novoJogador.getCor())) { // existe jogador que escolheu esta cor
+			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida");
+		}else if(verificaCorInvalida(novoJogador.getCor())) {
+			throw new CorInvalidaException("Esta cor é invlálida. Porfavor tente denovo.");
 		}else {// a cor ja foi escolhida
-			throw new JogadorComACorEscolhidaExiteException("Esta cor do peão ja foi escolhida");
+			this.jogadores.add(novoJogador);
+
 		}
 	}
 	
@@ -31,18 +36,45 @@ public class SisJogo {
 		this.jogadores.remove(Jogador);
 	}
 	
+	public void carregaCores() {
+		this.cores.add("BRANCO");
+		this.cores.add("VERMELHO");
+		this.cores.add("VERDE");
+		this.cores.add("AZUL");
+		this.cores.add("AMARELO");
+		this.cores.add("LARANJA");
+		this.cores.add("ROSA");
+		this.cores.add("PRETO");
+	}
+	
+	/**
+	 * 
+	 * @param cor que não existe nas opções
+	 * @return true
+	 * 
+	 * verifica se a cor digitada pelo jogador é valida ou não
+	 */
+	public boolean verificaCorInvalida(String cor) {
+		if (cores.contains(cor.toUpperCase())) {
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * 
 	 * @param cor escolhida pelo jogador
 	 * @return verifica se a cor digitada pelo jogador ja foi escolhida , caso ja tenha algum jogador com esta cor return true , caso a cor ainda nao foi escolhida retorne false
 	 */
-	public boolean ExixteJogadorComEstaCorPiao(String cor) {
-		for (Jogador p : jogadores) {
-			if (p.getCor().equals(cor)) {
-				return true;
+	public boolean ExisteJogadorComEstaCorPiao(String cor) {
+		boolean bool = false;
+		for (int k = 0; k<jogadores.size(); k++) {
+			Jogador p = jogadores.get(k);
+			if (p.getCor().contains(cor)) {
+				bool = true;
 			}
 		}
-		return false;
+		return bool;
 	}
 	
 	public ArrayList<Jogador> getJogadores(){
@@ -98,4 +130,3 @@ public class SisJogo {
 		return tabuleiro;
 	}
 }
-
