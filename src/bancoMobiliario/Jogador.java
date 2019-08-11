@@ -146,7 +146,7 @@ public class Jogador  {
 	 * Testar o metodo para ver se funciona desta forma
 	 * Algumas condições do metodo podem ser realocadas no main
 	 */
-	public String getStatus(Jogador jogador ,ArrayList<Propriedade> propriedades) {
+	public String getStatus(ArrayList<Propriedade> propriedades) {
 		Propriedade localPropriedade = propriedades.get(this.posicao);//Propriedade do local do jogador
 		String propriedadesJogador = "";//Variavel para guardar o nome das propriedades que o jogador possui
 		if(this.propriedades.isEmpty()) {//Se o vetor de propriedades do jogador estiver vazio faça...
