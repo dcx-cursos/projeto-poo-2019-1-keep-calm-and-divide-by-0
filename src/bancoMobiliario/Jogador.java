@@ -172,7 +172,7 @@ public class Jogador  {
 					+ "Situado na posição "+this.posicao+" - Prisão\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
 									+ "Títulos:\n" + propriedadesJogador;
-		}else if((this.posicao==2|this.posicao!=12)|(this.posicao!=16|this.posicao!=22)|(this.posicao!=27|this.posicao!=37)){
+		}else if(((this.posicao==2|this.posicao!=12)|(this.posicao!=16|this.posicao!=22))|(this.posicao!=27|this.posicao!=37)){
 			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
 					+ "Situado na posição "+this.posicao+" - Sorte ou Reves\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
