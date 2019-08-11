@@ -11,6 +11,7 @@ public class Partida{
 		Scanner leitor = new Scanner(System.in);
 		SisJogo sis = new SisJogo();
 		ArrayList<Propriedade> tabuleiro = sis.genetareBoard();
+		sis.carregaCores();
 
 		
 		while(true) {
@@ -37,11 +38,10 @@ public class Partida{
 							+ "[preto][branco][vermelho][verde][azul][amarelo][laranja][rosa]\n:");
 					cor = leitor.next().toLowerCase();
 					try {
-						sis.gravaJogador((new Jogador(nome,cor.toLowerCase())));/**JOGADOR É ADICIONADO A LISTA DE JOGADORES*/
-					}catch (JogadorComCorEscolhidaExisteException exception) {
+						sis.gravaJogador((new Jogador(nome,cor)));/**JOGADOR É ADICIONADO A LISTA DE JOGADORES*/
+					}catch (JogadorComCorEscolhidaExisteException|CorInvalidaException exception) {
 						// TODO Auto-generated catch block
-						System.err.printf("%nException: %s%n",exception);
-						System.out.println("");
+						System.err.println(exception+"\n");
 						k = k-1;
 					}
 				}
@@ -131,7 +131,9 @@ public class Partida{
 						}else if(opcao.equals("SAIR")){
 								System.out.printf("Você realmente quer sair (Sim/Não)?");
 								String escolha = leitor.next().toUpperCase();
-								if(escolha.equals("SIM") | escolha.equals("S")) {sis.removeJogador(e);break;/** JOGADOR SERÁ REMOVIDO DA LISTA DE JOGADORES*/
+								if(escolha.equals("SIM") | escolha.equals("S")) {
+									sis.removeJogador(e);
+									break;/** JOGADOR SERÁ REMOVIDO DA LISTA DE JOGADORES*/
 								}else if(escolha.equals("NÃO") | escolha.equals("NAO")) {}/**JOGADOR DEVERA ESCOLHER AS OPÇÕES DE JOGO NOVAMENTE*/
 						}else {
 							System.out.println("Digite uma opção válida.\n");
