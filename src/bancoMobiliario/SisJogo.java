@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SisJogo {
-	ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
-	ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
+	private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
 	//ArrayList<SorteOuReves> cartas = new ArrayList<SorteOuReves>();
 	
 	/**

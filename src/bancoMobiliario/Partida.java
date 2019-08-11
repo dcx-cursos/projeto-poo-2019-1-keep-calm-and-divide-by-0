@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Partida{
 	
-	
 	public static void main(String[] args) throws JogadorComACorEscolhidaExiteException {
 		Scanner leitor = new Scanner(System.in);
 		SisJogo sis = new SisJogo();
@@ -16,7 +15,7 @@ public class Partida{
 			System.out.printf("Digite o número de jogadores [2-8]:");
 			int numJogadores = leitor.nextInt();
 			
-			if(numJogadores<2) {System.out.println("Número de jogadores não pode ser menor que 2.");
+			if(numJogadores<2 || numJogadores > 8) {System.out.println("Número de jogadores invalido");
 			}else {
 				for (int k=0; k<numJogadores; k++) {
 					String nome,cor;
@@ -110,7 +109,7 @@ public class Partida{
 							
 						}else if (opcao.equals("STATUS")) {
 							
-							System.out.println(e.getStatus(propriedade);
+							System.out.println(e.getStatus(propriedade));
 						}
 						
 						
