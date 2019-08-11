@@ -141,7 +141,6 @@ public class Jogador  {
 	public int getCarteira() {
 		return this.carteira;
 	}
-	
 	/**
 	 * Testar o metodo para ver se funciona desta forma
 	 * Algumas condições do metodo podem ser realocadas no main
@@ -156,23 +155,36 @@ public class Jogador  {
 			for(int i = 0; i <this.propriedades.size(); i++) {
 				Propriedade propriedade = this.propriedades.get(i);//Propriedade da lista de propriedades que o jogador possui
 					if(propriedade.getTipo().equals("TERRENO")) {//Se for fo tipo TERRENO faça
-						propriedadesJogador += "["+propriedade.getNome()+"] - propriedade "+this.cor+", aluguel "+propriedade.getInformacoesStatus();
+						propriedadesJogador += "["+propriedade.getNome()+"] - propriedade "+this.cor+", aluguel "+propriedade.getInformacoesStatus()+"\n";
 					}else {//Se não é então é companhia
-						propriedadesJogador += "["+propriedade.getNome()+"] - multiplicador "+propriedade.getInformacoesStatus();
+						propriedadesJogador += "["+propriedade.getNome()+"] - multiplicador "+propriedade.getInformacoesStatus()+"\n";
 					}
 			}
 		}
 		
-		if((getPosicao()!=0 && getPosicao()!=2)&&(getPosicao()!=12 && getPosicao()!=16)&&(getPosicao()!=18 && getPosicao()!=20)
-				&&(getPosicao()!=24 && getPosicao()!=27)&&(getPosicao()!=30 && getPosicao()!=37)) {//Excluí todas as posições que são null. Podem haver modificações pra ela retornar somente o nome dessas posições 
+		if(this.posicao==0) {
 			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
-					+ "Situado na posição "+this.getPosicao()+" - "+localPropriedade.getNome()+"\n"
+					+ "Situado na posição "+this.posicao+" - Inicio\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
 									+ "Títulos:\n" + propriedadesJogador;
-			
+		}else if(this.posicao==10) {
+			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
+					+ "Situado na posição "+this.posicao+" - Prisão\n"
+							+ "Possui "+this.getCarteira() + "$ \n"
+									+ "Títulos:\n" + propriedadesJogador;
+		}else if((this.posicao==2|this.posicao!=12)|(this.posicao!=16|this.posicao!=22)|(this.posicao!=27|this.posicao!=37)){
+			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
+					+ "Situado na posição "+this.posicao+" - Sorte ou Reves\n"
+							+ "Possui "+this.getCarteira() + "$ \n"
+									+ "Títulos:\n" + propriedadesJogador;
+		}else if((this.posicao!=18 && this.posicao!=20)&&(this.posicao!=24&&this.posicao!=30)) {//Excluí todas as posições que são null. Podem haver modificações pra ela retornar somente o nome dessas posições 
+			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
+					+ "Situado na posição "+this.posicao+" - "+localPropriedade.getNome()+"\n"
+							+ "Possui "+this.getCarteira() + "$ \n"
+									+ "Títulos:\n" + propriedadesJogador;
 		}else {//Se for uma dessas então retorne...
 			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
-					+ "Situado na posição "+this.getPosicao()+"\n"
+					+ "Situado na posição "+this.posicao+"\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
 									+ "Títulos:\n" + propriedadesJogador;
 		}
