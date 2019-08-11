@@ -15,35 +15,44 @@ public class Partida{
 
 		
 		while(true) {
+			boolean continueLoop = true;
 			int numJogadores = 0;
-			try {
-				System.out.printf("Digite o número de jogadores [2-8]:");
-				numJogadores = leitor.nextInt();
-			} catch (InputMismatchException e) {
-				// TODO Auto-generated catch block
-				System.err.printf("%nException: %s%n",e);
-				leitor.nextLine();
-				System.out.printf("Você precisa digitar inteiros. Profavor tente denovo.%n%n");
-			}
+			do {
+				try {
+					System.out.printf("Digite o número de jogadores [2-8]:");
+					numJogadores = leitor.nextInt();
+					break;
+				} catch (InputMismatchException e) {
+					// TODO Auto-generated catch block
+					System.err.printf("%nException: %s%n",e);
+					leitor.nextLine();
+					System.out.printf("Você precisa digitar inteiros. Profavor tente denovo.%n%n");
+				}
+			}while(continueLoop);
 			
 			if(numJogadores<2) {System.out.println("Número de jogadores não pode ser menor que 2.");
 			}else {
+				boolean continueLoopII = true;
 				for (int k=0; k<numJogadores; k++) {
-					String nome,cor;
-					
-					System.out.printf("Digite o nome do jogador"+(k+1)+":");
-					nome = leitor.next();
-					
-					System.out.printf("Digite a cor do peão do jogador "+(k+1)+" entre as opções seguintes:\n"
-							+ "[preto][branco][vermelho][verde][azul][amarelo][laranja][rosa]\n:");
-					cor = leitor.next().toLowerCase();
-					try {
-						sis.gravaJogador((new Jogador(nome,cor)));/**JOGADOR É ADICIONADO A LISTA DE JOGADORES*/
-					}catch (JogadorComCorEscolhidaExisteException|CorInvalidaException exception) {
-						// TODO Auto-generated catch block
-						System.err.println(exception+"\n");
-						k = k-1;
-					}
+					do {
+						try {
+							String nome,cor;
+							
+							System.out.printf("Digite o nome do jogador"+(k+1)+":");
+							nome = leitor.next();
+							
+							System.out.printf("Digite a cor do peão do jogador "+(k+1)+" entre as opções seguintes:\n"
+									+ "[preto][branco][vermelho][verde][azul][amarelo][laranja][rosa]\n:");
+							cor = leitor.next().toLowerCase();
+						
+							sis.gravaJogador((new Jogador(nome,cor)));/**JOGADOR É ADICIONADO A LISTA DE JOGADORES*/
+							break;
+						}catch (JogadorComCorEscolhidaExisteException|CorInvalidaException exception) {
+							System.err.printf("%nException: %s%n",exception);
+							leitor.nextLine();
+							System.out.printf("Você precisa digitar uma cor diferente. Profavor tente denovo.%n%n");
+						}
+					}while(continueLoopII);
 				}
 				break;
 			}
