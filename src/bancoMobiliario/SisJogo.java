@@ -8,18 +8,34 @@ public class SisJogo {
 	ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
 	//ArrayList<SorteOuReves> cartas = new ArrayList<SorteOuReves>();
 	
+	/**
+	 * 
+	 * @param novoJogador informaçoes do novo jogador , nome e cor do seu peao
+	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja tenha escolhida a mesma cor , visto que nao pode ter jogadores com a mesma cor
+	 */
 	public void gravaJogador(Jogador novoJogador) throws JogadorComACorEscolhidaExiteException {
-		if (ExixteJogadorComEstaCorPiao(novoJogador.getCor()) == false) {
+		if (ExixteJogadorComEstaCorPiao(novoJogador.getCor()) == false) { // nao existe jogador que escolheu esta cor
 			this.jogadores.add(novoJogador);
-		}else {
+		}else {// a cor ja foi escolhida
 			throw new JogadorComACorEscolhidaExiteException("Esta cor do peão ja foi escolhida");
 		}
 	}
 	
+	/**
+	 * 
+	 * @param Jogador jogador que deseja sair do jogo
+	 * 
+	 * metodo que retira um jogador do jogo
+	 */
 	public void removeJogador(Jogador Jogador) {
 		this.jogadores.remove(Jogador);
 	}
 	
+	/**
+	 * 
+	 * @param cor escolhida pelo jogador
+	 * @return verifica se a cor digitada pelo jogador ja foi escolhida , caso ja tenha algum jogador com esta cor return true , caso a cor ainda nao foi escolhida retorne false
+	 */
 	public boolean ExixteJogadorComEstaCorPiao(String cor) {
 		for (Jogador p : jogadores) {
 			if (p.getCor().equals(cor)) {
@@ -33,6 +49,11 @@ public class SisJogo {
 		return jogadores;
 	}
 	
+	
+	/**
+	 * 
+	 * @return o tabuleiro com todas as posiçoes das companhia e terrenos no qual o jogador pode comprar , e null para as pociçoes especiais como , sorte ou reves, partida ,prisao , prisao como visitante
+	 */
 	public ArrayList<Propriedade> genetareBoard() {
 		this.tabuleiro.add(null);//0 inicio
 		this.tabuleiro.add(new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6 ));//1
@@ -77,3 +98,4 @@ public class SisJogo {
 		return tabuleiro;
 	}
 }
+

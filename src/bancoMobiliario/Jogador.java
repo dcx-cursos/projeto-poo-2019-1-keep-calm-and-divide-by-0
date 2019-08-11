@@ -14,27 +14,58 @@ public class Jogador  {
 	
 	Random r = new Random();
 	
+	
+	/**
+	 * 
+	 * @param nome nome do jogador
+	 * @param cor a cor do jogador
+	 */
 	public Jogador(String nome, String cor) {
 		this.nome = nome;
 		this.cor = cor;
 	}
 	
+	/**
+	 * 
+	 * @return posiçao atual do jogador
+	 */
 	public int getPosicao() {
 		return this.posicao;
 	}
 	
+	/**
+	 * 
+	 * @return cor escolhida pelo jogador
+	 */
 	public String getCor() {
 		return this.cor;
 	}
 	
+	/**
+	 * 
+	 * @return nome do jogador
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 	
+	/**
+	 * 
+	 * @return retorna o valor do dado
+	 */
 	public int lancaDado() {
 		return r.nextInt(6)+1;
 	}
 	
+	/**
+	 * 
+	 * @param numDadoUm valor do primeiro dado jogado
+	 * @param numDadoDois valor do segundo dado jogado
+	 * 
+	 * 
+	 * metodo para mudar a posiçao do jogador , soma o reultado dos dados e avança o jogador 
+	 * caso a soma dos dados for superior a 40 , diminua 40 , indicando que o jagador deu uma volta completa no tabuleiro
+	 */
 	public void setPosicao(int numDadoUm, int numDadoDois) {
 		if((this.posicao+(numDadoUm+numDadoDois)>39)) {
 			this.posicao = (this.posicao+(numDadoUm+numDadoDois)) - 40;
@@ -43,7 +74,10 @@ public class Jogador  {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @return uma lista de todas as propriedades que pertence ao jogador
+	 */
 	public ArrayList<Propriedade> getPropriedades() {
 		return propriedades;
 	}
@@ -52,10 +86,17 @@ public class Jogador  {
 		this.propriedades = propriedades;
 	}
 
+	/**
+	 *  caso o jogador va para prisao ele deve ficar la por 3 dias
+	 */
 	public void irParaPrisao() {
 		this.diasNaPrisao = 3;
 	}
 	
+	/**
+	 * 
+	 * @return dias que o jogador esta preso
+	 */
 	public int getDiasNaPrisao() {
 		return this.diasNaPrisao;
 	}
@@ -64,16 +105,32 @@ public class Jogador  {
 		this.diasNaPrisao -= numDias;
 	}
 	
+	/**
+	 * 
+	 * @param valorCompraPropriedade valor para comprar a propriedade
+	 * @param propriedade propriedade no qual o jogador deseja comprar
+	 * 
+	 * metodo para realizar a compra de uma propriedade no tabuleiro
+	 */
 	public void compraPropriedade(int valorCompraPropriedade, Propriedade propriedade) {
 		this.carteira -= valorCompraPropriedade;
 		this.propriedades.add(propriedade);
 	}
 	
+	/**
+	 * 
+	 * @param valorCompraPropriedade valor para vender sua propriedade
+	 * @param propriedade propriedade no qual o jogador que vender
+	 */
 	public void vendePropriedade(int valorCompraPropriedade, Propriedade propriedade) {
 		this.carteira += valorCompraPropriedade;
 		this.propriedades.remove(propriedade);
 	}
 	
+	/**
+	 * 
+	 * @return total de dinheiro que o jogador possui
+	 */
 	public int getCarteira() {
 		return this.carteira;
 	}
@@ -115,3 +172,4 @@ public class Jogador  {
 	}
 
 }
+

@@ -17,6 +17,22 @@ public class Terreno implements Propriedade {
 	private String TIPO = "TERRENO";
 	private Jogador dono = null;
 
+	
+	/**
+	 * 
+	 * @param nome , nome do terreno
+	 * @param precoCompra , preço para comprar o terreno
+	 * @param aluguelSemCasa , preço do aluguel quando nao ha nenhuma casa construida
+	 * @param aluguelUmaCasa , preço do aluguel quando ha uma casa construida
+	 * @param aluguelDuasCasas , preço do aluguel quando ha duas casa construida
+	 * @param aluguelTresCasas , preço do aluguel quando ha tres casa construida
+	 * @param aluguelQuatroCasas , preço do aluguel quando ha quatro casa construida
+	 * @param aluguelHotel , preço do aluguel quando a um hotel no terreno( somente apos contruir 4 casas)
+	 * @param hipoteca , custo para hipotecar o terreno
+	 * @param precoCasa , preço para contruir cada casa
+	 * @param numCasas  , numero de casas no terreno
+	 * @param aluguel , preço pago ao dono quando um jogador cai no seu terreno
+	 */
 	public Terreno(String nome, int precoCompra, int aluguelSemCasa, int aluguelUmaCasa,
 			int aluguelDuasCasas, int aluguelTresCasas, int aluguelQuatroCasas, int aluguelHotel, int hipoteca,
 			int precoCasa, int numCasas, int aluguel) {
@@ -34,6 +50,9 @@ public class Terreno implements Propriedade {
 		this.aluguel = aluguel;
 	}
 
+	/**
+	 * @return nome da companhia 
+	 */
 	public String getNome() {
 		return nome;
 	}
@@ -42,6 +61,9 @@ public class Terreno implements Propriedade {
 		this.nome = nome;
 	}
 
+	/**
+	 * @return preço para comprar o terreno
+	 */
 	public int getPrecoCompra() {
 		return precoCompra;
 	}
@@ -49,7 +71,11 @@ public class Terreno implements Propriedade {
 	public void setPrecoCompra(int precoCompra) {
 		this.precoCompra = precoCompra;
 	}
-
+	
+	/**
+	 * 
+	 * @return preço que deve ser pago por outro jogador ao dono quando cair no terreno e nao ha nehuma casa construida
+	 */
 	public int getAluguelSemCasa() {
 		return aluguelSemCasa;
 	}
@@ -58,6 +84,10 @@ public class Terreno implements Propriedade {
 		this.aluguelSemCasa = aluguelSemCasa;
 	}
 
+	/**
+	 * 
+	 * @return preço que deve ser pago por outro jogador ao dono quando cair no terreno e nao ha uma casa construida
+	 */
 	public int getAluguelUmaCasa() {
 		return aluguelUmaCasa;
 	}
@@ -66,6 +96,10 @@ public class Terreno implements Propriedade {
 		this.aluguelUmaCasa = aluguelUmaCasa;
 	}
 
+	/**
+	 * 
+	 * @return preço que deve ser pago por outro jogador ao dono quando cair no terreno e nao ha duas casas construida
+	 */
 	public int getAluguelDuasCasas() {
 		return aluguelDuasCasas;
 	}
@@ -74,6 +108,10 @@ public class Terreno implements Propriedade {
 		this.aluguelDuasCasas = aluguelDuasCasas;
 	}
 
+	/**
+	 * 
+	 * @returnpreço que deve ser pago por outro jogador ao dono quando cair no terreno e nao ha tres casas construida
+	 */
 	public int getAluguelTresCasas() {
 		return aluguelTresCasas;
 	}
@@ -82,6 +120,10 @@ public class Terreno implements Propriedade {
 		this.aluguelTresCasas = aluguelTresCasas;
 	}
 
+	/**
+	 * 
+	 * @return preço que deve ser pago por outro jogador ao dono quando cair no terreno e nao ha quatro casas construida
+	 */
 	public int getAluguelQuatroCasas() {
 		return aluguelQuatroCasas;
 	}
@@ -89,7 +131,11 @@ public class Terreno implements Propriedade {
 	public void setAluguelQuatroCasas(int aluguelQuatroCasas) {
 		this.aluguelQuatroCasas = aluguelQuatroCasas;
 	}
-
+	
+	/**
+	 * 
+	 * @return preço que deve ser pago por outro jogador ao dono quando cair no terreno e ha um hotel construido
+	 */
 	public int getAluguelHotel() {
 		return aluguelHotel;
 	}
@@ -98,6 +144,10 @@ public class Terreno implements Propriedade {
 		this.aluguelHotel = aluguelHotel;
 	}
 
+	/**
+	 * 
+	 * @return preço para hipotecar o terreno
+	 */
 	public int getHipoteca() {
 		return hipoteca;
 	}
@@ -106,6 +156,10 @@ public class Terreno implements Propriedade {
 		this.hipoteca = hipoteca;
 	}
 
+	/**
+	 * 
+	 * @return o preço para contruir cada casa
+	 */
 	public int getPrecoCasa() {
 		return precoCasa;
 	}
@@ -114,6 +168,10 @@ public class Terreno implements Propriedade {
 		this.precoCasa = precoCasa;
 	}
 
+	/**
+	 * 
+	 * @return numeros de casas contruidas no terreno
+	 */
 	public int getNumCasas() {
 		return numCasas;
 	}
@@ -122,6 +180,10 @@ public class Terreno implements Propriedade {
 		this.numCasas = numCasas;
 	}
 
+	/**
+	 * 
+	 * @return valor a ser pago pelo outro jogador que caia no terreno que ja tem dono
+	 */
 	public int getAluguel() {
 		return aluguel;
 	}
@@ -130,6 +192,9 @@ public class Terreno implements Propriedade {
 		this.aluguel = aluguel;
 	}
 
+	/**
+	 * @return as informaçoes do dono do terreno
+	 */
 	public Jogador getDono() {
 		return dono;
 	}
@@ -139,7 +204,9 @@ public class Terreno implements Propriedade {
 		this.dono = dono;
 	}
 
-	@Override
+	/**
+	 * @return verifica se o terreno ja tem dono , se tiver dono retorne true caso nao tenha retorne false
+	 */
 	public boolean existeDono() {
 		if(this.dono != null) {
 			return true;
@@ -147,13 +214,16 @@ public class Terreno implements Propriedade {
 		return false;
 	}
 	
-	@Override
+
 	public String getInformacoesStatus() {
 		return String.valueOf(this.aluguel);
 	}
 
-	@Override
+	/**
+	 * @return o tipo do terreno
+	 */
 	public String getTipo() {
 		return TIPO;
 	}
 }
+
