@@ -12,6 +12,7 @@ class SisJogoTest {
 	private ArrayList<Jogador> jogadores ;
 	private Jogador jogador;
 	private Jogador jogador2;
+	private Jogador jogador3;
 	
 	
 	
@@ -21,7 +22,7 @@ class SisJogoTest {
 		jogadores = new ArrayList<Jogador>();
 		jogador = new Jogador("cleyson","rosa");
 		jogador2 = new Jogador("raul","preto");
-		
+		jogador3 = new Jogador("biel","lilas");
 	}
 
 	/**
@@ -36,6 +37,18 @@ class SisJogoTest {
 		this.jogadores.add(jogador2);
 		assertEquals(2, jogadores.size());
 
+	}
+	/**
+	 * testa quando um jogador digita uma cor que nao esta na lista de cor validas para sua escolha , deve lançar uma exception e mostar a mensagem de err0
+	 */
+	
+	@Test
+	void testComJogadorEscolhendoCorInvalida() {
+		jogadores.add(jogador);
+		jogadores.add(jogador3);
+		Exception CorInvalida = assertThrows(CorInvalidaException.class, () -> jogo.gravaJogador(jogador3));
+		assertEquals("Esta cor é invlálida.\nPorfavor tente denovo.",CorInvalida.getMessage() );
+		
 	}
 
 }
