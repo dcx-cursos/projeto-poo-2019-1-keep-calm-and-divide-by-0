@@ -26,7 +26,7 @@ public class Partida{
 					// TODO Auto-generated catch block
 					System.err.printf("%nException: %s%n",e);
 					leitor.nextLine();
-					System.out.printf("Você precisa digitar números inteiros. Profavor tente denovo.%n%n");
+					System.out.printf("Você precisa digitar números inteiros. Por favor tente denovo.%n%n");
 				}
 			}while(continueLoop);
 			
@@ -50,7 +50,7 @@ public class Partida{
 						}catch (JogadorComCorEscolhidaExisteException|CorInvalidaException exception) {
 							System.err.printf("%nException: %s%n",exception);
 							leitor.nextLine();
-							System.out.printf("Você precisa digitar uma cor diferente. Profavor tente denovo.%n%n");
+							System.out.printf("Você precisa digitar uma cor diferente. Por favor tente denovo.%n%n");
 						}
 					}while(continueLoopII);
 				}
