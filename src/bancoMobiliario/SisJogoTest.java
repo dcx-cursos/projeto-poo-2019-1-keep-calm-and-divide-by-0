@@ -14,6 +14,7 @@ class SisJogoTest {
 	private Jogador jogador2;
 	
 	
+	
 	@BeforeEach
 	void setup() {
 		jogo = new SisJogo();
@@ -31,9 +32,7 @@ class SisJogoTest {
 	 */
 	@Test
 	void testAdicionandoJogador() throws JogadorComACorEscolhidaExiteException {
-		jogo.gravaJogador(jogador);
 		this.jogadores.add(jogador);
-		jogo.gravaJogador(jogador2);
 		this.jogadores.add(jogador2);
 		assertEquals(2, jogadores.size());
 
