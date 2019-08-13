@@ -15,9 +15,9 @@ public class SisJogo {
 	 * @throws CorInvalidaException 
 	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja tenha escolhida a mesma cor , visto que nao pode ter jogadores com a mesma cor
 	 */
-	public void gravaJogador(Jogador novoJogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
+	public void gravaJogador(Jogador novoJogador) throws JogadorAComCorEscolhidaExisteException, CorInvalidaException{
 		if (ExisteJogadorComEstaCorPiao(novoJogador.getCor())) { // existe jogador que escolheu esta cor
-			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida");
+			throw new JogadorComACorEscolhidaExisteException("Esta cor do peão ja foi escolhida");
 		}else if(verificaCorInvalida(novoJogador.getCor())) {
 			throw new CorInvalidaException("Esta cor é invlálida. Porfavor tente denovo.");
 		}else {// a cor ja foi escolhida
