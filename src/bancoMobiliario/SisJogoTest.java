@@ -43,12 +43,10 @@ class SisJogoTest {
 	 */
 	
 	@Test
-	void testComJogadorEscolhendoCorInvalida() {
-		jogadores.add(jogador);
-		jogadores.add(jogador3);
+	void testComJogadorEscolhendoCorInvalida()  {
 		Exception CorInvalida = assertThrows(CorInvalidaException.class, () -> jogo.gravaJogador(jogador3));
-		assertEquals("Esta cor é invlálida.\nPorfavor tente denovo.",CorInvalida.getMessage() );
-		
+		assertEquals("Esta cor é invlálida. Porfavor tente denovo.",CorInvalida.getMessage() );
+
 	}
 
 }
