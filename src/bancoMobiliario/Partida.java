@@ -141,7 +141,7 @@ public class Partida{
 						}else {
 							System.out.println("Digite uma opção válida.\n");
 						}
-					}else {System.out.println(e.getNome()+"Esta na prisão como visitante.");e.setDiasNaProsao(1); break;/**OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1*/}
+					}else {System.out.println(e.getNome()+" está na prisão.");e.setDiasNaProsao(1); break;/**OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1*/}
 							
 				}//fim while
 			
