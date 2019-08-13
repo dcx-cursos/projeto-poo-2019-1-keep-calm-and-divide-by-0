@@ -39,7 +39,7 @@ public class Partida{
 					cor = leitor.next().toLowerCase();
 					try {
 						sis.gravaJogador((new Jogador(nome,cor)));/**JOGADOR É ADICIONADO A LISTA DE JOGADORES*/
-					}catch (JogadorComACorEscolhidaExiteException e) {
+					}catch (JogadorComACorEscolhidaExisteException e) {
 			
 						System.err.println(e.getMessage());
 						k = k-1;
