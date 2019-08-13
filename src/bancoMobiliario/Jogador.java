@@ -111,11 +111,11 @@ public class Jogador  {
 	 * @param propriedade propriedade no qual o jogador deseja comprar
 	 * 
 	 * metodo para realizar a compra de uma propriedade no tabuleiro
-	 * @throws DineheiroInsuficienteException caso o jogador nao tenha dineheiro suficiente para comparar a propriedade
+	 * @throws DinheiroInsuficienteException caso o jogador nao tenha dineheiro suficiente para comparar a propriedade
 	 */
-	public void compraPropriedade(int valorCompraPropriedade, Propriedade propriedade) throws DineheiroInsuficienteException {
+	public void compraPropriedade(int valorCompraPropriedade, Propriedade propriedade) throws DinheiroInsuficienteException {
 		if (this.carteira < valorCompraPropriedade) {
-			throw new DineheiroInsuficienteException("Jogador não possui dinheiro sufiente para comprar a propriedade");
+			throw new DinheiroInsuficienteException("Jogador não possui dinheiro sufiente para comprar a propriedade");
 		}else {
 			this.carteira -= valorCompraPropriedade;
 			this.propriedades.add(propriedade);
