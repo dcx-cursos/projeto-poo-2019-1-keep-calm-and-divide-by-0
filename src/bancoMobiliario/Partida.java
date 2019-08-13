@@ -122,7 +122,7 @@ public class Partida{
 										propriedade.setDono(e);
 										System.out.println("Compra efetuada.");
 										break;
-									}catch(DineheiroInsuficienteException exception) {
+									}catch(DinheiroInsuficienteException exception) {
 										System.out.println(exception);
 										break;
 									}
