@@ -34,13 +34,13 @@ class JogadorTest {
 		jogador = new Jogador("cleyson", "rosa");
 		terreno = new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6);
 		companhia = new Companhia("Companhia de Taxi Aereo", 200, 100, 50);
-		// jogadorMock = new Jogador("gabriel","azul");
+		
 
 	}
 
 	/**
 	 * 
-	 * @throws DineheiroInsuficienteException caso nao tenha dinheiro sificiente
+	 * @throws DinheiroInsuficienteException caso nao tenha dinheiro sificiente
 	 *                                        para comprar
 	 * 
 	 *                                        teste para saber se estar debitando o
@@ -54,7 +54,7 @@ class JogadorTest {
 
 	/**
 	 * 
-	 * @throws DineheiroInsuficienteException caso nao tenha dinheiro sificiente
+	 * @throws DinheiroInsuficienteException caso nao tenha dinheiro sificiente
 	 *                                        para comprar
 	 * 
 	 *                                        teste para saber se estar debitando o
