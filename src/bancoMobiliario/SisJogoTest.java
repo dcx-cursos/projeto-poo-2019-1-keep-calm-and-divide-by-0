@@ -32,7 +32,7 @@ class SisJogoTest {
 	 * metodo para verificar se estar adicionando novos jogadores
 	 */
 	@Test
-	void testAdicionandoJogador() throws JogadorComACorEscolhidaExiteException {
+	void testAdicionandoJogador() throws JogadorComACorEscolhidaExisteException {
 		this.jogadores.add(jogador);
 		this.jogadores.add(jogador2);
 		assertEquals(2, jogadores.size());
