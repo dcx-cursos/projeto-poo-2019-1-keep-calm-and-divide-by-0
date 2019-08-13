@@ -23,7 +23,7 @@ public class Partida{
 				// TODO Auto-generated catch block
 				System.err.printf("%nException: %s%n",e);
 				leitor.nextLine();
-				System.out.printf("Você precisa digitar inteiros. Profavor tente denovo.%n%n");
+				System.out.printf("Você precisa digitar inteiros. Porfavor tente denovo.%n%n");
 			}
 			
 			if(numJogadores<2 || numJogadores > 8) {System.out.println("Número de jogadores invalido");
