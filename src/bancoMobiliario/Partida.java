@@ -112,7 +112,7 @@ public class Partida{
 									+ ""+e.getPosicao()+" "
 									+ "– "+propriedade.getNome()+". O título da propriedade "+ e.getNome()+" está disponível por $"+propriedade.getPrecoCompra()+"\n"
 									+ e.getNome()+", você possui "+e.getCarteira()+".\n"
-									+ "Você deseja comprar Av. Europa (Sim/Não)? "); 
+									+ "Você deseja comprar "+propriedade.getNome()+" (Sim/Não)? "); 
 								String escolha = leitor.next().toUpperCase();
 								if(escolha.equals("NÃO") | escolha.equals("NAO")) {
 									break;
