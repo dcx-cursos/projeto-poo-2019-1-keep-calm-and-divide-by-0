@@ -47,7 +47,7 @@ class JogadorTest {
 	 *                                        valor correto na proca do terreno
 	 */
 	@Test
-	void testCompraDeTerreno() throws DineheiroInsuficienteException {
+	void testCompraDeTerreno() throws DinheiroInsuficienteException {
 		jogador.compraPropriedade(100, terreno);
 		assertEquals(1400, jogador.getCarteira());
 	}
@@ -61,7 +61,7 @@ class JogadorTest {
 	 *                                        valor correto na compra da companhia
 	 */
 	@Test
-	void testCompraDeCompanhia() throws DineheiroInsuficienteException {
+	void testCompraDeCompanhia() throws DinheiroInsuficienteException {
 		jogador.compraPropriedade(200, companhia);
 		assertEquals(1300, jogador.getCarteira());
 	}
@@ -73,7 +73,7 @@ class JogadorTest {
 	@Test
 	void testCompraDeTerrenoComDinheiroInvalido() {
 		jogador.setCarteira(50);
-		Exception compra = assertThrows(DineheiroInsuficienteException.class,
+		Exception compra = assertThrows(DinheiroInsuficienteException.class,
 				() -> jogador.compraPropriedade(100, companhia));
 		assertEquals("Jogador não possui dinheiro sufiente para comprar a propriedade", compra.getMessage());
 
