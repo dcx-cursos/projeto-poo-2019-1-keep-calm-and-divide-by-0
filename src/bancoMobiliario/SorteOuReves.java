@@ -6,6 +6,8 @@ public class SorteReves {
 	
 	//Ainda a ser acrescentado na classe main
 	
+	
+	
 	public static void main (String[] args) {
 		
 	String [] sorteReves;
