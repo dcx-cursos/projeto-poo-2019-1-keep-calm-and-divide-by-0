@@ -4,13 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 /**
  * 
- * @author cleyson
  * @version Junity5
  */
 class JogadorTest {
@@ -18,13 +14,7 @@ class JogadorTest {
 	private Propriedade terreno;
 	private Propriedade companhia;
 
-	@BeforeEach
-	public void inicializa() {
-		MockitoAnnotations.initMocks(this);
-	}
-
-	@Mock
-	Jogador jogadorMock = null;
+	
 
 	/**
 	 * antes de cada teste deve criar um novo jogador
@@ -80,17 +70,5 @@ class JogadorTest {
 	}
 
 	
-	/**
-	 * verifica se o jogador muda de posiçao apos os lançamentos dos dados 
-	 */
-	@Test
-	public void testJogadorMundandoDePosicao() {
-		int numdado1 = jogadorMock.lancaDado();
-		int numdado2 = jogadorMock.lancaDado();
-		jogadorMock.setPosicao(numdado1, numdado2);
-		Mockito.when(jogadorMock.getPosicao()).thenReturn(6);
-		assertEquals(6, jogadorMock.getPosicao());
-
-		Mockito.verify(jogadorMock, Mockito.times(1)).getPosicao();
-	}
+	
 }

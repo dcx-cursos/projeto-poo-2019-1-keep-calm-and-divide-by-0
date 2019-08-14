@@ -49,13 +49,13 @@ public class SorteOuReves {
 	sorteReves[28] = ("Produção de leite de suas fazendas ficou abaixo da expectativa, Pague 60");
 	sorteReves[29] = ("Tirou primeiro lugar no torneio de golfe, Receba 100");
 	sorteReves[30] = ("Atualizou os computadores da sua empresa, Receba 30");
-	
+/*	
 	for (int i=0; i<sorteReves.length; i++) {
         sorteReves[i] = random.nextInt(i);
         System.out.println(sorteReves[i]);
 		
 	}
-	
+	*/
 	}
 
 }
