@@ -2,7 +2,7 @@ package bancoMobiliario;
 
 import java.util.Random;
 
-public class SorteReves {
+public class SorteOuReves {
 	
 	//Ainda a ser acrescentado na classe main
 	
