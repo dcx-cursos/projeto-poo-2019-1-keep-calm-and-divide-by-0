@@ -22,6 +22,10 @@ public class SisJogo {
 		this.baralho = cartas.gerarBaralhoEmbaralhado();
 	}
 	
+	public SorteOuReves pegaCartaDoBaralho() {
+		return cartas.pegaCartaDobaralho(baralho);
+	}
+	
 	/**
 	 * 
 	 * @param novoJogador informaçoes do novo jogador , nome e cor do seu peao
