@@ -60,9 +60,10 @@ public class BaralhoCartas {
 	
 	public SorteOuReves pegaCartaDobaralho(ArrayList<SorteOuReves> baralhoJogo) {
 		SorteOuReves carta = baralhoJogo.get(30);
-		SorteOuReves cartaInicio = baralhoJogo.get(0);
+		for(int j=30; j>0; j--) {
+			baralho.set(j, baralhoJogo.get(j-1));
+		}
 		baralho.set(0, carta);
-		baralho.set(30, cartaInicio);
 		
 		return carta;
 	}
