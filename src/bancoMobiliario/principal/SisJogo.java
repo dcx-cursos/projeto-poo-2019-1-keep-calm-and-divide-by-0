@@ -2,21 +2,24 @@ package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 import ufpb.rt.pooPrjt.bancoImb.logradouros.Companhia;
 import ufpb.rt.pooPrjt.bancoImb.logradouros.Terreno;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Gravador;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Removedor;
 
 public class SisJogo {
 	private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
 	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
 	private ArrayList<String> cores = new ArrayList<String>();
-	ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
+	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 	
 	BaralhoCartas cartas = new BaralhoCartas();
+	Gravador gravador = new Gravador();
+	Removedor removedor = new Removedor();
 	
 	public void gerarBaralho() {
 		this.baralho = cartas.gerarBaralhoEmbaralhado();
@@ -24,6 +27,10 @@ public class SisJogo {
 	
 	public SorteOuReves pegaCartaDoBaralho() {
 		return cartas.pegaCartaDobaralho(baralho);
+	}
+	
+	public void JogadorPassouDiaNaPrisao(Jogador jogador) {
+		jogador.setDiaPassadoNaPrisao(1);
 	}
 	
 	/**
@@ -38,7 +45,7 @@ public class SisJogo {
 		}else if(verificaCorInvalida(novoJogador.getCor())) {
 			throw new CorInvalidaException("Esta cor é invlálida.");
 		}else {// a cor ja foi escolhida
-			this.jogadores.add(novoJogador);
+			gravador.gravaEmLista(jogadores, novoJogador);
 
 		}
 	}
@@ -50,18 +57,18 @@ public class SisJogo {
 	 * metodo que retira um jogador do jogo
 	 */
 	public void removeJogador(Jogador Jogador) {
-		this.jogadores.remove(Jogador);
+		removedor.removeDeLista(jogadores,Jogador);
 	}
 	
 	public void carregaCores() {
-		this.cores.add("BRANCO");
-		this.cores.add("VERMELHO");
-		this.cores.add("VERDE");
-		this.cores.add("AZUL");
-		this.cores.add("AMARELO");
-		this.cores.add("LARANJA");
-		this.cores.add("ROSA");
-		this.cores.add("PRETO");
+		gravador.gravaEmLista(cores,"BRANCO");
+		gravador.gravaEmLista(cores,"VERMELHO");
+		gravador.gravaEmLista(cores,"VERDE");
+		gravador.gravaEmLista(cores,"AZUL");
+		gravador.gravaEmLista(cores,"AMARELO");
+		gravador.gravaEmLista(cores,"LARANJA");
+		gravador.gravaEmLista(cores,"ROSA");
+		gravador.gravaEmLista(cores,"PRETO");
 	}
 	
 	/**
