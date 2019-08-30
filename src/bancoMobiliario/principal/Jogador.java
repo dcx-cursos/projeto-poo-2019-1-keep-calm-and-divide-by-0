@@ -3,7 +3,9 @@ package ufpb.rt.pooPrjt.bancoImb.principal;
 import java.util.ArrayList;
 import java.util.Random;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
+import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCartasDeSairDaPrisao;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
+import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 
 
 public class Jogador  {
@@ -12,9 +14,13 @@ public class Jogador  {
 	private int carteira = 1500;
 	private int posicao = 0;
 	private int diasNaPrisao = 0;
+	private int vezesQueTirouDadosIguais = 0;
 	private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
+	private ArrayList<SorteOuReves> cartaPrisao;
+	
 	
 	Random r = new Random();
+	
 	
 	
 	/**
@@ -69,6 +75,10 @@ public class Jogador  {
 	 * caso a soma dos dados for superior a 40 , diminua 40 , indicando que o jagador deu uma volta completa no tabuleiro
 	 */
 	public void andarCasas(int numDadoUm, int numDadoDois) {
+		if((numDadoUm%numDadoDois)==0 && this.diasNaPrisao==0) {
+			vezesQueTirouDadosIguais+=1;
+		}
+		
 		if((this.posicao+(numDadoUm+numDadoDois)>39)) {
 			this.posicao = (this.posicao+(numDadoUm+numDadoDois)) - 40;
 		}else {
@@ -110,10 +120,6 @@ public class Jogador  {
 		return this.diasNaPrisao;
 	}
 	
-	public void setDiaPassadoNaPrisao(int numDias) {
-		this.diasNaPrisao -= numDias;
-	}
-	
 	/**
 	 * 
 	 * @param valorCompraPropriedade valor para comprar a propriedade
@@ -128,6 +134,7 @@ public class Jogador  {
 		}else {
 			this.carteira -= valorCompraPropriedade;
 			this.propriedades.add(propriedade);
+			propriedade.setDono(this);
 			
 		}
 		
@@ -177,16 +184,19 @@ public class Jogador  {
 					+ "Situado na posição "+this.posicao+" - Inicio\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
 									+ "Títulos:\n" + propriedadesJogador;
+			
 		}else if(this.posicao==10) {
 			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
 					+ "Situado na posição "+this.posicao+" - Prisão\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
 									+ "Títulos:\n" + propriedadesJogador;
-		}else if((this.posicao==2|this.posicao!=12)|(this.posicao!=16|this.posicao!=22)|(this.posicao!=27|this.posicao!=37)){
+			
+		}else if((this.posicao==2|this.posicao==12)|(this.posicao==16|this.posicao==22)|(this.posicao==27|this.posicao==37)){
 			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
 					+ "Situado na posição "+this.posicao+" - Sorte ou Reves\n"
 							+ "Possui "+this.getCarteira() + "$ \n"
 									+ "Títulos:\n" + propriedadesJogador;
+			
 		}else if((this.posicao!=18 && this.posicao!=20)&&(this.posicao!=24&&this.posicao!=30)) {//Excluí todas as posições que são null. Podem haver modificações pra ela retornar somente o nome dessas posições 
 			return "O status de " + this.nome+" - " + this.cor + " é o seguinte:\n"
 					+ "Situado na posição "+this.posicao+" - "+localPropriedade.getNome()+"\n"
@@ -216,6 +226,35 @@ public class Jogador  {
 
 	public void setPosicao(int i) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setCartaPrisao(SorteOuReves carta) {
+		this.cartaPrisao.add(carta);
+		
+	}
+	
+	public void usarCartaPrisao() throws SemCartasDeSairDaPrisao {
+		if(cartaPrisao==null) {
+			throw new SemCartasDeSairDaPrisao("Você não tem cartas para sair da prisão.");
+		}else {
+			cartaPrisao.get(0).acao(this);
+			cartaPrisao.remove(0);
+		}
+	}
+
+	public void pagarParaSairDaPrisao(int fianca) throws DinheiroInsuficienteException {
+		if(this.carteira<fianca) {
+			throw new DinheiroInsuficienteException("Você não tem saldo suficiente.");
+		}else {
+			debitar(fianca);
+			sairDaPrisao();
+		}
+		
+	}
+
+	public void setDiaPassadoNaPrisao(int dia) {
+		this.diasNaPrisao-=1;
 		
 	}
 
