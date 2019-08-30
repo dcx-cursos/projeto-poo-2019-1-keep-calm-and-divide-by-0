@@ -8,6 +8,7 @@ import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
+import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 
 public class Partida{
 	
@@ -62,7 +63,10 @@ public class Partida{
 				break;
 			}
 		}
+		
 		System.out.println("O Banco Imobiliário vai começar. Aproveite!");
+		sis.gerarBaralho();
+		
 		while(true) {
 			if(sis.getJogadores().size()==1) {
 				/**
@@ -101,9 +105,15 @@ public class Partida{
 										+ ""+jogador.getPosicao()+" "
 										+ "– Prisão como visitante.");
 								break;
-									
-							}else if((jogador.getPosicao()!=0 && jogador.getPosicao()!=2)&&(jogador.getPosicao()!=12 && jogador.getPosicao()!=16)&&(jogador.getPosicao()!=18 && jogador.getPosicao()!=20)
-									&&(jogador.getPosicao()!=24 && jogador.getPosicao()!=27)&&(jogador.getPosicao()!=37)){
+								
+							}else if((jogador.getPosicao()==2|jogador.getPosicao()==12)|(jogador.getPosicao()==16|jogador.getPosicao()==22)|(jogador.getPosicao()==27|jogador.getPosicao()==37)) {
+								SorteOuReves carta = sis.pegaCartaDoBaralho();
+								System.out.println("O jogador "+jogador.getNome()+" "+jogador.getCor()+" tirou "+numDadoUm+", "+numDadoDois+" e o peão avançou para "
+										+ ""+jogador.getPosicao()+" "
+										+ "– Sorte Ou Reves - "+carta.getDescricao());
+								carta.acao(jogador);
+								
+							}else if((this.posicao!=18 && this.posicao!=20)&&(this.posicao!=24&&this.posicao!=30)){
 								Propriedade propriedade = tabuleiro.get(jogador.getPosicao());
 								if(propriedade.existeDono()==true) {
 									System.out.println("O jogador "+jogador.getNome()+" "+jogador.getCor()+" tirou "+numDadoUm+", "+numDadoDois+" e o peão avançou para "
