@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 /**
  * 
@@ -15,6 +18,17 @@ class JogadorTest {
 	private Propriedade companhia;
 
 	
+	
+	@Mock
+	Jogador jogadorMock ;
+	
+	
+	@BeforeEach
+	  public void init(){
+	    MockitoAnnotations.initMocks(this);
+	    
+	
+	}
 
 	/**
 	 * antes de cada teste deve criar um novo jogador
@@ -68,7 +82,15 @@ class JogadorTest {
 		assertEquals("Jogador não possui dinheiro sufiente para comprar a propriedade", compra.getMessage());
 
 	}
-
+	@Test
+	public void test() {
+		int numDadoUm = jogador.lancaDado();  
+		int numDadoDois = jogador.lancaDado();
+	Mockito.when(jogadorMock.setPosicao(numDadoUm , numDadoDois)).thenReturn(10);
+	assertEquals(10, jogadorMock.setPosicao(numDadoUm , numDadoDois));
+	Mockito.verify(jogadorMock,Mockito.times(1)).setPosicao(numDadoUm , numDadoDois);
 	
+	
+	}
 	
 }

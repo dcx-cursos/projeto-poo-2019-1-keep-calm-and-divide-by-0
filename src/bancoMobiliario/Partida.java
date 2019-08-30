@@ -21,12 +21,13 @@ public class Partida{
 				numJogadores = leitor.nextInt();
 			} catch (InputMismatchException e) {
 				// TODO Auto-generated catch block
-				System.err.printf("%nException: %s%n",e);
+				System.err.printf("",e);
 				leitor.nextLine();
-				System.out.printf("Você precisa digitar inteiros. Porfavor tente denovo.%n%n");
+				System.out.printf("Por favor digite um valor valido \n");
 			}
 			
-			if(numJogadores<2 || numJogadores > 8) {System.out.println("Número de jogadores invalido");
+			if(numJogadores < 2 || numJogadores > 8) {
+				System.out.println("Número de jogadores invalido");
 			}else {
 				for (int k=0; k<numJogadores; k++) {
 					String nome,cor;
@@ -35,10 +36,11 @@ public class Partida{
 					nome = leitor.next();
 					
 					System.out.printf("Digite a cor do peão do jogador "+(k+1)+" entre as opções seguintes:\n"
-							+ "[preto][branco][vermelho][verde][azul][amarelo][laranja][rosa]\n:");
+							+ sis.getCores()+"\n");
 					cor = leitor.next().toLowerCase();
 					try {
 						sis.gravaJogador((new Jogador(nome,cor)));/**JOGADOR É ADICIONADO A LISTA DE JOGADORES*/
+						sis.removerCorQueJaFoiEscolhida(cor);
 					}catch (JogadorComACorEscolhidaExisteException e) {
 			
 						System.err.println(e.getMessage());
@@ -61,42 +63,42 @@ public class Partida{
 				break;
 			}
 			for(int k = 0; k<sis.getJogadores().size(); k++) {
-				Jogador e = sis.getJogadores().get(k);
+				Jogador jogador = sis.getJogadores().get(k);
 				while(true) {
-					if(e.getDiasNaPrisao()==0){
-						System.out.printf("A jogada de "+e.getNome()+" ("+e.getCor()+") começou.\n"
+					if(jogador.getDiasNaPrisao()==0){
+						System.out.printf("A jogada de "+jogador.getNome()+" ("+jogador.getCor()+") começou.\n"
 								+ "Comandos disponíveis: [jogar][status][sair]\n" 
 								+ "Digite um comando:");
 						String opcao = leitor.next().toUpperCase();
 						
 						if(opcao.equals("JOGAR")) {
-							int numDadoUm = e.lancaDado();
-							int numDadoDois = e.lancaDado();sis.getJogadores();
-							e.setPosicao(numDadoUm, numDadoDois);
-							if(e.getPosicao()==30) {
+							int numDadoUm = jogador.lancaDado();  
+							int numDadoDois = jogador.lancaDado();
+							jogador.setPosicao(numDadoUm , numDadoDois);
+							if(jogador.getPosicao()==30) {
 								/** 
 								 * JOGADOR NÃO REALIZA NENHUMA AÇÃO E VAI PARA PRISÃO
 								 */
-								System.out.println("O jogador "+e.getNome()+" "+e.getCor()+" tirou "+numDadoUm+","+numDadoDois+" e o peão avançou para "
-										+ ""+e.getPosicao()+" "
+								System.out.println("O jogador "+jogador.getNome()+" "+jogador.getCor()+" tirou "+numDadoUm+","+numDadoDois+" e o peão avançou para "
+										+ ""+jogador.getPosicao()+" "
 										+ "– Prisão por 3 rodadas.");
-								e.irParaPrisao();
+								jogador.irParaPrisao();
 								break;
-							}else if(e.getPosicao()==10){
+							}else if(jogador.getPosicao()==10){
 								/** 
 								 * JOGADOR NÃO REALIZA NENHUMA AÇÃO E VAI PARA PRISÃO COMO VISITANTE
 								 */
-								System.out.println("O jogador "+e.getNome()+" "+e.getCor()+" tirou "+numDadoUm+","+numDadoDois+" e o peão avançou para "
-										+ ""+e.getPosicao()+" "
+								System.out.println("O jogador "+jogador.getNome()+" "+jogador.getCor()+" tirou "+numDadoUm+","+numDadoDois+" e o peão avançou para "
+										+ ""+jogador.getPosicao()+" "
 										+ "– Prisão como visitante.");
 								break;
 									
-							}else if((e.getPosicao()!=0 && e.getPosicao()!=2)&&(e.getPosicao()!=12 && e.getPosicao()!=16)&&(e.getPosicao()!=18 && e.getPosicao()!=20)
-									&&(e.getPosicao()!=24 && e.getPosicao()!=27)&&(e.getPosicao()!=37)){
-								Propriedade propriedade = tabuleiro.get(e.getPosicao());
+							}else if((jogador.getPosicao()!=0 && jogador.getPosicao()!=2)&&(jogador.getPosicao()!=12 && jogador.getPosicao()!=16)&&(jogador.getPosicao()!=18 && jogador.getPosicao()!=20)
+									&&(jogador.getPosicao()!=24 && jogador.getPosicao()!=27)&&(jogador.getPosicao()!=37)){
+								Propriedade propriedade = tabuleiro.get(jogador.getPosicao());
 								if(propriedade.existeDono()==true) {
-									System.out.println("O jogador "+e.getNome()+" "+e.getCor()+" tirou "+numDadoUm+", "+numDadoDois+" e o peão avançou para "
-											+ ""+e.getPosicao()+" "
+									System.out.println("O jogador "+jogador.getNome()+" "+jogador.getCor()+" tirou "+numDadoUm+", "+numDadoDois+" e o peão avançou para "
+											+ ""+jogador.getPosicao()+" "
 											+ "– "+propriedade.getNome()+" cujo dono é "+propriedade.getDono().getNome()+".");
 									/**
 									 * if (propriedade.getTipo.equals("TERRENO")){
@@ -108,18 +110,18 @@ public class Partida{
 									break;
 								}
 								
-								System.out.printf("O jogador "+e.getNome()+" "+e.getCor()+" tirou "+numDadoUm+", "+numDadoDois+" e o peão avançou para "
-									+ ""+e.getPosicao()+" "
-									+ "– "+propriedade.getNome()+". O título da propriedade "+ e.getNome()+" está disponível por $"+propriedade.getPrecoCompra()+"\n"
-									+ e.getNome()+", você possui "+e.getCarteira()+".\n"
+								System.out.printf("O jogador "+jogador.getNome()+" "+jogador.getCor()+" tirou "+numDadoUm+", "+numDadoDois+" e o peão avançou para "
+									+ ""+jogador.getPosicao()+" "
+									+ "– "+propriedade.getNome()+". O título da propriedade "+ jogador.getNome()+" está disponível por $"+propriedade.getPrecoCompra()+"\n"
+									+ jogador.getNome()+", você possui "+jogador.getCarteira()+".\n"
 									+ "Você deseja comprar "+propriedade.getNome()+" (Sim/Não)? "); 
 								String escolha = leitor.next().toUpperCase();
 								if(escolha.equals("NÃO") | escolha.equals("NAO")) {
 									break;
 								}else {
 									try {
-										e.compraPropriedade(propriedade.getPrecoCompra(), propriedade);
-										propriedade.setDono(e);
+										jogador.compraPropriedade(propriedade.getPrecoCompra(), propriedade);
+										propriedade.setDono(jogador);
 										System.out.println("Compra efetuada.");
 										break;
 									}catch(DinheiroInsuficienteException exception) {
@@ -129,19 +131,19 @@ public class Partida{
 								}/**JOGADOR DEVE ESCOLHER A AÇÃO A SER REALIZADA DEPENDENDO DA DE PROPRIEDADE ONDE ESTÁ LOZALIZADO*/}
 							
 						}else if (opcao.equals("STATUS")) {
-							System.out.println(e.getStatus(tabuleiro));	
+							System.out.println(jogador.getStatus(tabuleiro));	
 							
 						}else if(opcao.equals("SAIR")){
 								System.out.printf("Você realmente quer sair (Sim/Não)?");
 								String escolha = leitor.next().toUpperCase();
 								if(escolha.equals("SIM") | escolha.equals("S")) {
-									sis.removeJogador(e);
+									sis.removeJogador(jogador);
 									break;/** JOGADOR SERÁ REMOVIDO DA LISTA DE JOGADORES*/
 								}else if(escolha.equals("NÃO") | escolha.equals("NAO")) {}/**JOGADOR DEVERA ESCOLHER AS OPÇÕES DE JOGO NOVAMENTE*/
 						}else {
 							System.out.println("Digite uma opção válida.\n");
 						}
-					}else {System.out.println(e.getNome()+" está na prisão.");e.setDiasNaProsao(1); break;/**OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1*/}
+					}else {System.out.println(jogador.getNome()+" está na prisão.");jogador.setDiasNaProsao(1); break;/**OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1*/}
 							
 				}//fim while
 			

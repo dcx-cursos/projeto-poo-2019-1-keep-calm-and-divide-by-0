@@ -51,27 +51,34 @@ public class Jogador  {
 	
 	/**
 	 * 
-	 * @return retorna o valor do dado
+	 * @return retorna um valor aleatorio de um dado de 6 lados
 	 */
 	public int lancaDado() {
 		return r.nextInt(6)+1;
 	}
 	
+
+	
+	
+
 	/**
 	 * 
 	 * @param numDadoUm valor do primeiro dado jogado
 	 * @param numDadoDois valor do segundo dado jogado
-	 * 
+	 * @return retorna a nova posiçao do jogador , sendo o resultado da posiçao dele somado com a soma dos 2 dados
 	 * 
 	 * metodo para mudar a posiçao do jogador , soma o reultado dos dados e avança o jogador 
 	 * caso a soma dos dados for superior a 40 , diminua 40 , indicando que o jagador deu uma volta completa no tabuleiro
 	 */
-	public void setPosicao(int numDadoUm, int numDadoDois) {
+	public int setPosicao(int numDadoUm , int numDadoDois) {
 		if((this.posicao+(numDadoUm+numDadoDois)>39)) {
-			this.posicao = (this.posicao+(numDadoUm+numDadoDois)) - 40;
+			return this.posicao = (this.posicao+(numDadoUm+numDadoDois)) - 40;
 		}else {
-			this.posicao += numDadoUm+numDadoDois;
+			return this.posicao += numDadoUm+numDadoDois;
 		}
+		
+		
+		//quando lançar os dados o resultado deve sair por aqui
 	}
 	
 	/**
@@ -87,7 +94,7 @@ public class Jogador  {
 	}
 
 	/**
-	 *  caso o jogador va para prisao ele deve ficar la por 3 dias
+	 *  caso o jogador va para prisao o numero de dias que ele deve permanecer preso e atualizado
 	 */
 	public void irParaPrisao() {
 		this.diasNaPrisao = 3;
@@ -128,6 +135,7 @@ public class Jogador  {
 	 * 
 	 * @param valorCompraPropriedade valor para vender sua propriedade
 	 * @param propriedade propriedade no qual o jogador que vender
+	 * este metodo deve realizar a venda de uma propriedade 
 	 */
 	public void vendePropriedade(int valorCompraPropriedade, Propriedade propriedade) {
 		this.carteira += valorCompraPropriedade;
@@ -141,9 +149,28 @@ public class Jogador  {
 	public int getCarteira() {
 		return this.carteira;
 	}
-	/**
+	
+	
+	
+	
+	
+	
+	/*
 	 * Testar o metodo para ver se funciona desta forma
 	 * Algumas condições do metodo podem ser realocadas no main
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param propriedades recebe a lista de todas as propriedades
+	 * @return o status do jogador de acordo com a sua posiçao 
 	 */
 	public String getStatus(ArrayList<Propriedade> propriedades) {
 		Propriedade localPropriedade = propriedades.get(this.posicao);//Propriedade do local do jogador

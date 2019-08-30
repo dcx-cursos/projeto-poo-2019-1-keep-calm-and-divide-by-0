@@ -1,5 +1,6 @@
 package bancoMobiliario;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ class SisJogoTest {
 	@BeforeEach
 	void setup() {
 		jogo = new SisJogo();
+		jogo.carregaCores();
 		jogadores = new ArrayList<Jogador>();
 		jogador = new Jogador("cleyson","rosa");
 		jogador2 = new Jogador("raul","preto");
@@ -38,15 +40,41 @@ class SisJogoTest {
 		assertEquals(2, jogadores.size());
 
 	}
+	
+	
+	
+	
 	/**
 	 * testa quando um jogador digita uma cor que nao esta na lista de cor validas para sua escolha , deve lançar uma exception e mostar a mensagem de err0
 	 */
-	
 	@Test
 	void testComJogadorEscolhendoCorInvalida()  {
 		Exception CorInvalida = assertThrows(CorInvalidaException.class, () -> jogo.gravaJogador(jogador3));
 		assertEquals("Esta cor é invlálida. Porfavor tente denovo.",CorInvalida.getMessage() );
 
 	}
+	
+	
+	/**
+	 * teste para saber se as cores estao sendo adicionadas corretamente , e mostra quais sao cores adicionadas
+	 */
+	@Test
+	void conferirAsCoresValidas() {
+		System.out.println(jogo.getCores());
+		assertEquals(8, jogo.getCores().size());
+		
+		
+		}
+	
+	@Test
+	void removendoUmaCorDoJogo() {
+		jogo.removerCorQueJaFoiEscolhida("rosa");
+		assertEquals(7, jogo.getCores().size());
+		
+	}
+		
+		
+	
+	
 
 }
