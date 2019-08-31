@@ -89,9 +89,14 @@ class JogadorTest {
 	
 	@Test
 	public void testAndarCasas() {
-	Mockito.when(jogadorMock.andarCasas(5,5)).thenReturn(10);
-	assertEquals(10, jogadorMock.andarCasas(5,5));
-	Mockito.verify(jogadorMock,Mockito.times(1)).lancaDado();
+		int Dado1 = jogadorMock.lancaDado();
+		int Dado2 = jogadorMock.lancaDado();
+	Mockito.when(jogadorMock.andarCasas(Dado1 , Dado2)).thenReturn(10);
+	
+	
+	
+	assertEquals(10, jogadorMock.andarCasas(Dado1,Dado2));
+	Mockito.verify(jogadorMock,Mockito.times(1)).andarCasas(Dado1, Dado2);
 	
 	
 	}

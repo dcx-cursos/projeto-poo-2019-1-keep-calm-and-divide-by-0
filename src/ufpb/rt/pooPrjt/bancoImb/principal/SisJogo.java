@@ -15,15 +15,16 @@ import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Verificador;
 
 public class SisJogo {
 	private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+	private int quantidadeDeJogadores = 0;
 	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 	
-	BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
-	Gravador gravador = new Gravador();
-	Removedor removedor = new Removedor();
-	Verificador verificador = new Verificador();
-	Tabuleiro sisTabuleiro = new Tabuleiro();
+	private BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
+	private Gravador gravador = new Gravador();
+	private Removedor removedor = new Removedor();
+	private Verificador verificador = new Verificador();
+	private Tabuleiro sisTabuleiro = new Tabuleiro();
 	
 	public void gerarBaralho() {
 		this.baralho = cartasSorteOuReves.gerarBaralhoEmbaralhado();
@@ -38,7 +39,7 @@ public class SisJogo {
 	}
 	
 	public boolean quantidadeDeJogadoresEValida(int Numjogadores){
-		if (Numjogadores > 2 && Numjogadores < 8) {	
+		if (Numjogadores == 2 || Numjogadores ==  3 || Numjogadores == 4 || Numjogadores == 5 || Numjogadores == 6 || Numjogadores == 7 || Numjogadores ==8  ) {	
 			return true;
 		}
 		return false;
@@ -61,6 +62,8 @@ public class SisJogo {
 			throw new CorInvalidaException("Esta cor é invlálida.");
 		}else {// a cor ja foi escolhida
 			gravador.gravaEmLista(jogadores, jogador);
+			this.quantidadeDeJogadores ++;
+			
 
 		}
 	}
@@ -73,6 +76,8 @@ public class SisJogo {
 	 */
 	public void removeJogador(Jogador Jogador) {
 		removedor.removeDeLista(jogadores,Jogador);
+		this.quantidadeDeJogadores --;
+		
 	}
 	
 	public void carregaCores() {
@@ -137,4 +142,15 @@ public class SisJogo {
 		// TODO Auto-generated method stub
 		return cores;
 	}
+
+	public ArrayList<SorteOuReves> getBaralho() {
+		return baralho;
+	}
+
+	public int getQuantidadeDeJogadores() {
+		return quantidadeDeJogadores;
+	}
+	
+	
+	
 }
