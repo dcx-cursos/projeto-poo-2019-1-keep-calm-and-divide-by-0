@@ -2,6 +2,7 @@ package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
@@ -10,6 +11,7 @@ import ufpb.rt.pooPrjt.bancoImb.logradouros.Companhia;
 import ufpb.rt.pooPrjt.bancoImb.logradouros.Terreno;
 import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Gravador;
 import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Removedor;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Verificador;
 
 public class SisJogo {
 	private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
@@ -17,35 +19,48 @@ public class SisJogo {
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 	
-	BaralhoCartas cartas = new BaralhoCartas();
+	BaralhoCartas cartaDoBaralho = new BaralhoCartas();
 	Gravador gravador = new Gravador();
 	Removedor removedor = new Removedor();
+	Verificador verificador = new Verificador();
+	Tabuleiro sisTabuleiro = new Tabuleiro();
 	
 	public void gerarBaralho() {
-		this.baralho = cartas.gerarBaralhoEmbaralhado();
+		this.baralho = cartaDoBaralho.gerarBaralhoEmbaralhado();
 	}
 	
 	public SorteOuReves pegaCartaDoBaralho() {
-		return cartas.pegaCartaDobaralho(baralho);
+		return cartaDoBaralho.pegaCartaDobaralho(baralho);
 	}
 	
 	public void JogadorPassouDiaNaPrisao(Jogador jogador) {
 		jogador.setDiaPassadoNaPrisao(1);
 	}
 	
+	public boolean QuantidadeDeJogadoresEValida(int Numjogadores){
+		if (Numjogadores > 2 && Numjogadores < 8) {	
+			return true;
+		}
+		return false;
+	}
+	
+	public void efetuarPagamentoDeTaxaDeVisita(Jogador jogadorVisitante, Propriedade propriedade, int infPagamento) {
+		propriedade.pagamentoDeTaxa(jogadorVisitante, infPagamento);
+	}
+	
 	/**
 	 * 
-	 * @param novoJogador informaçoes do novo jogador , nome e cor do seu peao
+	 * @param jogador informaçoes do novo jogador , nome e cor do seu peao
 	 * @throws CorInvalidaException 
 	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja tenha escolhida a mesma cor , visto que nao pode ter jogadores com a mesma cor
 	 */
-	public void gravaJogador(Jogador novoJogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
-		if (ExisteJogadorComEstaCorPiao(novoJogador.getCor())) { // existe jogador que escolheu esta cor
+	public void gravaJogador(Jogador jogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
+		if (ExisteJogadorComEstaCorPiao(jogador.getCor())) { // existe jogador que escolheu esta cor
 			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida");
-		}else if(verificaCorInvalida(novoJogador.getCor())) {
+		}else if(verificaCorInvalida(jogador.getCor())) {
 			throw new CorInvalidaException("Esta cor é invlálida.");
 		}else {// a cor ja foi escolhida
-			gravador.gravaEmLista(jogadores, novoJogador);
+			gravador.gravaEmLista(jogadores, jogador);
 
 		}
 	}
@@ -79,11 +94,13 @@ public class SisJogo {
 	 * verifica se a cor digitada pelo jogador é valida ou não
 	 */
 	public boolean verificaCorInvalida(String cor) {
-		if (cores.contains(cor.toUpperCase())) {
-			return false;
-		}
-		return true;
+		return verificador.verificaStringEmLista(cores, cor);
 	}
+	
+	public void removerCorQueJaFoiEscolhida(String cor) {
+		removedor.removeDeLista(cores,cor.toUpperCase());
+	}
+	
 	
 	/**
 	 * 
@@ -110,47 +127,16 @@ public class SisJogo {
 	 * 
 	 * @return o tabuleiro com todas as posiçoes das companhia e terrenos no qual o jogador pode comprar , e null para as pociçoes especiais como , sorte ou reves, partida ,prisao , prisao como visitante
 	 */
-	public ArrayList<Propriedade> genetareBoard() {
-		this.tabuleiro.add(null);//0 inicio
-		this.tabuleiro.add(new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6 ));//1
-		this.tabuleiro.add(null); //2 sorte ou reves
-		this.tabuleiro.add(new Terreno("av. Presidente Vargas",60,2,10,30,90,100,250,30,50,0,2 ));
-		this.tabuleiro.add(new Terreno("av. Nossa Senhora de Copacabana",60,2,10,30,90,100,250,30,50,0,2 ));
-		this.tabuleiro.add(new Companhia("Companhia Ferroviaria",200,100,50 ));
-		this.tabuleiro.add(new Terreno("Av. Brigadeiro Faria lima",240,20,100,300,750,925,1100,120,150,0,20 ));
-		this.tabuleiro.add(new Companhia("Companhia de Aviaçao",200,100,50 ));
-		this.tabuleiro.add(new Terreno("Av. Rebouças",220,18,90,250,700,875,1050,110,150,0,18 ));
-		this.tabuleiro.add(new Terreno("AV. 9 de Julho",220,18,90,250,700,875,1050,110,150,0,18 ));
-		this.tabuleiro.add(null);//10 prisão como visitante
-		this.tabuleiro.add(new Terreno("Av. Europa",200,16,80,220,600,800,1000,100,100,0,16 ));
-		this.tabuleiro.add(null);//12 sorte ou reves
-		this.tabuleiro.add(new Terreno("Rua Augusta",180,14,70,200,550,750,950,90,100,0,14 ));
-		this.tabuleiro.add(new Terreno("Av. Pacaembu",180,14,70,200,550,750,950,90,100,0,14 ));
-		this.tabuleiro.add(new Companhia("Companhia de taxi",150,75,40 ));
-		this.tabuleiro.add(null);//16 sorte ou reves
-		this.tabuleiro.add(new Terreno("Interlagos",350,35,175,500,1100,1300,1500,175,200,0,35 ));
-		this.tabuleiro.add(null);//18 lucros e dividendos
-		this.tabuleiro.add(new Terreno("Morumbi",400,50,200,600,1400,1700,2000,200,200,0,50 ));
-		this.tabuleiro.add(null);//20 parada livre
-		this.tabuleiro.add(new Terreno("Flamengo",120,8,40,100,300,450,600,60,50,0,8 ));
-		this.tabuleiro.add(null);//22 sorte ou reves
-		this.tabuleiro.add(new Terreno("Botafogo",100,6,30,90,270,400,500,50,50,0,6 ));
-		this.tabuleiro.add(null);//24 imposto de renda
-		this.tabuleiro.add(new Companhia("Companhia de Navegaçao",150,75,40 ));
-		this.tabuleiro.add(new Terreno("Av. Brasil",160,12,60,180,500,700,900,80,100,0,12 ));
-		this.tabuleiro.add(null);//27 sorte ou reves
-		this.tabuleiro.add(new Terreno("Av. Paulista",140,10,50,150,450,625,750,70,100,0,10  ));
-		this.tabuleiro.add(new Terreno("Jardim Europa",140,12,60,180,500,700,900,80,100,0,12 ));
-		this.tabuleiro.add(null);//30 vai para prisão fica preso por tres rodadas
-		this.tabuleiro.add(new Terreno("Copacabana",260,22,110,330,800,975,1150,130,150,0,22 ));
-		this.tabuleiro.add(new Companhia("Companhia de Aviaçao",200,100,50 ));
-		this.tabuleiro.add(new Terreno("Av. Vieira Souto",320,28,150,450,1000,1200,1400,160,200,0,28 ));
-		this.tabuleiro.add(new Terreno("Av. Atlâtica",300,26,130,390,900,1100,1275,150,200,0,26 ));
-		this.tabuleiro.add(new Companhia("Companhia de Taxi Aereo",200,100,50 ));
-		this.tabuleiro.add(new Terreno("Ipanema",300,26,130,390,900,1100,1275,150,200,0,26 ));
-		this.tabuleiro.add(null);//37 sorte ou reves
-		this.tabuleiro.add(new Terreno("Jardim Paulista",280,24,120,360,850,1025,1200,140,150,0,24 ));
-		this.tabuleiro.add(new Terreno("Brooklin",260,22,110,330,800,975,1150,130,150,0,22 ));
+	public void genetareBoard() {
+		tabuleiro = sisTabuleiro.criartabuleiro();
+	}
+	
+	public ArrayList<Propriedade> getTabuleiro() {
 		return tabuleiro;
+	}
+
+	public ArrayList<String> getCores() {
+		// TODO Auto-generated method stub
+		return cores;
 	}
 }

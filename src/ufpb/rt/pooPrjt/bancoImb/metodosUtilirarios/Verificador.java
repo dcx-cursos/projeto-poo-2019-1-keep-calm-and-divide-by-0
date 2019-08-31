@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 public class Verificador {
 	
-	public void verificaEmLista(ArrayList lista, Object e) {
-		
+	public boolean verificaStringEmLista(ArrayList lista, String e) {
+		if(lista.contains(e)) {
+			return true;
+		}
+		return false;
 	}
 }

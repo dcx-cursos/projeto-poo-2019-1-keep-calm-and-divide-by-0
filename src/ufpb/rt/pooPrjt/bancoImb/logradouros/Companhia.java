@@ -41,16 +41,14 @@ public class Companhia implements Propriedade {
 		return hipoteca;
 	}
 
-	public void sethipoteca(int hipoteca) {
-		hipoteca = hipoteca;
-	}
-
-	public int getmultiplicador() {
+	public int getMultiplicador() {
 		return multiplicador;
 	}
-
-	public void setmultiplicador(int multiplicador) {
-		multiplicador = multiplicador;
+	
+	public void pagamentoDeTaxa(Jogador jogadorVisitante, int numDados) {
+		int valorPagamento = getMultiplicador()*numDados;
+		jogadorVisitante.debitar(valorPagamento);
+		this.dono.creditar(valorPagamento);
 	}
 
 	public Jogador getDono() {

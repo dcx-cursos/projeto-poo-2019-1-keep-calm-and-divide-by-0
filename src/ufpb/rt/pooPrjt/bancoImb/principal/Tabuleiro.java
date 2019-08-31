@@ -1,6 +1,10 @@
-package bancoMobiliario;
+package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import java.util.ArrayList;
+
+import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
+import ufpb.rt.pooPrjt.bancoImb.logradouros.Companhia;
+import ufpb.rt.pooPrjt.bancoImb.logradouros.Terreno;;
 
 public class Tabuleiro {
 	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();

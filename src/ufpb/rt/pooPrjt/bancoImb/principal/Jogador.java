@@ -59,12 +59,11 @@ public class Jogador  {
 	
 	/**
 	 * 
-	 * @return retorna o valor do dado
+	 * @return retorna um valor aleatorio de um dado de 6 lados
 	 */
 	public int lancaDado() {
 		return r.nextInt(6)+1;
 	}
-	
 	/**
 	 * 
 	 * @param numDadoUm valor do primeiro dado jogado
@@ -73,17 +72,20 @@ public class Jogador  {
 	 * 
 	 * metodo para mudar a posiçao do jogador , soma o reultado dos dados e avança o jogador 
 	 * caso a soma dos dados for superior a 40 , diminua 40 , indicando que o jagador deu uma volta completa no tabuleiro
+	 * quando o jogador conseguir dois números iguais no dado, um contador é incrementado representando as vezes em que isso ocorreu
 	 */
-	public void andarCasas(int numDadoUm, int numDadoDois) {
-		if((numDadoUm%numDadoDois)==0 && this.diasNaPrisao==0) {
+	public int andarCasas(int numDadoI, int numDadoII) {
+		int numDados = numDadoI+numDadoII;
+		if((numDados%2)==0 && this.diasNaPrisao==0) {
 			vezesQueTirouDadosIguais+=1;
 		}
 		
-		if((this.posicao+(numDadoUm+numDadoDois)>39)) {
-			this.posicao = (this.posicao+(numDadoUm+numDadoDois)) - 40;
+		if((this.posicao+(numDados)>39)) {
+			this.posicao = (this.posicao+(numDados)) - 40;
 		}else {
-			this.posicao += numDadoUm+numDadoDois;
+			this.posicao += numDados;
 		}
+		return numDados;
 	}
 	
 	/**
@@ -118,6 +120,35 @@ public class Jogador  {
 	 */
 	public int getDiasNaPrisao() {
 		return this.diasNaPrisao;
+	}
+	
+	public void setCartaPrisao(SorteOuReves carta) {
+		this.cartaPrisao.add(carta);
+		
+	}
+	
+	public void usarCartaPrisao() throws SemCartasDeSairDaPrisao {
+		if(cartaPrisao==null) {
+			throw new SemCartasDeSairDaPrisao("Você não tem cartas para sair da prisão.");
+		}else {
+			cartaPrisao.get(0).acao(this);
+			cartaPrisao.remove(0);
+		}
+	}
+
+	public void pagarParaSairDaPrisao(int fianca) throws DinheiroInsuficienteException {
+		if(this.carteira<fianca) {
+			throw new DinheiroInsuficienteException("Você não tem saldo suficiente.");
+		}else {
+			debitar(fianca);
+			sairDaPrisao();
+		}
+		
+	}
+
+	public void setDiaPassadoNaPrisao(int dia) {
+		this.diasNaPrisao-=1;
+		
 	}
 	
 	/**
@@ -159,8 +190,9 @@ public class Jogador  {
 	}
 	
 	/**
-	 * Testar o metodo para ver se funciona desta forma
-	 * Algumas condições do metodo podem ser realocadas no main
+	 * 
+	 * @param propriedades recebe a lista de todas as propriedades
+	 * @return o status do jogador de acordo com a sua posiçao 
 	 */
 	public String getStatus(ArrayList<Propriedade> propriedades) {
 		Propriedade localPropriedade = propriedades.get(this.posicao);//Propriedade do local do jogador
@@ -210,10 +242,6 @@ public class Jogador  {
 		}
 	}
 
-	public void setCarteira(int carteira) {
-		this.carteira = carteira;
-	}
-
 	public void debitar(int valor) {
 		this.carteira-=valor;
 		
@@ -224,38 +252,6 @@ public class Jogador  {
 		
 	}
 
-	public void setPosicao(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setCartaPrisao(SorteOuReves carta) {
-		this.cartaPrisao.add(carta);
-		
-	}
 	
-	public void usarCartaPrisao() throws SemCartasDeSairDaPrisao {
-		if(cartaPrisao==null) {
-			throw new SemCartasDeSairDaPrisao("Você não tem cartas para sair da prisão.");
-		}else {
-			cartaPrisao.get(0).acao(this);
-			cartaPrisao.remove(0);
-		}
-	}
-
-	public void pagarParaSairDaPrisao(int fianca) throws DinheiroInsuficienteException {
-		if(this.carteira<fianca) {
-			throw new DinheiroInsuficienteException("Você não tem saldo suficiente.");
-		}else {
-			debitar(fianca);
-			sairDaPrisao();
-		}
-		
-	}
-
-	public void setDiaPassadoNaPrisao(int dia) {
-		this.diasNaPrisao-=1;
-		
-	}
 
 }

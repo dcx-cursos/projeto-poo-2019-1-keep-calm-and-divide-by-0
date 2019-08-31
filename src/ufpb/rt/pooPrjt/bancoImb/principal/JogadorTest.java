@@ -1,4 +1,4 @@
-package bancoMobiliario;
+package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
+import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
+import ufpb.rt.pooPrjt.bancoImb.logradouros.Companhia;
+import ufpb.rt.pooPrjt.bancoImb.logradouros.Terreno;
 
 /**
  * 
@@ -76,19 +81,17 @@ class JogadorTest {
 	 */
 	@Test
 	void testCompraDeTerrenoComDinheiroInvalido() {
-		jogador.setCarteira(50);
 		Exception compra = assertThrows(DinheiroInsuficienteException.class,
-				() -> jogador.compraPropriedade(100, companhia));
+				() -> jogador.compraPropriedade(2000, companhia));
 		assertEquals("Jogador não possui dinheiro sufiente para comprar a propriedade", compra.getMessage());
 
 	}
+	
 	@Test
-	public void test() {
-		int numDadoUm = jogador.lancaDado();  
-		int numDadoDois = jogador.lancaDado();
-	Mockito.when(jogadorMock.setPosicao(numDadoUm , numDadoDois)).thenReturn(10);
-	assertEquals(10, jogadorMock.setPosicao(numDadoUm , numDadoDois));
-	Mockito.verify(jogadorMock,Mockito.times(1)).setPosicao(numDadoUm , numDadoDois);
+	public void testAndarCasas() {
+	Mockito.when(jogadorMock.andarCasas(5,5)).thenReturn(10);
+	assertEquals(10, jogadorMock.andarCasas(5,5));
+	Mockito.verify(jogadorMock,Mockito.times(1)).lancaDado();
 	
 	
 	}

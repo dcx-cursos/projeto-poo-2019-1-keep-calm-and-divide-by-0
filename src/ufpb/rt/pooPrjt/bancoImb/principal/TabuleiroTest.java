@@ -1,4 +1,4 @@
-package bancoMobiliario;
+package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import static org.junit.jupiter.api.Assertions.*;
 

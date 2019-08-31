@@ -1,4 +1,4 @@
-package bancoMobiliario;
+package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
+import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
 
 class SisJogoTest {
 	private SisJogo jogo;
@@ -34,7 +37,7 @@ class SisJogoTest {
 	 * metodo para verificar se estar adicionando novos jogadores
 	 */
 	@Test
-	void testAdicionandoJogador() throws JogadorComACorEscolhidaExisteException {
+	void testAdicionandoJogador() throws JogadorComCorEscolhidaExisteException {
 		this.jogadores.add(jogador);
 		this.jogadores.add(jogador2);
 		assertEquals(2, jogadores.size());

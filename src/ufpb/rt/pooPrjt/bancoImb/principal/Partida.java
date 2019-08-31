@@ -16,9 +16,9 @@ public class Partida {
 	public static void main(String[] args) {
 		Scanner leitor = new Scanner(System.in);
 		SisJogo sis = new SisJogo();
-		ArrayList<Propriedade> tabuleiro = sis.genetareBoard();
 		sis.carregaCores();
 		sis.gerarBaralho();
+		sis.genetareBoard();
 
 		while (true) {
 			boolean continueLoop = true;
@@ -36,8 +36,8 @@ public class Partida {
 				}
 			} while (continueLoop);
 
-			if (numJogadores < 2) {
-				System.out.println("Número de jogadores não pode ser menor que 2.");
+			if (sis.QuantidadeDeJogadoresEValida(sis.getJogadores().size())==false) {
+				System.out.println("Número de jogadores inválido.");
 			} else {
 				boolean continueLoopII = true;
 				for (int k = 0; k < numJogadores; k++) {
@@ -53,7 +53,7 @@ public class Partida {
 											+ "[preto][branco][vermelho][verde][azul][amarelo][laranja][rosa]\n:");
 							cor = leitor.next().toLowerCase();
 
-							sis.gravaJogador((new Jogador(nome, cor)));/** JOGADOR É ADICIONADO A LISTA DE JOGADORES */
+							sis.gravaJogador(new Jogador(nome, cor));/** JOGADOR É ADICIONADO A LISTA DE JOGADORES */
 							break;
 						} catch (JogadorComCorEscolhidaExisteException | CorInvalidaException exception) {
 							System.err.printf("Exception:", exception.getMessage() + "\n");
@@ -123,16 +123,15 @@ public class Partida {
 
 							} else if ((jogador.getPosicao() != 18 && jogador.getPosicao() != 20)
 									&& (jogador.getPosicao() != 24 && jogador.getPosicao() != 30)) {
-								Propriedade propriedade = tabuleiro.get(jogador.getPosicao());
+								Propriedade propriedade = sis.getTabuleiro().get(jogador.getPosicao());
 								if (propriedade.existeDono() == true) {
 									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
 											+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
 											+ "" + jogador.getPosicao() + " " + "– " + propriedade.getNome()
 											+ " cujo dono é " + propriedade.getDono().getNome() + ".");
-									/**
-									 * if (propriedade.getTipo.equals("TERRENO")){ TODO }else
-									 * if(propriedade.getTipo.equals("COMPANHIA")){ TODO }
-									 */
+									 if (propriedade.getTipo().equals("TERRENO")){ 
+										 
+									 }else if(propriedade.getTipo().equals("COMPANHIA")){ }
 									break;
 								}
 
@@ -163,7 +162,7 @@ public class Partida {
 							}
 
 						} else if (opcao.equals("STATUS")) {
-							System.out.println(jogador.getStatus(tabuleiro));
+							System.out.println(jogador.getStatus(sis.getTabuleiro()));
 
 						} else if (opcao.equals("SAIR")) {
 							System.out.printf("Você realmente quer sair (Sim/Não)?");

@@ -159,4 +159,11 @@ public class Terreno implements Propriedade {
 	public String getTipo() {
 		return TIPO;
 	}
+
+	@Override
+	public void pagamentoDeTaxa(Jogador jogadorVisitante, int aluguel) {
+		jogadorVisitante.debitar(aluguel);
+		this.dono.creditar(aluguel);
+		
+	}
 }
