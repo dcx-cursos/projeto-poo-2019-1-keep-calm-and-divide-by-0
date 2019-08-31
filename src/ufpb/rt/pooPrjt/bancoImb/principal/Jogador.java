@@ -82,6 +82,7 @@ public class Jogador  {
 		
 		if((this.posicao+(numDados)>39)) {
 			this.posicao = (this.posicao+(numDados)) - 40;
+			this.carteira += 200;
 		}else {
 			this.posicao += numDados;
 		}

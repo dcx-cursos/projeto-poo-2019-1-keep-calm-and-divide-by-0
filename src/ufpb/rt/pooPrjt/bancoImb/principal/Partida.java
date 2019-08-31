@@ -118,8 +118,10 @@ public class Partida {
 										+ jogador.getPosicao() + " " + "– Sorte Ou Reves - " + carta.getDescricao());
 								if (carta.getDescricao().equals("Utilize este cartão para se livrar da prisão")) {
 									jogador.setCartaPrisao(carta);
+									break;
 								} else {
 									carta.acao(jogador);
+									break;
 								}
 
 							} else if ((jogador.getPosicao() != 18 && jogador.getPosicao() != 20)
