@@ -19,25 +19,25 @@ public class SisJogo {
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 	
-	BaralhoCartas cartaDoBaralho = new BaralhoCartas();
+	BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
 	Gravador gravador = new Gravador();
 	Removedor removedor = new Removedor();
 	Verificador verificador = new Verificador();
 	Tabuleiro sisTabuleiro = new Tabuleiro();
 	
 	public void gerarBaralho() {
-		this.baralho = cartaDoBaralho.gerarBaralhoEmbaralhado();
+		this.baralho = cartasSorteOuReves.gerarBaralhoEmbaralhado();
 	}
 	
 	public SorteOuReves pegaCartaDoBaralho() {
-		return cartaDoBaralho.pegaCartaDobaralho(baralho);
+		return cartasSorteOuReves.pegaCartaDobaralho(baralho);
 	}
 	
-	public void JogadorPassouDiaNaPrisao(Jogador jogador) {
+	public void jogadorPassouDiaNaPrisao(Jogador jogador) {
 		jogador.setDiaPassadoNaPrisao(1);
 	}
 	
-	public boolean QuantidadeDeJogadoresEValida(int Numjogadores){
+	public boolean quantidadeDeJogadoresEValida(int Numjogadores){
 		if (Numjogadores > 2 && Numjogadores < 8) {	
 			return true;
 		}
@@ -111,9 +111,7 @@ public class SisJogo {
 		boolean bool = false;
 		for (int k = 0; k<jogadores.size(); k++) {
 			Jogador p = jogadores.get(k);
-			if (p.getCor().contains(cor)) {
-				bool = true;
-			}
+			bool = verificador.verificaStringEmLista(cores, p.getCor()); 
 		}
 		return bool;
 	}

@@ -36,7 +36,7 @@ public class Partida {
 				}
 			} while (continueLoop);
 
-			if (sis.QuantidadeDeJogadoresEValida(sis.getJogadores().size())==false) {
+			if (sis.QuantidadeDeJogadoresEValida(sis.getJogadores().size()) == false) {
 				System.out.println("Número de jogadores inválido.");
 			} else {
 				boolean continueLoopII = true;
@@ -54,6 +54,7 @@ public class Partida {
 							cor = leitor.next().toLowerCase();
 
 							sis.gravaJogador(new Jogador(nome, cor));/** JOGADOR É ADICIONADO A LISTA DE JOGADORES */
+							sis.removerCorQueJaFoiEscolhida(cor);
 							break;
 						} catch (JogadorComCorEscolhidaExisteException | CorInvalidaException exception) {
 							System.err.printf("Exception:", exception.getMessage() + "\n");
@@ -82,7 +83,7 @@ public class Partida {
 
 					if (jogador.getDiasNaPrisao() == 0) {
 						System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
-								+ "Comandos disponíveis: [jogar][status][sair]\n" + "Digite um comando:");
+								+ sis.getCores() + "\n");
 						String opcao = leitor.next().toUpperCase();
 
 						if (opcao.equals("JOGAR")) {
@@ -129,9 +130,10 @@ public class Partida {
 											+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
 											+ "" + jogador.getPosicao() + " " + "– " + propriedade.getNome()
 											+ " cujo dono é " + propriedade.getDono().getNome() + ".");
-									 if (propriedade.getTipo().equals("TERRENO")){ 
-										 
-									 }else if(propriedade.getTipo().equals("COMPANHIA")){ }
+									if (propriedade.getTipo().equals("TERRENO")) {
+
+									} else if (propriedade.getTipo().equals("COMPANHIA")) {
+									}
 									break;
 								}
 
@@ -205,7 +207,7 @@ public class Partida {
 							} else if (escolhaPrisioneiro.equals("JOGAR")) {
 								// TODO
 							}
-							
+
 							/** OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1 */
 						} while (true);
 					}

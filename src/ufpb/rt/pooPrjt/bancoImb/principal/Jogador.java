@@ -158,6 +158,7 @@ public class Jogador  {
 	 * 
 	 * metodo para realizar a compra de uma propriedade no tabuleiro
 	 * @throws DineheiroInsuficienteException caso o jogador nao tenha dineheiro suficiente para comparar a propriedade
+	 * este metodo deve realizar a venda de uma propriedade 
 	 */
 	public void compraPropriedade(int valorCompraPropriedade, Propriedade propriedade) throws DinheiroInsuficienteException {
 		if (this.carteira < valorCompraPropriedade) {
@@ -249,6 +250,11 @@ public class Jogador  {
 
 	public void creditar(int valor) {
 		this.carteira+=valor;
+		
+	}
+
+	public void setPosicao(int posi) {
+		this.posicao = posi;
 		
 	}
 
