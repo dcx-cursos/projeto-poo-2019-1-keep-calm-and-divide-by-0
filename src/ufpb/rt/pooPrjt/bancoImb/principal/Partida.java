@@ -36,7 +36,7 @@ public class Partida {
 				}
 			} while (continueLoop);
 
-			if (sis.QuantidadeDeJogadoresEValida(sis.getJogadores().size()) == false) {
+			if (sis.quantidadeDeJogadoresEValida(numJogadores) == false) {
 				System.out.println("Número de jogadores inválido.");
 			} else {
 				boolean continueLoopII = true;
@@ -204,8 +204,21 @@ public class Partida {
 									System.out.println(e);
 									break;
 								}
+							
 							} else if (escolhaPrisioneiro.equals("JOGAR")) {
-								// TODO
+								int numDadoI = jogador.lancaDado();
+								int numDadoII = jogador.lancaDado();
+								if (sis.jogadaValidaJogadorPrisao(numDadoI, numDadoII) == true) {
+									jogador.sairDaPrisao();
+									jogador.andarCasas(numDadoI, numDadoII);
+									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
+											+ " tirou " + numDadoI + ", " + numDadoII + " e o peão avançou para " + ""
+											+ jogador.getPosicao());
+									break;
+								}else {
+									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
+									+ " tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
+								}
 							}
 
 							/** OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1 */
