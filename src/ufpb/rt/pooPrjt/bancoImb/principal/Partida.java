@@ -15,7 +15,7 @@ public class Partida {
 
 	public static void main(String[] args) {
 		Scanner leitor = new Scanner(System.in);
-		SisJogo sis = new SisJogo();
+		SisJogo sis = new SisJogo();	
 		sis.carregaCores();
 		sis.gerarBaralho();
 		sis.genetareBoard();
@@ -30,13 +30,13 @@ public class Partida {
 					break;
 				} catch (InputMismatchException e) {
 					// TODO Auto-generated catch block
-					System.err.printf("Exception:", e.getMessage() + "\n");
+					System.err.printf("", e.getMessage() + "\n");
 					leitor.nextLine();
-					System.out.println("Você precisa digitar inteiros. Profavor tente denovo.");
+					System.out.println("Você precisa digitar inteiros. Por favor tente denovo.");
 				}
 			} while (continueLoop);
 
-			if (sis.QuantidadeDeJogadoresEValida(sis.getJogadores().size()) == false) {
+			if (sis.quantidadeDeJogadoresEValida(numJogadores) == false) {
 				System.out.println("Número de jogadores inválido.");
 			} else {
 				boolean continueLoopII = true;
@@ -50,7 +50,7 @@ public class Partida {
 
 							System.out.printf(
 									"Digite a cor do peão do jogador " + (k + 1) + " entre as opções seguintes:\n"
-											+ "[preto][branco][vermelho][verde][azul][amarelo][laranja][rosa]\n:");
+											+ sis.getCores());
 							cor = leitor.next().toLowerCase();
 
 							sis.gravaJogador(new Jogador(nome, cor));/** JOGADOR É ADICIONADO A LISTA DE JOGADORES */
@@ -83,7 +83,7 @@ public class Partida {
 
 					if (jogador.getDiasNaPrisao() == 0) {
 						System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
-								+ sis.getCores() + "\n");
+								+ "Comandos disponíveis: [jogar][status][sair] \n" + "Digite um comando :");
 						String opcao = leitor.next().toUpperCase();
 
 						if (opcao.equals("JOGAR")) {

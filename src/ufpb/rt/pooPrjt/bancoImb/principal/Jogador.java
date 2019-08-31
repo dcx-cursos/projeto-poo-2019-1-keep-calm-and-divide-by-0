@@ -256,8 +256,6 @@ public class Jogador  {
 	public void setPosicao(int posi) {
 		this.posicao = posi;
 		
-	}
-
-	
+	}	
 
 }
