@@ -30,6 +30,14 @@ public class SisJogo {
 		this.baralho = cartasSorteOuReves.gerarBaralhoEmbaralhado();
 	}
 	
+	
+	public boolean jogadaValidaJogadorPrisao(int numDadoI, int numDadoII) {
+		if(numDadoI==numDadoII) {
+			return true;
+		}
+		return false;
+	}
+	
 	public SorteOuReves pegaCartaDoBaralho() {
 		return cartasSorteOuReves.pegaCartaDobaralho(baralho);
 	}

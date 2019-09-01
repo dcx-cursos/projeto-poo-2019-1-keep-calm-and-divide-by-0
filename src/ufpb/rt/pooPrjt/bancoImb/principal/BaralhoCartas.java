@@ -5,6 +5,7 @@ import java.util.Random;
 
 import ufpb.rt.pooPrjt.bancoImb.cartas.reves.PagamentoReves;
 import ufpb.rt.pooPrjt.bancoImb.cartas.reves.PrisaoReves;
+import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.CartaPresenteAniversario;
 import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.PrisaoSorte;
 import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.RecebimentoSorte;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
@@ -15,9 +16,8 @@ public class BaralhoCartas {
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 	
 	public BaralhoCartas() {
-		int quantJogadores = 1 * 50;
 		this.baralho.add(new PagamentoReves("Sua empresa foi multada por poluir demais , Pague 200",200));//1
-		this.baralho.add(new RecebimentoSorte("O dia do seu casamento chegou, receba os presentes" , quantJogadores));//2
+		this.baralho.add(new CartaPresenteAniversario("O dia do seu casamento chegou, receba os presentes" , 50));//2
 		this.baralho.add(new PagamentoReves("Reformou sua casa , pague 50",50));//3
 		this.baralho.add(new RecebimentoSorte("Seu livro será publicado por uma grande editora , receba 50" , 50));//4
 		this.baralho.add(new PrisaoSorte());//5

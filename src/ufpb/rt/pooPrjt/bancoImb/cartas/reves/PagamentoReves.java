@@ -12,7 +12,7 @@ public class PagamentoReves implements SorteOuReves{
 		this.descricao = descricao;
 		this.valor = valor;
 	}
-
+	
 	@Override
 	public void acao(Jogador jogador) {
 		jogador.debitar(valor);
@@ -23,4 +23,5 @@ public class PagamentoReves implements SorteOuReves{
 		// TODO Auto-generated method stub
 		return this.descricao;
 	}
+
 }
