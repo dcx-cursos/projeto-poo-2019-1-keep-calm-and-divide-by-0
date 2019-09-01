@@ -132,9 +132,18 @@ public class Partida {
 											+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
 											+ "" + jogador.getPosicao() + " " + "– " + propriedade.getNome()
 											+ " cujo dono é " + propriedade.getDono().getNome() + ".");
+							
+									
 									if (propriedade.getTipo().equals("TERRENO")) {
+										int valorPago = propriedade.valorAserPagoParaODonoDoTerreno();
+										propriedade.pagamentoDeTaxa(jogador, propriedade.valorAserPagoParaODonoDoTerreno());
+										System.out.println("O jogador" + jogador.getNome() + " pagou: " + valorPago + " para o dono" + propriedade.getDono().getNome());
+										
 
 									} else if (propriedade.getTipo().equals("COMPANHIA")) {
+										int valorPago = propriedade.valorAserPagoParaODonoDaCompanhia(numDadoUm + numDadoDois);
+										propriedade.pagamentoDeTaxa(jogador, numDadoUm + numDadoDois);
+										System.out.println("O jogador" + jogador.getNome() + "pagou: " + valorPago + " para o jogador: " + propriedade.getDono().getNome());
 									}
 									break;
 								}
@@ -142,13 +151,13 @@ public class Partida {
 								System.out.printf("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
 										+ numDadoUm + ", " + numDadoDois + " e o peão avançou para " + ""
 										+ jogador.getPosicao() + " " + "– " + propriedade.getNome()
-										+ ". O título da propriedade " + jogador.getNome() + " está disponível por $"
+										+ ". O título da propriedade está disponível por $"
 										+ propriedade.getPrecoCompra() + "\n" + jogador.getNome() + ", você possui "
 										+ jogador.getCarteira() + ".\n" + "Você deseja comprar " + propriedade.getNome()
 										+ " (Sim/Não)? ");
 								String escolha = leitor.next().toUpperCase();
 								if (escolha.equals("NÃO") | escolha.equals("NAO")) {
-									break;
+									break;	
 								} else {
 									try {
 										jogador.compraPropriedade(propriedade.getPrecoCompra(), propriedade);
@@ -188,7 +197,7 @@ public class Partida {
 							String escolhaPrisioneiro = leitor.next().toUpperCase();
 							if (escolhaPrisioneiro.equals("PAGAR")) {
 								try {
-									jogador.pagarParaSairDaPrisao(500);
+									jogador.pagarParaSairDaPrisao(50);
 									k = k - 1;
 									break;
 								} catch (DinheiroInsuficienteException e) {
@@ -203,8 +212,8 @@ public class Partida {
 									break;
 								} catch (SemCartasDeSairDaPrisao e) {
 									// TODO Auto-generated catch block
-									System.out.println(e);
-									break;
+									System.out.println(e.getMessage());
+									
 								}
 							
 							} else if (escolhaPrisioneiro.equals("JOGAR")) {

@@ -166,4 +166,15 @@ public class Terreno implements Propriedade {
 		this.dono.creditar(aluguel);
 		
 	}
+
+	@Override
+	public int valorAserPagoParaODonoDoTerreno() {
+		return this.aluguel;
+	}
+
+	@Override
+	public int valorAserPagoParaODonoDaCompanhia(int numDados) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
