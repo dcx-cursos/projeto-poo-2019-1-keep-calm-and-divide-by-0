@@ -146,7 +146,7 @@ public class Partida {
 									if (propriedade.getTipo().equals("TERRENO")) {
 										int valorPago = propriedade.valorAserPagoParaODonoDoTerreno();
 										propriedade.pagamentoDeTaxa(jogador, propriedade.valorAserPagoParaODonoDoTerreno());
-										System.out.println("O jogador" + jogador.getNome() + " pagou: " + valorPago + " para o dono" + propriedade.getDono().getNome());
+										System.out.println("O jogador" + jogador.getNome() + " pagou: " + valorPago + " para o jogador: " + propriedade.getDono().getNome());
 										
 
 									} else if (propriedade.getTipo().equals("COMPANHIA")) {
@@ -240,6 +240,8 @@ public class Partida {
 											+ ") tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
 									break;
 								}
+							} else if (escolhaPrisioneiro.equals("STATUS")) {
+								System.out.println(jogador.getStatus(sis.getTabuleiro()));
 							}else {
 								System.out.println("Digite um comando válido!");
 							}

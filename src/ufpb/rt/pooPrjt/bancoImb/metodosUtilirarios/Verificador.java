@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 public class Verificador {
 	
-	public boolean verificaStringEmLista(ArrayList lista, String e) {
-		if(lista.contains(e)) {
-			return true;
-		}
-		return false;
+	public boolean verificaStringEmLista(ArrayList<String> lista, String e) {
+		return lista.contains(e);
+		
+	}
+	
+	public boolean verificaDuasStrings(String item1, String item2) {
+		return item1.equals(item2);
+		
 	}
 }

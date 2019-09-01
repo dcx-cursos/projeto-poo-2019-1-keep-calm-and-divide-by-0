@@ -64,9 +64,9 @@ public class SisJogo {
 	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja tenha escolhida a mesma cor , visto que nao pode ter jogadores com a mesma cor
 	 */
 	public void gravaJogador(Jogador jogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
-		if (ExisteJogadorComEstaCorPiao(jogador.getCor())) { // existe jogador que escolheu esta cor
+		if (ExisteJogadorComEstaCorPiao(jogador.getCor())==true) { // existe jogador que escolheu esta cor
 			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida");
-		}else if(verificaCorInvalida(jogador.getCor())) {
+		}else if(verificaCorInvalida(jogador.getCor().toUpperCase())) {
 			throw new CorInvalidaException("Esta cor é invlálida.");
 		}else {// a cor ja foi escolhida
 			gravador.gravaEmLista(jogadores, jogador);
@@ -107,7 +107,10 @@ public class SisJogo {
 	 * verifica se a cor digitada pelo jogador é valida ou não
 	 */
 	public boolean verificaCorInvalida(String cor) {
-		return verificador.verificaStringEmLista(cores, cor);
+		if(verificador.verificaStringEmLista(cores, cor)) {
+			return false;
+		}
+		return true;
 	}
 	
 	public void removerCorQueJaFoiEscolhida(String cor) {
@@ -121,12 +124,13 @@ public class SisJogo {
 	 * @return verifica se a cor digitada pelo jogador ja foi escolhida , caso ja tenha algum jogador com esta cor return true , caso a cor ainda nao foi escolhida retorne false
 	 */
 	public boolean ExisteJogadorComEstaCorPiao(String cor) {
-		boolean bool = false;
 		for (int k = 0; k<jogadores.size(); k++) {
 			Jogador p = jogadores.get(k);
-			bool = verificador.verificaStringEmLista(cores, p.getCor()); 
+			if(verificador.verificaDuasStrings(p.getCor(),cor)) {
+				return true;
+			}
 		}
-		return bool;
+		return false;
 	}
 	
 	public ArrayList<Jogador> getJogadores(){
