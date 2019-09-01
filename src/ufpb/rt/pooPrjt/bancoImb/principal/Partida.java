@@ -15,7 +15,7 @@ public class Partida {
 
 	public static void main(String[] args) {
 		Scanner leitor = new Scanner(System.in);
-		SisJogo sis = new SisJogo();	
+		SisJogo sis = new SisJogo();
 		sis.carregaCores();
 		sis.gerarBaralho();
 		sis.genetareBoard();
@@ -48,9 +48,8 @@ public class Partida {
 							System.out.printf("Digite o nome do jogador" + (k + 1) + ":");
 							nome = leitor.next();
 
-							System.out.printf(
-									"Digite a cor do peão do jogador " + (k + 1) + " entre as opções seguintes:\n"
-											+ sis.getCores());
+							System.out.printf("Digite a cor do peão do jogador " + (k + 1)
+									+ " entre as opções seguintes:\n" + sis.getCores());
 							cor = leitor.next().toLowerCase();
 
 							sis.gravaJogador(new Jogador(nome, cor));/** JOGADOR É ADICIONADO A LISTA DE JOGADORES */
@@ -80,7 +79,11 @@ public class Partida {
 			for (int k = 0; k < sis.getJogadores().size(); k++) {
 				Jogador jogador = sis.getJogadores().get(k);
 				while (true) {
-
+					if(jogador.getCarteira()<=0) {
+						System.out.println(jogador.getNome()+" perdeu o jogo.");
+						sis.removeJogador(jogador);
+						break;
+					}
 					if (jogador.getDiasNaPrisao() == 0) {
 						System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
 								+ "Comandos disponíveis: [jogar][status][sair] \n" + "Digite um comando :");
@@ -95,6 +98,12 @@ public class Partida {
 								/**
 								 * JOGADOR NÃO REALIZA NENHUMA AÇÃO E VAI PARA PRISÃO
 								 */
+								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
+										+ numDadoUm + "," + numDadoDois + " e o peão avançou para " + ""
+										+ jogador.getPosicao() + " " + "– Prisão por 3 rodadas.");
+								jogador.irParaPrisao();
+								break;
+							} else if ((jogador.getVezesQueTirouDadosIguais() % 3) == 0 && jogador.getVezesQueTirouDadosIguais()>0) {
 								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
 										+ numDadoUm + "," + numDadoDois + " e o peão avançou para " + ""
 										+ jogador.getPosicao() + " " + "– Prisão por 3 rodadas.");
@@ -181,7 +190,7 @@ public class Partida {
 						}
 					} else {
 						System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
-								+ jogador.getNome() + "esta na prisão.\n");
+								+ jogador.getNome() + " esta na prisão.\n");
 						do {
 							System.out.println("Comandos disponíveis: [pagar][carta][jogar][status][sair]\n"
 									+ "Digite um comando:");
@@ -206,22 +215,24 @@ public class Partida {
 									System.out.println(e);
 									break;
 								}
-							
+
 							} else if (escolhaPrisioneiro.equals("JOGAR")) {
 								int numDadoI = jogador.lancaDado();
 								int numDadoII = jogador.lancaDado();
 								if (sis.jogadaValidaJogadorPrisao(numDadoI, numDadoII) == true) {
 									jogador.sairDaPrisao();
 									jogador.andarCasas(numDadoI, numDadoII);
-									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
-											+ " tirou " + numDadoI + ", " + numDadoII + " e o peão avançou para " + ""
+									System.out.println("O jogador " + jogador.getNome() + " (" + jogador.getCor()
+											+ ") tirou " + numDadoI + ", " + numDadoII + " e o peão avançou para " + ""
 											+ jogador.getPosicao());
 									break;
-								}else {
-									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
-									+ " tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
+								} else {
+									System.out.println("O jogador " + jogador.getNome() + " (" + jogador.getCor()
+											+ ") tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
 									break;
 								}
+							}else {
+								System.out.println("Digite um comando válido!");
 							}
 
 							/** OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1 */

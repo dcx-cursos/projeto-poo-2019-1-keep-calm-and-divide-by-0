@@ -47,7 +47,7 @@ public class SisJogo {
 	}
 	
 	public boolean quantidadeDeJogadoresEValida(int Numjogadores){
-		if (Numjogadores == 2 || Numjogadores ==  3 || Numjogadores == 4 || Numjogadores == 5 || Numjogadores == 6 || Numjogadores == 7 || Numjogadores ==8  ) {	
+		if (Numjogadores >= 2 && Numjogadores <=8  ) {	
 			return true;
 		}
 		return false;
