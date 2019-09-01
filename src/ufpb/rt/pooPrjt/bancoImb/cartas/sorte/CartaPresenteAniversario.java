@@ -11,7 +11,7 @@ public class CartaPresenteAniversario implements SorteOuReves{
 	
 	private String descricao;
 	private int valor;
-	SisJogo sis = new SisJogo();
+	private SisJogo sis = new SisJogo();
 	MetodosCartasEspeciais metodo = new MetodosCartasEspeciais();
 
 	public CartaPresenteAniversario(String descricao, int valor) {

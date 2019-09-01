@@ -220,11 +220,13 @@ public class Partida {
 								}else {
 									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
 									+ " tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
+									break;
 								}
 							}
 
 							/** OS DIAS NA PRISÃO DO JOGADOR SÃO DECREMENTADOS EM 1 */
 						} while (true);
+						break;
 					}
 
 				} // fim while
