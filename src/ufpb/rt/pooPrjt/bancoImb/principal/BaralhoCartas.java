@@ -11,13 +11,12 @@ import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.RecebimentoSorte;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 
 public class BaralhoCartas {  
-	private SisJogo jogo ; // para obter a quantidade de jogadores necessario para a segunda carta
 	
-	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
+	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>(); // lista de cartas Sorte ou Reves
 	
 	public BaralhoCartas() {
 		this.baralho.add(new PagamentoReves("Sua empresa foi multada por poluir demais , Pague 200",200));//1
-		this.baralho.add(new PagamentoReves("ainda n foi inplementado",0));//2
+		this.baralho.add(new PagamentoReves("ainda não foi implementado",0));//2
 		this.baralho.add(new PagamentoReves("Reformou sua casa , pague 50",50));//3
 		this.baralho.add(new RecebimentoSorte("Seu livro será publicado por uma grande editora , receba 50" , 50));//4
 		this.baralho.add(new PrisaoSorte());//5
@@ -39,7 +38,7 @@ public class BaralhoCartas {
 		this.baralho.add(new RecebimentoSorte("Seu iate afundou, mas você tinha seguro! , receba 25" , 25));//21
 		this.baralho.add(new PagamentoReves("Seus funcionários entraram em greve pague 30" , 30));//22
 		this.baralho.add(new PagamentoReves("Comprou obra de arte falsificada , pague 22" , 22));//23
-		this.baralho.add(new PagamentoReves("ainda n foi inplementado",0));//24
+		this.baralho.add(new PagamentoReves("ainda não foi implementado",0));//24
 		this.baralho.add(new PagamentoReves("Seu jatinho precisa de manutenção , pague 9 " , 9));//25
 		this.baralho.add(new PagamentoReves("Renovou a frota de carros da sua empresa , pague 100 " , 100));//26
 		this.baralho.add(new RecebimentoSorte("Ganhou sozinho na loteria , receba 80" , 80));//27
@@ -49,6 +48,10 @@ public class BaralhoCartas {
 		this.baralho.add(new RecebimentoSorte("Tirou primeiro lugar no torneio de golfe , receba 100" , 100));//31
 	}
 	
+	/**
+	 * 
+	 * @return uma lista embaralhada de cartas Sorte ou Reves
+	 */
 	public ArrayList<SorteOuReves> gerarBaralhoEmbaralhado() {
 		ArrayList<SorteOuReves> baralhoEmbaralhado = new ArrayList<SorteOuReves>();
 		Random r = new Random();
@@ -65,6 +68,11 @@ public class BaralhoCartas {
 
 	}
 	
+	/**
+	 * 
+	 * @param baralhoJogo, lista de Sorte ou Reves de entrada
+	 * @return retorna uma carta Sorte ou Reves
+	 */
 	public SorteOuReves pegaCartaDobaralho(ArrayList<SorteOuReves> baralhoJogo) {
 		SorteOuReves carta = baralhoJogo.get(30);
 		for(int j=30; j>0; j--) {
@@ -75,8 +83,6 @@ public class BaralhoCartas {
 		return carta;
 	}
 
-	public ArrayList<SorteOuReves> getBaralho() {
-		return baralho;
-	}
+	
 	
 }

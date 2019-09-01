@@ -70,7 +70,6 @@ public class SisJogo {
 			throw new CorInvalidaException("Esta cor é invlálida.");
 		}else {// a cor ja foi escolhida
 			gravador.gravaEmLista(jogadores, jogador);
-			this.quantidadeDeJogadores ++;
 			
 
 		}
@@ -84,7 +83,6 @@ public class SisJogo {
 	 */
 	public void removeJogador(Jogador Jogador) {
 		removedor.removeDeLista(jogadores,Jogador);
-		this.quantidadeDeJogadores --;
 		
 	}
 	
@@ -113,6 +111,11 @@ public class SisJogo {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param cor, escolhida pelo jogador
+	 * remove da lista de cores uma cor de entrada que já foi escoligda por um jogador
+	 */
 	public void removerCorQueJaFoiEscolhida(String cor) {
 		removedor.removeDeLista(cores,cor.toUpperCase());
 	}
@@ -133,6 +136,10 @@ public class SisJogo {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @return retorna um arraylist de jogadores
+	 */
 	public ArrayList<Jogador> getJogadores(){
 		return jogadores;
 	}
@@ -146,22 +153,31 @@ public class SisJogo {
 		tabuleiro = sisTabuleiro.criartabuleiro();
 	}
 	
+	/**
+	 * 
+	 * @return uma lista de Propriedade que servirá de tabuleiro
+	 */
 	public ArrayList<Propriedade> getTabuleiro() {
 		return tabuleiro;
 	}
 
+	/**
+	 * 
+	 * @return retorna uma lista de cores
+	 */
 	public ArrayList<String> getCores() {
 		// TODO Auto-generated method stub
 		return cores;
 	}
 
+	/**
+	 * 
+	 * @return retorna uma lista de cartas Sorte ou Reves
+	 */
 	public ArrayList<SorteOuReves> getBaralho() {
 		return baralho;
 	}
 
-	public int getQuantidadeDeJogadores() {
-		return quantidadeDeJogadores;
-	}
 	
 	
 	
