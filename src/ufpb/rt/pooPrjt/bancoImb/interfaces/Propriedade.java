@@ -19,5 +19,8 @@ public interface Propriedade {
 	public String getTipo();
 	
 	public void pagamentoDeTaxa(Jogador jogador, int infPagamento);
-
+	
+    public int valorAserPagoParaODonoDoTerreno();
+    
+    public int valorAserPagoParaODonoDaCompanhia(int numDados);
 }

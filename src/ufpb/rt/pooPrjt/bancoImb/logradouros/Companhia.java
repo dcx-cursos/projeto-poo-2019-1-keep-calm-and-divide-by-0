@@ -85,4 +85,17 @@ public class Companhia implements Propriedade {
 		return TIPO;
 	}
 
+
+	@Override
+	public int valorAserPagoParaODonoDaCompanhia(int numDados) {
+		return this.multiplicador * numDados;
+	}
+
+
+	@Override
+	public int valorAserPagoParaODonoDoTerreno() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
