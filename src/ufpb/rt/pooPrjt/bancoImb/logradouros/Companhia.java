@@ -15,8 +15,8 @@ public class Companhia implements Propriedade {
 	public Companhia(String nome, int precoCompra, int hipoteca, int multiplicador ) {
 		this.nome = nome;
 		this.precoCompra = precoCompra;
-		hipoteca = hipoteca;
-		multiplicador = multiplicador;
+		this.hipoteca = hipoteca;
+		this.multiplicador = multiplicador;
 
 	}
 
