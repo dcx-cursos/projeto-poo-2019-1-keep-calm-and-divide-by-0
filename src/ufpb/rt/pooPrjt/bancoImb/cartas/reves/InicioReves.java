@@ -16,7 +16,7 @@ public class InicioReves implements SorteOuReves{
 	@Override
 	public String getDescricao() {
 		// TODO Auto-generated method stub
-		return null;
+		return descricao;
 	}
 	
 	
