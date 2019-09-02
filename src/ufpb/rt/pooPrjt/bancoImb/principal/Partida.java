@@ -144,15 +144,24 @@ public class Partida {
 							
 									
 									if (propriedade.getTipo().equals("TERRENO")) {
+										if(jogador.getNome().equals(propriedade.getDono().getNome())) {
+											System.out.println("Jogador em uma das suas propriedade \nNada aconteceu");
+											
+										}else {
 										int valorPago = propriedade.valorAserPagoParaODonoDoTerreno();
 										propriedade.pagamentoDeTaxa(jogador, propriedade.valorAserPagoParaODonoDoTerreno());
 										System.out.println("O jogador" + jogador.getNome() + " pagou: " + valorPago + " para o jogador: " + propriedade.getDono().getNome());
-										
+										}
 
 									} else if (propriedade.getTipo().equals("COMPANHIA")) {
+										if(jogador.getNome().equals(propriedade.getDono().getNome())) {
+											System.out.println("Jogador em uma das suas propriedade \nNada aconteceu");
+											
+										}else {
 										int valorPago = propriedade.valorAserPagoParaODonoDaCompanhia(numDadoUm + numDadoDois);
 										propriedade.pagamentoDeTaxa(jogador, numDadoUm + numDadoDois);
 										System.out.println("O jogador" + jogador.getNome() + "pagou: " + valorPago + " para o jogador: " + propriedade.getDono().getNome());
+										}
 									}
 									break;
 								}
