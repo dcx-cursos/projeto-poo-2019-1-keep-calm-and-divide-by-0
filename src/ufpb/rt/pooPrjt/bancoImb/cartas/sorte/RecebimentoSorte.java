@@ -8,17 +8,27 @@ public class RecebimentoSorte implements SorteOuReves {
 	private String descricao;
 	private int valor;
 
+	
+	/**
+	 * 
+	 * @param descricao descriçao das cartas
+	 * @param valor valor que o jogador deve receber
+	 */
 	public RecebimentoSorte(String descricao, int valor) {
 		this.descricao = descricao;
 		this.valor = valor;
 	}
 
-	@Override
+	/**
+	 * quanto o jogador deve receber
+	 */
 	public void acao(Jogador jogador) {
 		jogador.creditar(valor);
 	}
 
-	@Override
+	/**
+	 * mostrar a descriçao da carta
+	 */
 	public String getDescricao() {
 		// TODO Auto-generated method stub
 		return this.descricao;

@@ -16,7 +16,6 @@ public class Jogador {
 	private int vezesQueTirouDadosIguais = 0;
 	private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
 	private ArrayList<SorteOuReves> cartaPrisao;
-
 	Random r = new Random();
 
 	/**
@@ -96,6 +95,11 @@ public class Jogador {
 		return propriedades;
 	}
 
+	
+	/**
+	 *
+	 * @param propriedades lista de todas as propriedades
+	 */
 	public void setPropriedades(ArrayList<Propriedade> propriedades) {
 		this.propriedades = propriedades;
 	}
@@ -126,6 +130,11 @@ public class Jogador {
 
 	}
 
+	
+	/**
+	 * opçao para o jogador sair da prisao
+	 * @throws SemCartasDeSairDaPrisao caso o jogador nao tenha posse da carta de passe livre
+	 */
 	public void usarCartaPrisao() throws SemCartasDeSairDaPrisao {
 		if (cartaPrisao == null) {
 			throw new SemCartasDeSairDaPrisao("Você não tem cartas para sair da prisão.");
@@ -135,6 +144,13 @@ public class Jogador {
 		}
 	}
 
+	
+	
+	/**
+	 * opaçao quando o jogador estar preso , ele pode escolher pagar pagar para sair
+	 * @param fianca valor que deve ser pago pelo jogador para sair
+	 * @throws DinheiroInsuficienteException se o jogador nao tiver dinheiro suficiente para pagar a fiança
+	 */
 	public void pagarParaSairDaPrisao(int fianca) throws DinheiroInsuficienteException {
 		if (this.carteira < fianca) {
 			throw new DinheiroInsuficienteException("Você não tem saldo suficiente.");
@@ -144,7 +160,10 @@ public class Jogador {
 		}
 
 	}
-
+/**
+ * quando dias ele estar preso
+ * @param dia quantidade de dias 
+ */
 	public void setDiaPassadoNaPrisao(int dia) {
 		this.diasNaPrisao -= 1;
 
@@ -194,7 +213,7 @@ public class Jogador {
 	}
 
 	/**
-	 * 
+	 * mosta a situaçao atual do jogador (posiçao ,dinheiro e suas propriedades)
 	 * @param propriedades recebe a lista de todas as propriedades
 	 * @return o status do jogador de acordo com a sua posiçao
 	 */
@@ -262,16 +281,31 @@ public class Jogador {
 		}
 	}
 
+	
+	/**
+	 * retira dinheiro na carteira do jogador
+	 * @param valor quanto que deve ser retirado da carteira
+	 */
 	public void debitar(int valor) {
 		this.carteira -= valor;
 
 	}
 
+	
+	/**
+	 * adiciona dinheiro na carteira do jogador
+	 * @param valor quanto que deve ser adicionado
+	 */
 	public void creditar(int valor) {
 		this.carteira += valor;
 
 	}
 
+	
+	/**
+	 * metodo para alterar a posiçao do jogagor
+	 * @param posi numeros de casas que sao avançadas
+	 */
 	public void setPosicao(int posi) {
 		this.posicao = posi;
 

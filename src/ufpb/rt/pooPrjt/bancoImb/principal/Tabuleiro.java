@@ -11,6 +11,10 @@ public class Tabuleiro {
 	
 	
 
+	
+	/**
+	 * cria todas as posiçoes do tabuleiro
+	 */
 	public Tabuleiro() {
 		this.tabuleiro.add(null);//0 inicio
 		this.tabuleiro.add(new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6 ));//1

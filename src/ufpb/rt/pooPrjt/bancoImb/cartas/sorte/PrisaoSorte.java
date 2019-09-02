@@ -7,13 +7,17 @@ public class PrisaoSorte implements SorteOuReves{
 	
 	private String descricao = "Utilize este cartão para se livrar da prisão";
 
-	@Override
+	/**
+	 * faz o jogador sair da prisao com esta carta
+	 */
 	public void acao(Jogador jogador) {
 		jogador.sairDaPrisao();
 		
 	}
 
-	@Override
+	/**
+	 * mostra a descriçao da carta
+	 */
 	public String getDescricao() {
 		// TODO Auto-generated method stub
 		return this.descricao;

@@ -13,7 +13,9 @@ import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 public class BaralhoCartas {  
 	
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>(); // lista de cartas Sorte ou Reves
-	
+/**
+ * gera o baralho de cartas
+ */
 	public BaralhoCartas() {
 		this.baralho.add(new PagamentoReves("Sua empresa foi multada por poluir demais , Pague 200",200));//1
 		this.baralho.add(new PagamentoReves("ainda não foi implementado",0));//2

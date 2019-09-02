@@ -7,13 +7,17 @@ public class InicioReves implements SorteOuReves{
 	
 	private String descricao = "Vá para o início";
 
-	@Override
+	/**
+	 * faz o jogador voltar para o inicio do tabuleiro
+	 */
 	public void acao(Jogador jogador) {
 		jogador.setPosicao(0);
 		
 	}
 
-	@Override
+	/**
+	 * mostra a descriçao da carta
+	 */
 	public String getDescricao() {
 		// TODO Auto-generated method stub
 		return descricao;

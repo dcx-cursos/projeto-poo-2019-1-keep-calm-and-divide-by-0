@@ -16,13 +16,13 @@ public class Partida {
 	public static void main(String[] args) {
 		Scanner leitor = new Scanner(System.in);
 		SisJogo sis = new SisJogo();
-		sis.carregaCores();
-		sis.gerarBaralho();
-		sis.genetareBoard();
+		sis.carregaCores(); // carrega todas as cores disponivel
+		sis.gerarBaralho(); // cria o baralho 
+		sis.genetareBoard(); // cria o tabuleiro
 
 		while (true) {
 			boolean continueLoop = true;
-			int numJogadores = 0;
+			int numJogadores = 0; // numero de jogadores que vao jogar
 			do {
 				try {
 					System.out.printf("Digite o número de jogadores [2-8]:");
@@ -84,7 +84,7 @@ public class Partida {
 						sis.removeJogador(jogador);
 						break;
 					}
-					if (jogador.getDiasNaPrisao() == 0) {
+					if (jogador.getDiasNaPrisao() == 0) { // o jogador nao estar na prisao
 						System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
 								+ "Comandos disponíveis: [jogar][status][sair] \n" + "Digite um comando :");
 						String opcao = leitor.next().toUpperCase();
@@ -120,7 +120,7 @@ public class Partida {
 
 							} else if ((jogador.getPosicao() == 2 | jogador.getPosicao() == 12)
 									| (jogador.getPosicao() == 16 | jogador.getPosicao() == 22)
-									| (jogador.getPosicao() == 27 | jogador.getPosicao() == 37)) {
+									| (jogador.getPosicao() == 27 | jogador.getPosicao() == 37)) { // jogador cai nas posiçao de sorte ou reves
 								SorteOuReves carta = sis.pegaCartaDoBaralho();
 								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
 										+ numDadoUm + ", " + numDadoDois + " e o peão avançou para " + ""
@@ -223,7 +223,7 @@ public class Partida {
 									System.out.println(e);
 									break;
 								}
-							} else if (escolhaPrisioneiro.equals("CARTA")) {
+							} else if (escolhaPrisioneiro.equals("CARTA")) { // jogador usa a carta
 								try {
 									jogador.usarCartaPrisao();
 									k = k - 1;
@@ -234,11 +234,11 @@ public class Partida {
 									
 								}
 
-							} else if (escolhaPrisioneiro.equals("JOGAR")) {
+							} else if (escolhaPrisioneiro.equals("JOGAR")) { // jogador escolheu jogar para tentar sair da prisao
 								int numDadoI = jogador.lancaDado();
 								int numDadoII = jogador.lancaDado();
 								if (sis.jogadaValidaJogadorPrisao(numDadoI, numDadoII) == true) {
-									jogador.sairDaPrisao();
+									jogador.sairDaPrisao(); // sai da prisao casa consiga valores iguais
 									jogador.andarCasas(numDadoI, numDadoII);
 									System.out.println("O jogador " + jogador.getNome() + " (" + jogador.getCor()
 											+ ") tirou " + numDadoI + ", " + numDadoII + " e o peão avançou para " + ""
@@ -249,7 +249,7 @@ public class Partida {
 											+ ") tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
 									break;
 								}
-							} else if (escolhaPrisioneiro.equals("STATUS")) {
+							} else if (escolhaPrisioneiro.equals("STATUS")) { 
 								System.out.println(jogador.getStatus(sis.getTabuleiro()));
 							}else {
 								System.out.println("Digite um comando válido!");

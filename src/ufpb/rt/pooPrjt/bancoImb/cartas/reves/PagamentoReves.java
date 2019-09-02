@@ -7,18 +7,29 @@ public class PagamentoReves implements SorteOuReves{
 	
 	private String descricao;
 	private int valor;
-
+/**
+ * 
+ * @param descricao oque deve ser feito quando o jogador pega a carta
+ * @param valor oque deve ser retirado em sua carteira
+ */
 	public PagamentoReves(String descricao, int valor) {
 		this.descricao = descricao;
 		this.valor = valor;
 	}
 	
-	@Override
+	
+	/**
+	 * quando o jogador deve pagar
+	 */
 	public void acao(Jogador jogador) {
 		jogador.debitar(valor);
 	}
 
-	@Override
+	
+	
+	/**
+	 * mosta a descriçao da carta
+	 */
 	public String getDescricao() {
 		// TODO Auto-generated method stub
 		return this.descricao;

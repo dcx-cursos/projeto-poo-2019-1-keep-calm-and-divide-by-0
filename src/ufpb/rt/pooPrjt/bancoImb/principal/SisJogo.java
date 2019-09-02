@@ -25,27 +25,45 @@ public class SisJogo {
 	private Removedor removedor = new Removedor();
 	private Verificador verificador = new Verificador();
 	private Tabuleiro sisTabuleiro = new Tabuleiro();
-	
+	/**
+	 * gera o baralho com todas as 32 cartas
+	 */
 	public void gerarBaralho() {
 		this.baralho = cartasSorteOuReves.gerarBaralhoEmbaralhado();
 	}
 	
-	
+	/**
+	 *  
+	 * @param numDadoI valor do primeiro dado
+	 * @param numDadoII valor do segundo dado
+	 * @return se o jogador conseguiu sair da prisao por tirar numeros iguais nos dados
+	 */
 	public boolean jogadaValidaJogadorPrisao(int numDadoI, int numDadoII) {
 		if(numDadoI==numDadoII) {
 			return true;
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @return carta tirada pelo jogador
+	 */
 	public SorteOuReves pegaCartaDoBaralho() {
 		return cartasSorteOuReves.pegaCartaDobaralho(baralho);
 	}
-	
+	/**
+	 * 
+	 * @param jogador jgador que estar preso
+	 * metodo para saber quantos dias o jogador ficou preso
+	 */
 	public void jogadorPassouDiaNaPrisao(Jogador jogador) {
 		jogador.setDiaPassadoNaPrisao(1);
 	}
-	
+	/**
+	 * 
+	 * @param Numjogadores numero de jogadores que é informado no inicio do jogo
+	 * @return retorna o valor de jogadores e se o numero e valido para o jogo (de 2 ate 8 jogadores)
+	 */
 	public boolean quantidadeDeJogadoresEValida(int Numjogadores){
 		if (Numjogadores >= 2 && Numjogadores <=8  ) {	
 			return true;
@@ -85,7 +103,9 @@ public class SisJogo {
 		removedor.removeDeLista(jogadores,Jogador);
 		
 	}
-	
+	/**
+	 * lista de todas as cores disponiveis para o jogador escolher a cor do seu piao
+	 */
 	public void carregaCores() {
 		gravador.gravaEmLista(cores,"BRANCO");
 		gravador.gravaEmLista(cores,"VERMELHO");

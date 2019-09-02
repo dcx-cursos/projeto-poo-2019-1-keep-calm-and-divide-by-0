@@ -12,6 +12,15 @@ public class Companhia implements Propriedade {
 	private Jogador dono = null;
 	private String TIPO = "COMPANHIA";
 
+	
+	
+	/**
+	 * 
+	 * @param nome nome da companhia
+	 * @param precoCompra preço para comprar 
+	 * @param hipoteca preço da hipoteca 
+	 * @param multiplicador multplicador da companhia ( valor que deve dser multiplicado pelo a soma dos dados do jogador)
+	 */
 	public Companhia(String nome, int precoCompra, int hipoteca, int multiplicador ) {
 		this.nome = nome;
 		this.precoCompra = precoCompra;
@@ -21,40 +30,63 @@ public class Companhia implements Propriedade {
 	}
 
 
+	
+	/**
+	 * retorna o nome da companhia
+	 */
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 
+	
+	/**
+	 * retorna o preço para a compra 
+	 */
 	public int getPrecoCompra() {
 		return precoCompra;
 	}
 
-	public void setPrecoCompra(int precoCompra) {
-		this.precoCompra = precoCompra;
-	}
 
+	
+	/**
+	 * 
+	 * @return preço da hiṕoteca
+	 */
 	public int gethipoteca() {
 		return hipoteca;
 	}
 
-	public int getMultiplicador() {
+	/**
+	 * 
+	 * @return valor q vai ser mulplicado o valor da somas dos resultados dos dados
+	 */
+ 	public int getMultiplicador() {
 		return multiplicador;
 	}
 	
+ 	
+ 	/**
+ 	 * quando o jogador cai em uma companhia que nao seja sua ele deve pagar uma taxa que sera calculada nesse metodo
+ 	 */
 	public void pagamentoDeTaxa(Jogador jogadorVisitante, int numDados) {
 		int valorPagamento = getMultiplicador()*numDados;
 		jogadorVisitante.debitar(valorPagamento);
 		this.dono.creditar(valorPagamento);
 	}
 
+	
+	/**
+	 * retorna o dono da companhia
+	 */
 	public Jogador getDono() {
 		return dono;
 	}
 
+	
+	/**
+	 * muda o dono da companhia
+	 */
 	public void setDono(Jogador dono) {
 		this.dono = dono;
 	}
@@ -66,7 +98,9 @@ public class Companhia implements Propriedade {
 	}
 
 
-	@Override
+	/**
+	 * verifica se a companhia tem dono
+	 */
 	public boolean existeDono() {
 		if(this.dono != null) {
 			return true;
@@ -74,27 +108,29 @@ public class Companhia implements Propriedade {
 		return false;
 	}
 	
-	@Override
 	public String getInformacoesStatus() {
 		return String.valueOf(this.multiplicador);
 	}
 
 
-	@Override
+	/**
+	 * mostra o tipo da classe
+	 */
 	public String getTipo() {
 		return TIPO;
 	}
 
 
-	@Override
+	
 	public int valorAserPagoParaODonoDaCompanhia(int numDados) {
 		return this.multiplicador * numDados;
 	}
 
 
-	@Override
+	/**
+	 * valor que o dono deve receber de outro jogador
+	 */
 	public int valorAserPagoParaODonoDoTerreno() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
