@@ -9,10 +9,12 @@ import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.CartaPresenteAniversario;
 import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.PrisaoSorte;
 import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.RecebimentoSorte;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.MetodoPilhas;
 
 public class BaralhoCartas {  
 	
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>(); // lista de cartas Sorte ou Reves
+	private MetodoPilhas metodosDePilhas = new MetodoPilhas();
 /**
  * gera o baralho de cartas
  */
@@ -77,11 +79,7 @@ public class BaralhoCartas {
 	 */
 	public SorteOuReves pegaCartaDobaralho(ArrayList<SorteOuReves> baralhoJogo) {
 		SorteOuReves carta = baralhoJogo.get(30);
-		for(int j=30; j>0; j--) {
-			baralho.set(j, baralhoJogo.get(j-1));
-		}
-		baralho.set(0, carta);
-		
+		metodosDePilhas.desempilharItemDePilha(baralhoJogo, 30);
 		return carta;
 	}
 

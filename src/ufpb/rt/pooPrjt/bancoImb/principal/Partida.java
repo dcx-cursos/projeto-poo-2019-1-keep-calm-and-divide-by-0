@@ -41,12 +41,13 @@ public class Partida {
 			} else {
 				boolean continueLoopII = true;
 				for (int k = 0; k < numJogadores; k++) {
+					String nome, cor;
+
+					System.out.printf("Digite o nome do jogador" + (k + 1) + ":");
+					nome = leitor.next();
 					do {
 						try {
-							String nome, cor;
-
-							System.out.printf("Digite o nome do jogador" + (k + 1) + ":");
-							nome = leitor.next();
+							
 
 							System.out.printf("Digite a cor do peão do jogador " + (k + 1)
 									+ " entre as opções seguintes:\n" + sis.getCores());
@@ -125,6 +126,13 @@ public class Partida {
 								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
 										+ numDadoUm + ", " + numDadoDois + " e o peão avançou para " + ""
 										+ jogador.getPosicao() + " " + "– Sorte Ou Reves - " + carta.getDescricao());
+								
+								/**
+								 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
+								 */
+								if(sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
+									k = k -1;
+								}
 								if (carta.getDescricao().equals("Utilize este cartão para se livrar da prisão")) {
 									jogador.setCartaPrisao(carta);
 									break;
@@ -136,13 +144,24 @@ public class Partida {
 							} else if ((jogador.getPosicao() != 18 && jogador.getPosicao() != 20)
 									&& (jogador.getPosicao() != 24 && jogador.getPosicao() != 30)) {
 								Propriedade propriedade = sis.getTabuleiro().get(jogador.getPosicao());
+								/**
+								 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
+								 */
+								if(sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
+									k = k -1;
+								}
 								if (propriedade.existeDono() == true) {
 									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
 											+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
 											+ "" + jogador.getPosicao() + " " + "– " + propriedade.getNome()
 											+ " cujo dono é " + propriedade.getDono().getNome() + ".");
-							
 									
+									/**
+									 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
+									 */
+									if(sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
+										k = k -1;
+									}
 									if (propriedade.getTipo().equals("TERRENO")) {
 										if(jogador.getNome().equals(propriedade.getDono().getNome())) {
 											System.out.println("Jogador em uma das suas propriedade \nNada aconteceu");
@@ -237,7 +256,7 @@ public class Partida {
 							} else if (escolhaPrisioneiro.equals("JOGAR")) { // jogador escolheu jogar para tentar sair da prisao
 								int numDadoI = jogador.lancaDado();
 								int numDadoII = jogador.lancaDado();
-								if (sis.jogadaValidaJogadorPrisao(numDadoI, numDadoII) == true) {
+								if (sis.verificaJogadaDoisDadosIguais(numDadoI, numDadoII) == true) {
 									jogador.sairDaPrisao(); // sai da prisao casa consiga valores iguais
 									jogador.andarCasas(numDadoI, numDadoII);
 									System.out.println("O jogador " + jogador.getNome() + " (" + jogador.getCor()

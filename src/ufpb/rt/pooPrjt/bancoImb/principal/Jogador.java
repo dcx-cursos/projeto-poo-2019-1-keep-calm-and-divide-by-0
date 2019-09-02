@@ -95,7 +95,6 @@ public class Jogador {
 		return propriedades;
 	}
 
-	
 	/**
 	 *
 	 * @param propriedades lista de todas as propriedades
@@ -114,6 +113,7 @@ public class Jogador {
 
 	public void sairDaPrisao() {
 		this.diasNaPrisao = 0;
+		setVezesQueTirouDadosIguais(0);
 
 	}
 
@@ -130,40 +130,57 @@ public class Jogador {
 
 	}
 
-	
 	/**
 	 * opçao para o jogador sair da prisao
-	 * @throws SemCartasDeSairDaPrisao caso o jogador nao tenha posse da carta de passe livre
+	 * 
+	 * @throws SemCartasDeSairDaPrisao caso o jogador nao tenha posse da carta de
+	 *                                 passe livre
 	 */
 	public void usarCartaPrisao() throws SemCartasDeSairDaPrisao {
 		if (cartaPrisao == null) {
 			throw new SemCartasDeSairDaPrisao("Você não tem cartas para sair da prisão.");
 		} else {
 			cartaPrisao.get(0).acao(this);
+			setVezesQueTirouDadosIguais(0);
 			cartaPrisao.remove(0);
 		}
 	}
 
-	
-	
 	/**
 	 * opaçao quando o jogador estar preso , ele pode escolher pagar pagar para sair
+	 * 
 	 * @param fianca valor que deve ser pago pelo jogador para sair
-	 * @throws DinheiroInsuficienteException se o jogador nao tiver dinheiro suficiente para pagar a fiança
+	 * @throws DinheiroInsuficienteException se o jogador nao tiver dinheiro
+	 *                                       suficiente para pagar a fiança
 	 */
 	public void pagarParaSairDaPrisao(int fianca) throws DinheiroInsuficienteException {
 		if (this.carteira < fianca) {
 			throw new DinheiroInsuficienteException("Você não tem saldo suficiente.");
 		} else {
 			debitar(fianca);
+			setVezesQueTirouDadosIguais(0);
 			sairDaPrisao();
 		}
 
 	}
-/**
- * quando dias ele estar preso
- * @param dia quantidade de dias 
- */
+
+	/**
+	 * 
+	 * @param num numero que será setado ao parametro 
+	 * 			  Se o jogador conseguir sair da
+	 *            prisão de alguma forma, e o numero de vezes em que ele tirou
+	 *            numeros iguais é um multiplo de 3, o parametro é atualizado
+	 */
+	private void setVezesQueTirouDadosIguais(int num) {
+		if ((this.vezesQueTirouDadosIguais % 3) == 0)
+			this.vezesQueTirouDadosIguais = num;
+	}
+
+	/**
+	 * quando dias ele estar preso
+	 * 
+	 * @param dia quantidade de dias
+	 */
 	public void setDiaPassadoNaPrisao(int dia) {
 		this.diasNaPrisao -= 1;
 
@@ -214,6 +231,7 @@ public class Jogador {
 
 	/**
 	 * mosta a situaçao atual do jogador (posiçao ,dinheiro e suas propriedades)
+	 * 
 	 * @param propriedades recebe a lista de todas as propriedades
 	 * @return o status do jogador de acordo com a sua posiçao
 	 */
@@ -281,9 +299,9 @@ public class Jogador {
 		}
 	}
 
-	
 	/**
 	 * retira dinheiro na carteira do jogador
+	 * 
 	 * @param valor quanto que deve ser retirado da carteira
 	 */
 	public void debitar(int valor) {
@@ -291,9 +309,9 @@ public class Jogador {
 
 	}
 
-	
 	/**
 	 * adiciona dinheiro na carteira do jogador
+	 * 
 	 * @param valor quanto que deve ser adicionado
 	 */
 	public void creditar(int valor) {
@@ -301,9 +319,9 @@ public class Jogador {
 
 	}
 
-	
 	/**
 	 * metodo para alterar a posiçao do jogagor
+	 * 
 	 * @param posi numeros de casas que sao avançadas
 	 */
 	public void setPosicao(int posi) {
@@ -312,7 +330,6 @@ public class Jogador {
 	}
 
 	public int getVezesQueTirouDadosIguais() {
-		// TODO Auto-generated method stub
 		return this.vezesQueTirouDadosIguais;
 	}
 

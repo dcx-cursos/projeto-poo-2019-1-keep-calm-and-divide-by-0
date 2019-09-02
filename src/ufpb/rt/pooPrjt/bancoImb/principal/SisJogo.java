@@ -36,14 +36,12 @@ public class SisJogo {
 	 *  
 	 * @param numDadoI valor do primeiro dado
 	 * @param numDadoII valor do segundo dado
-	 * @return se o jogador conseguiu sair da prisao por tirar numeros iguais nos dados
+	 * @return se o jogador conseguiu tirar numeros iguais nos dados
 	 */
-	public boolean jogadaValidaJogadorPrisao(int numDadoI, int numDadoII) {
-		if(numDadoI==numDadoII) {
-			return true;
-		}
-		return false;
+	public boolean verificaJogadaDoisDadosIguais(int numDadoI, int numDadoII) {
+		return verificador.verificaDoisInteirosIguais(numDadoI,numDadoII);
 	}
+	
 	/**
 	 * 
 	 * @return carta tirada pelo jogador
