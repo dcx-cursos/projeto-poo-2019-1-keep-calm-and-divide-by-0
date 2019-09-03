@@ -81,7 +81,7 @@ public class SisJogo {
 	 */
 	public void gravaJogador(Jogador jogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
 		if (ExisteJogadorComEstaCorPiao(jogador.getCor())==true) { // existe jogador que escolheu esta cor
-			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida");
+			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida.");
 		}else if(verificaCorInvalida(jogador.getCor().toUpperCase())) {
 			throw new CorInvalidaException("Esta cor é invlálida.");
 		}else {// a cor ja foi escolhida

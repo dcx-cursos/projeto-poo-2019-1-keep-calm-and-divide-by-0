@@ -16,7 +16,7 @@ public class Jogador {
 	private int vezesQueTirouDadosIguais = 0;
 	private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
 	private ArrayList<SorteOuReves> cartaPrisao;
-	Random r = new Random();
+	private Random r = new Random();
 
 	/**
 	 * 
@@ -84,7 +84,7 @@ public class Jogador {
 		} else {
 			this.posicao += numDadoI + numDadoII;
 		}
-		return numDadoI + numDadoII;
+		return this.posicao;
 	}
 
 	/**
