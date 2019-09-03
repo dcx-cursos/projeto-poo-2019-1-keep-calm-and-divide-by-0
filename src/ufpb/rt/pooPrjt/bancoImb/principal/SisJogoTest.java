@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
 import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Gravador;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Removedor;
 
 class SisJogoTest {
 	private SisJogo jogo;
@@ -18,7 +19,8 @@ class SisJogoTest {
 	private Jogador jogador;
 	private Jogador jogador2;
 	private Jogador jogador3;
-	Gravador gravador;
+	private Gravador gravador;
+	private Removedor remover;
 
 	@BeforeEach
 	void setup() {
@@ -29,6 +31,7 @@ class SisJogoTest {
 		jogador2 = new Jogador("raul", "preto");
 		jogador3 = new Jogador("biel", "lilas");
 		gravador = new Gravador();
+		remover = new Removedor();
 	}
 
 	/**
@@ -76,6 +79,17 @@ class SisJogoTest {
 		jogo.removerCorQueJaFoiEscolhida("rosa");
 		assertEquals(7, jogo.getCores().size());
 
+	}
+	
+	
+	@Test
+	void removendoJogadorDaLista() {
+		gravador.gravaEmLista(jogadores, jogador);
+		gravador.gravaEmLista(jogadores, jogador2);
+		remover.removeDeLista(jogadores, jogador2);
+		
+		assertEquals(1, jogadores.size());
+		
 	}
 	
 	
