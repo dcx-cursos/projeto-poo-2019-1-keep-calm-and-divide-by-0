@@ -42,7 +42,7 @@ public class BaralhoCartas {
 		this.baralho.add(new RecebimentoSorte("Seu iate afundou, mas você tinha seguro! , receba 25" , 25));//21
 		this.baralho.add(new PagamentoReves("Seus funcionários entraram em greve pague 30" , 30));//22
 		this.baralho.add(new PagamentoReves("Comprou obra de arte falsificada , pague 22" , 22));//23
-		this.baralho.add(new PagamentoReves("Sorte se tirou o número par da soma dos dados e revés caso contrário (Ainda não implementado)",100));//24
+		this.baralho.add(new PagamentoReves("Sorte se tirou o número par da soma dos dados e revés caso contrário (Ainda não implementado)",0));//24
 		this.baralho.add(new PagamentoReves("Seu jatinho precisa de manutenção , pague 9 " , 9));//25
 		this.baralho.add(new PagamentoReves("Renovou a frota de carros da sua empresa , pague 100 " , 100));//26
 		this.baralho.add(new RecebimentoSorte("Ganhou sozinho na loteria , receba 80" , 80));//27
