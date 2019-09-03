@@ -1,6 +1,5 @@
 package ufpb.rt.pooPrjt.bancoImb.principal;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -125,12 +124,18 @@ class JogadorTest {
 		assertEquals(1000, jogador.getCarteira());
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	void testSetPosicao() {
+		jogador.setPosicao(10);
+		assertEquals(10, jogador.getPosicao());
+	}
 }
+
+	
+	
+	
+	
+	
+	
+	
+

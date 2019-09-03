@@ -57,7 +57,7 @@ public class Partida {
 							sis.removerCorQueJaFoiEscolhida(cor);
 							break;
 						} catch (JogadorComCorEscolhidaExisteException | CorInvalidaException exception) {
-							System.err.printf("Exception:", exception.getMessage() + "\n");
+							System.err.printf("Exception: "+ exception.getMessage() + "\n");
 							leitor.nextLine();
 							System.out.println("Você precisa digitar uma cor diferente. Porfavor tente denovo.");
 						}

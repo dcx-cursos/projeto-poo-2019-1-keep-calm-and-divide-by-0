@@ -20,7 +20,7 @@ public class BaralhoCartas {
  */
 	public BaralhoCartas() {
 		this.baralho.add(new PagamentoReves("Sua empresa foi multada por poluir demais , Pague 200",200));//1
-		this.baralho.add(new PagamentoReves("ainda não foi implementado",0));//2
+		this.baralho.add(new PagamentoReves("O dia do seu casamento chegou, receba os presentes - 50 de cada jogador. (Ainda não implementado)",50));//2
 		this.baralho.add(new PagamentoReves("Reformou sua casa , pague 50",50));//3
 		this.baralho.add(new RecebimentoSorte("Seu livro será publicado por uma grande editora , receba 50" , 50));//4
 		this.baralho.add(new PrisaoSorte());//5
@@ -30,7 +30,7 @@ public class BaralhoCartas {
 		this.baralho.add(new PagamentoReves("Você vai começar um curso de MBA e ganhou um bom desconto para pagamento a vista, pague 20",20));//9
 		this.baralho.add(new PagamentoReves("Férias com a familia , pague 20" , 20));//10
 		this.baralho.add(new RecebimentoSorte(" Recebeu o prêmio de profissional do ano e ganhou um carro , receba 10" , 10));//11
-		this.baralho.add(new PagamentoReves("ainda nao implementafo ",0));//12
+		this.baralho.add(new PagamentoReves("Jogue os dados novamente (Ainda não implementado)",0));//12
 		this.baralho.add(new PagamentoReves("Sua empresa irá patrocinar uma expedição a Antártida , pague 50 " , 50));//13
 		this.baralho.add(new RecebimentoSorte("Vendeu a parte de sua empresa para um investidor , receba 75" , 75));//14
 		this.baralho.add(new RecebimentoSorte("Apostou no cavalo azarão e ganhou , receba 100 " , 100));//15
@@ -42,7 +42,7 @@ public class BaralhoCartas {
 		this.baralho.add(new RecebimentoSorte("Seu iate afundou, mas você tinha seguro! , receba 25" , 25));//21
 		this.baralho.add(new PagamentoReves("Seus funcionários entraram em greve pague 30" , 30));//22
 		this.baralho.add(new PagamentoReves("Comprou obra de arte falsificada , pague 22" , 22));//23
-		this.baralho.add(new PagamentoReves("ainda não foi implementado",0));//24
+		this.baralho.add(new PagamentoReves("Sorte se tirou o número par da soma dos dados e revés caso contrário (Ainda não implementado)",100));//24
 		this.baralho.add(new PagamentoReves("Seu jatinho precisa de manutenção , pague 9 " , 9));//25
 		this.baralho.add(new PagamentoReves("Renovou a frota de carros da sua empresa , pague 100 " , 100));//26
 		this.baralho.add(new RecebimentoSorte("Ganhou sozinho na loteria , receba 80" , 80));//27
