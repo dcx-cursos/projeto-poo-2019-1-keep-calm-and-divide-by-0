@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Gravador;
 
 class SisJogoTest {
 	private SisJogo jogo;
@@ -17,6 +18,7 @@ class SisJogoTest {
 	private Jogador jogador;
 	private Jogador jogador2;
 	private Jogador jogador3;
+	Gravador gravador;
 
 	@BeforeEach
 	void setup() {
@@ -26,10 +28,12 @@ class SisJogoTest {
 		jogador = new Jogador("cleyson", "rosa");
 		jogador2 = new Jogador("raul", "preto");
 		jogador3 = new Jogador("biel", "lilas");
+		gravador = new Gravador();
 	}
 
 	/**
 	 * 
+	 * @throws CorInvalidaException 
 	 * @throws JogadorComACorEscolhidaExiteException verifica se tem algum jogador
 	 *                                               com a mesma cor
 	 * 
@@ -37,10 +41,11 @@ class SisJogoTest {
 	 *                                               adicionando novos jogadores
 	 */
 	@Test
-	void testAdicionandoJogador() throws JogadorComCorEscolhidaExisteException {
-		this.jogadores.add(jogador);
-		this.jogadores.add(jogador2);
+	void testAdicionandoJogador() throws JogadorComCorEscolhidaExisteException, CorInvalidaException {
+		gravador.gravaEmLista(jogadores, jogador);
+		gravador.gravaEmLista(jogadores, jogador2);
 		assertEquals(2, jogadores.size());
+		
 
 	}
 
@@ -51,7 +56,7 @@ class SisJogoTest {
 	@Test
 	void testComJogadorEscolhendoCorInvalida() {
 		Exception CorInvalida = assertThrows(CorInvalidaException.class, () -> jogo.gravaJogador(jogador3));
-		assertEquals("Esta cor é invlálida. Porfavor tente denovo.", CorInvalida.getMessage());
+		assertEquals("Esta cor é invlálida.", CorInvalida.getMessage());
 
 	}
 
@@ -72,5 +77,8 @@ class SisJogoTest {
 		assertEquals(7, jogo.getCores().size());
 
 	}
+	
+	
+	
 
 }
