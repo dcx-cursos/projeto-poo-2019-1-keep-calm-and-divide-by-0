@@ -2,6 +2,10 @@ package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,6 +30,8 @@ class JogadorTest {
 	
 	@Mock
 	Jogador jogadorMock ;
+	 Propriedade terrenoMock;
+
 	
 	
 	@BeforeEach
@@ -43,6 +49,11 @@ class JogadorTest {
 		jogador = new Jogador("cleyson", "rosa");
 		terreno = new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6);
 		companhia = new Companhia("Companhia de Taxi Aereo", 200, 100, 50);
+		List<Propriedade> propriedades = new ArrayList<Propriedade>();
+		propriedades.add(companhia);
+		propriedades.add(terreno);
+		
+		
 		
 
 	}
@@ -100,5 +111,30 @@ class JogadorTest {
 	
 	
 	}
+	
+	
+	@Test
+	void testAdicionandoDinehiroNaContaDoJogador() {
+	jogador.creditar(100);
+	assertEquals(1600, jogador.getCarteira());
+	}
+	
+	@Test
+	void testDebitandoDinheiroDaCarteiraDoJogador() {
+		jogador.debitar(500);
+		assertEquals(1000, jogador.getCarteira());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
