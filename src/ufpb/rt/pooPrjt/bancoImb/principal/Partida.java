@@ -17,7 +17,7 @@ public class Partida {
 		Scanner leitor = new Scanner(System.in);
 		SisJogo sis = new SisJogo();
 		sis.carregaCores(); // carrega todas as cores disponivel
-		sis.gerarBaralho(); // cria o baralho 
+		sis.gerarBaralho(); // cria o baralho
 		sis.genetareBoard(); // cria o tabuleiro
 
 		while (true) {
@@ -47,7 +47,6 @@ public class Partida {
 					nome = leitor.next();
 					do {
 						try {
-							
 
 							System.out.printf("Digite a cor do peão do jogador " + (k + 1)
 									+ " entre as opções seguintes:\n" + sis.getCores());
@@ -57,7 +56,7 @@ public class Partida {
 							sis.removerCorQueJaFoiEscolhida(cor);
 							break;
 						} catch (JogadorComCorEscolhidaExisteException | CorInvalidaException exception) {
-							System.err.printf("Exception: "+ exception.getMessage() + "\n");
+							System.err.printf("Exception: " + exception.getMessage() + "\n");
 							leitor.nextLine();
 							System.out.println("Você precisa digitar uma cor diferente. Porfavor tente denovo.");
 						}
@@ -80,8 +79,8 @@ public class Partida {
 			for (int k = 0; k < sis.getJogadores().size(); k++) {
 				Jogador jogador = sis.getJogadores().get(k);
 				while (true) {
-					if(jogador.getCarteira()<=0) {
-						System.out.println(jogador.getNome()+" perdeu o jogo.");
+					if (jogador.getCarteira() <= 0) {
+						System.out.println(jogador.getNome() + " perdeu o jogo.");
 						sis.removeJogador(jogador);
 						break;
 					}
@@ -104,7 +103,8 @@ public class Partida {
 										+ jogador.getPosicao() + " " + "– Prisão por 3 rodadas.");
 								jogador.irParaPrisao();
 								break;
-							} else if ((jogador.getVezesQueTirouDadosIguais() % 3) == 0 && jogador.getVezesQueTirouDadosIguais()>0) {
+							} else if ((jogador.getVezesQueTirouDadosIguais() % 3) == 0
+									&& jogador.getVezesQueTirouDadosIguais() > 0) {
 								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
 										+ numDadoUm + "," + numDadoDois + " e o peão avançou para " + ""
 										+ jogador.getPosicao() + " " + "– Prisão por 3 rodadas.");
@@ -121,18 +121,23 @@ public class Partida {
 
 							} else if ((jogador.getPosicao() == 2 | jogador.getPosicao() == 12)
 									| (jogador.getPosicao() == 16 | jogador.getPosicao() == 22)
-									| (jogador.getPosicao() == 27 | jogador.getPosicao() == 37)) { // jogador cai nas posiçao de sorte ou reves
+									| (jogador.getPosicao() == 27 | jogador.getPosicao() == 37)) { // jogador cai nas
+																									// posiçao de sorte
+																									// ou reves
 								SorteOuReves carta = sis.pegaCartaDoBaralho();
 								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor() + " tirou "
 										+ numDadoUm + ", " + numDadoDois + " e o peão avançou para " + ""
 										+ jogador.getPosicao() + " " + "– Sorte Ou Reves - " + carta.getDescricao());
-								
+
 								/**
 								 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
 								 */
-								if(sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
-									k = k -1;
+								if (sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
+									k = k - 1;
+								}else {
+									jogador.zeraVezesQueTirouDadosIguais();
 								}
+								
 								if (carta.getDescricao().equals("Utilize este cartão para se livrar da prisão")) {
 									jogador.setCartaPrisao(carta);
 									break;
@@ -147,39 +152,49 @@ public class Partida {
 								/**
 								 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
 								 */
-								if(sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
-									k = k -1;
+								if (sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
+									k = k - 1;
+								}else {
+									jogador.zeraVezesQueTirouDadosIguais();
 								}
+								
 								if (propriedade.existeDono() == true) {
 									System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
 											+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
 											+ "" + jogador.getPosicao() + " " + "– " + propriedade.getNome()
 											+ " cujo dono é " + propriedade.getDono().getNome() + ".");
-									
+
 									/**
 									 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
 									 */
-									if(sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
-										k = k -1;
+									if (sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
+										k = k - 1;
+									}else {
+										jogador.zeraVezesQueTirouDadosIguais();
 									}
+									
 									if (propriedade.getTipo().equals("TERRENO")) {
-										if(jogador.getNome().equals(propriedade.getDono().getNome())) {
+										if (jogador.getNome().equals(propriedade.getDono().getNome())) {
 											System.out.println("Jogador em uma das suas propriedade \nNada aconteceu");
-											
-										}else {
-										int valorPago = propriedade.valorAserPagoParaODonoDoTerreno();
-										propriedade.pagamentoDeTaxa(jogador, propriedade.valorAserPagoParaODonoDoTerreno());
-										System.out.println("O jogador" + jogador.getNome() + " pagou: " + valorPago + " para o jogador: " + propriedade.getDono().getNome());
+
+										} else {
+											int valorPago = propriedade.valorAserPagoParaODonoDoTerreno();
+											propriedade.pagamentoDeTaxa(jogador,
+													propriedade.valorAserPagoParaODonoDoTerreno());
+											System.out.println("O jogador" + jogador.getNome() + " pagou: " + valorPago
+													+ " para o jogador: " + propriedade.getDono().getNome());
 										}
 
 									} else if (propriedade.getTipo().equals("COMPANHIA")) {
-										if(jogador.getNome().equals(propriedade.getDono().getNome())) {
+										if (jogador.getNome().equals(propriedade.getDono().getNome())) {
 											System.out.println("Jogador em uma das suas propriedade \nNada aconteceu");
-											
-										}else {
-										int valorPago = propriedade.valorAserPagoParaODonoDaCompanhia(numDadoUm + numDadoDois);
-										propriedade.pagamentoDeTaxa(jogador, numDadoUm + numDadoDois);
-										System.out.println("O jogador" + jogador.getNome() + "pagou: " + valorPago + " para o jogador: " + propriedade.getDono().getNome());
+
+										} else {
+											int valorPago = propriedade
+													.valorAserPagoParaODonoDaCompanhia(numDadoUm + numDadoDois);
+											propriedade.pagamentoDeTaxa(jogador, numDadoUm + numDadoDois);
+											System.out.println("O jogador" + jogador.getNome() + "pagou: " + valorPago
+													+ " para o jogador: " + propriedade.getDono().getNome());
 										}
 									}
 									break;
@@ -194,14 +209,14 @@ public class Partida {
 										+ " (Sim/Não)? ");
 								String escolha = leitor.next().toUpperCase();
 								if (escolha.equals("NÃO") | escolha.equals("NAO")) {
-									break;	
+									break;
 								} else {
 									try {
 										jogador.compraPropriedade(propriedade.getPrecoCompra(), propriedade);
 										System.out.println("Compra efetuada.");
 										break;
 									} catch (DinheiroInsuficienteException exception) {
-										System.out.println(exception);
+										System.err.println(exception.getMessage());
 										break;
 									}
 								}
@@ -250,10 +265,11 @@ public class Partida {
 								} catch (SemCartasDeSairDaPrisao e) {
 									// TODO Auto-generated catch block
 									System.out.println(e.getMessage());
-									
+
 								}
 
-							} else if (escolhaPrisioneiro.equals("JOGAR")) { // jogador escolheu jogar para tentar sair da prisao
+							} else if (escolhaPrisioneiro.equals("JOGAR")) { // jogador escolheu jogar para tentar sair
+																				// da prisao
 								int numDadoI = jogador.lancaDado();
 								int numDadoII = jogador.lancaDado();
 								if (sis.verificaJogadaDoisDadosIguais(numDadoI, numDadoII) == true) {
@@ -268,9 +284,9 @@ public class Partida {
 											+ ") tirou " + numDadoI + ", " + numDadoII + " e continou na prisão.");
 									break;
 								}
-							} else if (escolhaPrisioneiro.equals("STATUS")) { 
+							} else if (escolhaPrisioneiro.equals("STATUS")) {
 								System.out.println(jogador.getStatus(sis.getTabuleiro()));
-							}else {
+							} else {
 								System.out.println("Digite um comando válido!");
 							}
 

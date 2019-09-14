@@ -175,6 +175,10 @@ public class Jogador {
 		if ((this.vezesQueTirouDadosIguais % 3) == 0)
 			this.vezesQueTirouDadosIguais = num;
 	}
+	
+	public void zeraVezesQueTirouDadosIguais() {
+		this.vezesQueTirouDadosIguais = 0;
+	}
 
 	/**
 	 * quando dias ele estar preso
@@ -332,5 +336,8 @@ public class Jogador {
 	public int getVezesQueTirouDadosIguais() {
 		return this.vezesQueTirouDadosIguais;
 	}
-
+	
+	public void zerarVezesQueTirouDadosIguais() {
+		this.vezesQueTirouDadosIguais = 0;
+	}
 }
