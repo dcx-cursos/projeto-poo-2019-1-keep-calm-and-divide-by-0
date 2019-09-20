@@ -134,4 +134,12 @@ public class Companhia implements Propriedade {
 		return 0;
 	}
 
+
+
+	@Override
+	public int getNumCasas() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

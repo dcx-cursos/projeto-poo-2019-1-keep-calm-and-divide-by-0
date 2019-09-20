@@ -23,4 +23,6 @@ public interface Propriedade {
     public int valorAserPagoParaODonoDoTerreno();
     
     public int valorAserPagoParaODonoDaCompanhia(int numDados);
+
+	public int getNumCasas();
 }
