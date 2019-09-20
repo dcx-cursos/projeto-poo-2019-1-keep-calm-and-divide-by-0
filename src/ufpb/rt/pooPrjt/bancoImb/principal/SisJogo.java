@@ -19,17 +19,6 @@ public class SisJogo {
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 
-<<<<<<< HEAD
-	private int numCasasAzulEscuro = 2;
-	private int numCasasAzulClaro = 3;
-	private int numCasasRoxa = 3;
-	private int numCasasRosa = 3;
-	private int numCasasBege = 2;
-	private int numCasasVermelha = 2;
-	private int numCasasVerde = 4;
-	private int numCasasAmarela = 3;
-
-=======
 	private final int num_Terrenos_Verdes = 0;
 	private final int num_Terrenos_Vermelhas = 0;
 	private final int num_Terrenos_Amarelas = 0;
@@ -38,23 +27,33 @@ public class SisJogo {
 	private final int num_Terrenos_Bege = 0;
 	private final int num_Terrenos_Roxos = 0;
 	private final int num_Terrenos_Roxo_Claro = 0;
->>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
 	private BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
 	private Gravador gravador = new Gravador();
 	private Removedor removedor = new Removedor();
 	private Verificador verificador = new Verificador();
 	private Tabuleiro sisTabuleiro = new Tabuleiro();
-<<<<<<< HEAD
-
-=======
-/**
- * veridica a quantidade de casas com uma determinada cor .
- * 
- * @param proriedade
- * @param propriedadesJogador
- */
 	
-	public ArrayList<Propriedade> verificaNumCasas(ArrayList<Propriedade> propriedadesJogador) {
+	/**
+	 * Verifica se o jogador pode construir em alguma propriedade
+	 * @param propriedadesJogador
+	 * @return boolean
+	 */
+	public boolean verificaSeJogadorPodeConstuir(ArrayList<Propriedade> propriedadesJogador) {
+		ArrayList<Propriedade> propriedadesValidasPelaCor = getTerrenosDeCorXValidosParaConstrucao(propriedadesJogador);
+		ArrayList<Propriedade> propriedadesValidasPeloNumCasas = getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
+		if(propriedadesValidasPelaCor.size()>0 || propriedadesValidasPeloNumCasas.size()>0) {
+			return true;
+		}
+		return false;
+		
+	}
+	
+	/**
+	 * veridica a quantidade de casas dos terrenos.
+	 * 
+	 * @param propriedadesJogador
+	 */
+	public ArrayList<Propriedade> getTerrenosComNumCasasValidosParaConstrucao(ArrayList<Propriedade> propriedadesJogador) {
 		int[] numCasasDePropriedades = new int[propriedadesJogador.size()];
 		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
 		for(int k = 0; k<propriedadesJogador.size(); k++) {
@@ -81,7 +80,102 @@ public class SisJogo {
 		}
 		return propriedadesValidas;
 	}
->>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
+	
+	/**
+	 * Retorna um vetor de terrenos válidos para construção pela cor.
+	 * @param propriedadesJogador
+	 * @return arrayList<Propriedades>
+	 */
+	public ArrayList<Propriedade> getTerrenosDeCorXValidosParaConstrucao(ArrayList<Propriedade> propriedadesJogador){
+		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
+		
+		int numTerrenosVerdesDoJogador = 0;
+		int numTerrenosVermelhasDoJogador = 0;
+		int numTerrenosAmarelasDoJogador = 0;
+		int numTerrenosAzuisDoJogador = 0;
+		int numTerrenosAzulEscuroDoJogador = 0;
+		int numTerrenosBegeDoJogador = 0;
+		int numTerrenosRoxosDoJogador = 0;
+		int numTerrenosRoxoClaroDoJogador = 0;
+		
+		for (Propriedade propriedade: propriedadesJogador) {
+			if(propriedade.getCor().equals("VERDE")) {
+				numTerrenosVerdesDoJogador++;
+			}else if(propriedade.getCor().equals("VERMELHA")) {
+				numTerrenosVermelhasDoJogador++;
+			}else if(propriedade.getCor().equals("AMARELA")) {
+				numTerrenosAmarelasDoJogador++;
+			}else if(propriedade.getCor().equals("AZUL")) {
+				numTerrenosAzuisDoJogador++;
+			}else if(propriedade.getCor().equals("AZUL-ESCURO")) {
+				numTerrenosAzulEscuroDoJogador++;
+			}else if(propriedade.getCor().equals("BEGE")) {
+				numTerrenosBegeDoJogador++;
+			}else if(propriedade.getCor().equals("ROXO")) {
+				numTerrenosRoxosDoJogador++;
+			}else if(propriedade.getCor().equals("ROXO-CLARO")) {
+				numTerrenosRoxoClaroDoJogador++;
+			}
+		}
+		
+		if(numTerrenosVerdesDoJogador==this.num_Terrenos_Verdes) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("VERDE")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosVermelhasDoJogador==this.num_Terrenos_Vermelhas) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("VERMELHA")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosAmarelasDoJogador==this.num_Terrenos_Amarelas) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("AMARELA")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosAzuisDoJogador==this.num_Terrenos_Azuis) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("AZUL")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosAzulEscuroDoJogador==this.num_Terrenos_Azul_Escuro) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("AZUL-ESCURO")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosBegeDoJogador==this.num_Terrenos_Bege) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("BEGE")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosRoxosDoJogador==this.num_Terrenos_Roxos) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("ROXO")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		if(numTerrenosRoxoClaroDoJogador==this.num_Terrenos_Roxo_Claro) {
+			for (Propriedade propriedade: propriedadesJogador) {
+				if(propriedade.getCor().equals("ROXO-CLARO")) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		return propriedadesValidas;
+	}
 
 	/**
 	 * gera o baralho com todas as 32 cartas

@@ -226,6 +226,7 @@ public class Main {
 							String escolha = leitor.next().toUpperCase();
 							if (escolha.equals("SIM") | escolha.equals("S")) {
 								sis.removeJogador(jogador);
+								k = (k-1)+1;
 								break;/** JOGADOR SERÁ REMOVIDO DA LISTA DE JOGADORES */
 							} else if (escolha.equals("NÃO") | escolha.equals("NAO")) {
 							} /** JOGADOR DEVERA ESCOLHER AS OPÇÕES DE JOGO NOVAMENTE */
