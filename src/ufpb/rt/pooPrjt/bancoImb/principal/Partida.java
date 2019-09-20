@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import ufpb.rt.pooPrjt.bancoImb.cartas.sorte.CartaPresenteAniversario;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
@@ -141,7 +142,7 @@ public class Partida {
 								if (carta.getDescricao().equals("Utilize este cartão para se livrar da prisão")) {
 									jogador.setCartaPrisao(carta);
 									break;
-								} else {
+								}else {
 									carta.acao(jogador);
 									break;
 								}
@@ -163,15 +164,6 @@ public class Partida {
 											+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
 											+ "" + jogador.getPosicao() + " " + "– " + propriedade.getNome()
 											+ " cujo dono é " + propriedade.getDono().getNome() + ".");
-
-									/**
-									 * SE O JOGADOR TIRAR DOIS DADOS IGUAIS, ELE JOGA MAIS UMA VEZ
-									 */
-									if (sis.verificaJogadaDoisDadosIguais(numDadoUm, numDadoDois)) {
-										k = k - 1;
-									}else {
-										jogador.zeraVezesQueTirouDadosIguais();
-									}
 									
 									if (propriedade.getTipo().equals("TERRENO")) {
 										if (jogador.getNome().equals(propriedade.getDono().getNome())) {

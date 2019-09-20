@@ -9,6 +9,7 @@ public class Companhia implements Propriedade {
 	private int precoCompra;
 	private int hipoteca;
 	private int multiplicador;
+	private String cor;
 	private Jogador dono = null;
 	private String TIPO = "COMPANHIA";
 
@@ -132,6 +133,14 @@ public class Companhia implements Propriedade {
 	 */
 	public int valorAserPagoParaODonoDoTerreno() {
 		return 0;
+	}
+
+
+
+	@Override
+	public String getCor() {
+		// TODO Auto-generated method stub
+		return this.cor;
 	}
 
 }

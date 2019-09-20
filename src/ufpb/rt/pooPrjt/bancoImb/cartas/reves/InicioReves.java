@@ -12,7 +12,6 @@ public class InicioReves implements SorteOuReves{
 	 */
 	public void acao(Jogador jogador) {
 		jogador.setPosicao(0);
-		
 	}
 
 	/**

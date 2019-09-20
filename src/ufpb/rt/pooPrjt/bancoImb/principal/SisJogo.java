@@ -19,29 +19,40 @@ public class SisJogo {
 	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
-	
+
+	private int numCasasAzulEscuro = 2;
+	private int numCasasAzulClaro = 3;
+	private int numCasasRoxa = 3;
+	private int numCasasRosa = 3;
+	private int numCasasBege = 2;
+	private int numCasasVermelha = 2;
+	private int numCasasVerde = 4;
+	private int numCasasAmarela = 3;
+
 	private BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
 	private Gravador gravador = new Gravador();
 	private Removedor removedor = new Removedor();
 	private Verificador verificador = new Verificador();
 	private Tabuleiro sisTabuleiro = new Tabuleiro();
+
+
 	/**
 	 * gera o baralho com todas as 32 cartas
 	 */
 	public void gerarBaralho() {
 		this.baralho = cartasSorteOuReves.gerarBaralhoEmbaralhado();
 	}
-	
+
 	/**
-	 *  
-	 * @param numDadoI valor do primeiro dado
+	 * 
+	 * @param numDadoI  valor do primeiro dado
 	 * @param numDadoII valor do segundo dado
 	 * @return se o jogador conseguiu tirar numeros iguais nos dados
 	 */
 	public boolean verificaJogadaDoisDadosIguais(int numDadoI, int numDadoII) {
-		return verificador.verificaDoisInteirosIguais(numDadoI,numDadoII);
+		return verificador.verificaDoisInteirosIguais(numDadoI, numDadoII);
 	}
-	
+
 	/**
 	 * 
 	 * @return carta tirada pelo jogador
@@ -49,128 +60,136 @@ public class SisJogo {
 	public SorteOuReves pegaCartaDoBaralho() {
 		return cartasSorteOuReves.pegaCartaDobaralho(baralho);
 	}
+
 	/**
 	 * 
-	 * @param jogador jgador que estar preso
-	 * metodo para saber quantos dias o jogador ficou preso
+	 * @param jogador jgador que estar preso metodo para saber quantos dias o
+	 *                jogador ficou preso
 	 */
 	public void jogadorPassouDiaNaPrisao(Jogador jogador) {
 		jogador.setDiaPassadoNaPrisao(1);
 	}
+
 	/**
 	 * 
 	 * @param Numjogadores numero de jogadores que é informado no inicio do jogo
-	 * @return retorna o valor de jogadores e se o numero e valido para o jogo (de 2 ate 8 jogadores)
+	 * @return retorna o valor de jogadores e se o numero e valido para o jogo (de 2
+	 *         ate 8 jogadores)
 	 */
-	public boolean quantidadeDeJogadoresEValida(int Numjogadores){
-		if (Numjogadores >= 2 && Numjogadores <=8  ) {	
+	public boolean quantidadeDeJogadoresEValida(int Numjogadores) {
+		if (Numjogadores >= 2 && Numjogadores <= 8) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void efetuarPagamentoDeTaxaDeVisita(Jogador jogadorVisitante, Propriedade propriedade, int infPagamento) {
 		propriedade.pagamentoDeTaxa(jogadorVisitante, infPagamento);
 	}
-	
+
 	/**
 	 * 
 	 * @param jogador informaçoes do novo jogador , nome e cor do seu peao
-	 * @throws CorInvalidaException 
-	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja tenha escolhida a mesma cor , visto que nao pode ter jogadores com a mesma cor
+	 * @throws CorInvalidaException
+	 * @throws JogadorComACorEscolhidaExiteException caso algum outro jogador ja
+	 *                                               tenha escolhida a mesma cor ,
+	 *                                               visto que nao pode ter
+	 *                                               jogadores com a mesma cor
 	 */
-	public void gravaJogador(Jogador jogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException{
-		if (ExisteJogadorComEstaCorPiao(jogador.getCor())==true) { // existe jogador que escolheu esta cor
+	public void gravaJogador(Jogador jogador) throws JogadorComCorEscolhidaExisteException, CorInvalidaException {
+		if (ExisteJogadorComEstaCorPiao(jogador.getCor()) == true) { // existe jogador que escolheu esta cor
 			throw new JogadorComCorEscolhidaExisteException("Esta cor do peão ja foi escolhida.");
-		}else if(verificaCorInvalida(jogador.getCor().toUpperCase())) {
+		} else if (verificaCorInvalida(jogador.getCor().toUpperCase())) {
 			throw new CorInvalidaException("Esta cor é invlálida.");
-		}else {// a cor ja foi escolhida
+		} else {// a cor ja foi escolhida
 			gravador.gravaEmLista(jogadores, jogador);
-			
 
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param Jogador jogador que deseja sair do jogo
 	 * 
-	 * metodo que retira um jogador do jogo
+	 *                metodo que retira um jogador do jogo
 	 */
 	public void removeJogador(Jogador Jogador) {
-		removedor.removeDeLista(jogadores,Jogador);
-		
+		removedor.removeDeLista(jogadores, Jogador);
+
 	}
+
 	/**
 	 * lista de todas as cores disponiveis para o jogador escolher a cor do seu piao
 	 */
 	public void carregaCores() {
-		gravador.gravaEmLista(cores,"BRANCO");
-		gravador.gravaEmLista(cores,"VERMELHO");
-		gravador.gravaEmLista(cores,"VERDE");
-		gravador.gravaEmLista(cores,"AZUL");
-		gravador.gravaEmLista(cores,"AMARELO");
-		gravador.gravaEmLista(cores,"LARANJA");
-		gravador.gravaEmLista(cores,"ROSA");
-		gravador.gravaEmLista(cores,"PRETO");
+		gravador.gravaEmLista(cores, "BRANCO");
+		gravador.gravaEmLista(cores, "VERMELHO");
+		gravador.gravaEmLista(cores, "VERDE");
+		gravador.gravaEmLista(cores, "AZUL");
+		gravador.gravaEmLista(cores, "AMARELO");
+		gravador.gravaEmLista(cores, "LARANJA");
+		gravador.gravaEmLista(cores, "ROSA");
+		gravador.gravaEmLista(cores, "PRETO");
 	}
-	
+
 	/**
 	 * 
 	 * @param cor que não existe nas opções
 	 * @return true
 	 * 
-	 * verifica se a cor digitada pelo jogador é valida ou não
+	 *         verifica se a cor digitada pelo jogador é valida ou não
 	 */
 	public boolean verificaCorInvalida(String cor) {
-		if(verificador.verificaStringEmLista(cores, cor)) {
+		if (verificador.verificaStringEmLista(cores, cor)) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 
-	 * @param cor, escolhida pelo jogador
-	 * remove da lista de cores uma cor de entrada que já foi escoligda por um jogador
+	 * @param cor, escolhida pelo jogador remove da lista de cores uma cor de
+	 *             entrada que já foi escoligda por um jogador
 	 */
 	public void removerCorQueJaFoiEscolhida(String cor) {
-		removedor.removeDeLista(cores,cor.toUpperCase());
+		removedor.removeDeLista(cores, cor.toUpperCase());
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param cor escolhida pelo jogador
-	 * @return verifica se a cor digitada pelo jogador ja foi escolhida , caso ja tenha algum jogador com esta cor return true , caso a cor ainda nao foi escolhida retorne false
+	 * @return verifica se a cor digitada pelo jogador ja foi escolhida , caso ja
+	 *         tenha algum jogador com esta cor return true , caso a cor ainda nao
+	 *         foi escolhida retorne false
 	 */
 	public boolean ExisteJogadorComEstaCorPiao(String cor) {
-		for (int k = 0; k<jogadores.size(); k++) {
+		for (int k = 0; k < jogadores.size(); k++) {
 			Jogador p = jogadores.get(k);
-			if(verificador.verificaDuasStrings(p.getCor(),cor)) {
+			if (verificador.verificaDuasStrings(p.getCor(), cor)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * @return retorna um arraylist de jogadores
 	 */
-	public ArrayList<Jogador> getJogadores(){
+	public ArrayList<Jogador> getJogadores() {
 		return jogadores;
 	}
-	
-	
+
 	/**
 	 * 
-	 * @return o tabuleiro com todas as posiçoes das companhia e terrenos no qual o jogador pode comprar , e null para as pociçoes especiais como , sorte ou reves, partida ,prisao , prisao como visitante
+	 * @return o tabuleiro com todas as posiçoes das companhia e terrenos no qual o
+	 *         jogador pode comprar , e null para as pociçoes especiais como , sorte
+	 *         ou reves, partida ,prisao , prisao como visitante
 	 */
 	public void genetareBoard() {
 		tabuleiro = sisTabuleiro.criartabuleiro();
 	}
-	
+
 	/**
 	 * 
 	 * @return uma lista de Propriedade que servirá de tabuleiro
@@ -196,7 +215,4 @@ public class SisJogo {
 		return baralho;
 	}
 
-	
-	
-	
 }

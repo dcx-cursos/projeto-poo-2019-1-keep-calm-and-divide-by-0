@@ -17,6 +17,7 @@ public class Terreno implements Propriedade {
 	private int precoCasa;
 	private int numCasas;
 	private int aluguel;
+	private String cor;
 	private String TIPO = "TERRENO";
 	private Jogador dono = null;
 	
@@ -39,7 +40,7 @@ public class Terreno implements Propriedade {
 
 	public Terreno(String nome, int precoCompra, int aluguelSemCasa, int aluguelUmaCasa,
 			int aluguelDuasCasas, int aluguelTresCasas, int aluguelQuatroCasas, int aluguelHotel, int hipoteca,
-			int precoCasa, int numCasas, int aluguel) {
+			int precoCasa, int numCasas, int aluguel, String cor) {
 		this.nome = nome;
 		this.precoCompra = precoCompra;
 		this.aluguelSemCasa = aluguelSemCasa;
@@ -52,6 +53,7 @@ public class Terreno implements Propriedade {
 		this.precoCasa = precoCasa;
 		this.numCasas = numCasas;
 		this.aluguel = aluguel;
+		this.cor = cor;
 	}
 	/**
 	 * retorna o nome do terreno
@@ -273,5 +275,10 @@ public class Terreno implements Propriedade {
 	public int valorAserPagoParaODonoDaCompanhia(int numDados) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public String getCor() {
+		// TODO Auto-generated method stub
+		return this.cor;
 	}
 }

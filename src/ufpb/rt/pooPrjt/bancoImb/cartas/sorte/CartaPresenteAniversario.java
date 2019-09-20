@@ -11,7 +11,7 @@ public class CartaPresenteAniversario implements SorteOuReves{
 	
 	private String descricao;
 	private int valor;
-	private SisJogo sis = new SisJogo();
+	private ArrayList<Jogador> jogadores;
 	MetodosCartasEspeciais metodo = new MetodosCartasEspeciais();
 
 	
@@ -31,10 +31,8 @@ public class CartaPresenteAniversario implements SorteOuReves{
 	 * açao que o jogador deve realizar
 	 */
 	public void acao(Jogador jogador) {
-		jogador.creditar(metodo.debitaValorDeJogadores(jogador, sis.getJogadores(), valor));
+		jogador.creditar(metodo.debitaValorDeJogadores(jogador, this.jogadores, valor));
 	}
-
-	
 	
 	/**
 	 * mostar a descriçao da carta
