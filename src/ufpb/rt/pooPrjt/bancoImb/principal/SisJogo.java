@@ -15,11 +15,11 @@ import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Verificador;
 
 public class SisJogo {
 	private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
-	private int quantidadeDeJogadores = 0;
 	private ArrayList<Propriedade> tabuleiro = new ArrayList<Propriedade>();
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 
+<<<<<<< HEAD
 	private int numCasasAzulEscuro = 2;
 	private int numCasasAzulClaro = 3;
 	private int numCasasRoxa = 3;
@@ -29,12 +29,59 @@ public class SisJogo {
 	private int numCasasVerde = 4;
 	private int numCasasAmarela = 3;
 
+=======
+	private final int num_Terrenos_Verdes = 0;
+	private final int num_Terrenos_Vermelhas = 0;
+	private final int num_Terrenos_Amarelas = 0;
+	private final int num_Terrenos_Azuis = 0;
+	private final int num_Terrenos_Azul_Escuro = 0;
+	private final int num_Terrenos_Bege = 0;
+	private final int num_Terrenos_Roxos = 0;
+	private final int num_Terrenos_Roxo_Claro = 0;
+>>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
 	private BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
 	private Gravador gravador = new Gravador();
 	private Removedor removedor = new Removedor();
 	private Verificador verificador = new Verificador();
 	private Tabuleiro sisTabuleiro = new Tabuleiro();
+<<<<<<< HEAD
 
+=======
+/**
+ * veridica a quantidade de casas com uma determinada cor .
+ * 
+ * @param proriedade
+ * @param propriedadesJogador
+ */
+	
+	public ArrayList<Propriedade> verificaNumCasas(ArrayList<Propriedade> propriedadesJogador) {
+		int[] numCasasDePropriedades = new int[propriedadesJogador.size()];
+		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
+		for(int k = 0; k<propriedadesJogador.size(); k++) {
+			Propriedade propriedade = propriedadesJogador.get(k);
+			numCasasDePropriedades[k] = propriedade.getNumCasas();
+		}
+		
+		for(int k = 0; k<numCasasDePropriedades.length; k++) {
+			int numCasa = numCasasDePropriedades[k];
+			boolean numCasasinValido = false;
+			for(int j = 0; j<numCasasDePropriedades.length; j++) {
+				if(j==k) {
+					j++;
+				}else {
+					if (numCasa>=numCasasDePropriedades[j]+1) {
+						numCasasinValido = true;
+					}
+				}
+			}
+			if(numCasasinValido==false) {
+				propriedadesValidas.add(propriedadesJogador.get(k));
+			}
+			
+		}
+		return propriedadesValidas;
+	}
+>>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
 
 	/**
 	 * gera o baralho com todas as 32 cartas

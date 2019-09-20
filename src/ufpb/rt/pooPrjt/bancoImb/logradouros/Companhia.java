@@ -138,9 +138,15 @@ public class Companhia implements Propriedade {
 
 
 	@Override
+<<<<<<< HEAD
 	public String getCor() {
 		// TODO Auto-generated method stub
 		return this.cor;
+=======
+	public int getNumCasas() {
+		// TODO Auto-generated method stub
+		return 0;
+>>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
 	}
 
 }

@@ -12,7 +12,7 @@ import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCartasDeSairDaPrisao;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 
-public class Partida {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner leitor = new Scanner(System.in);
