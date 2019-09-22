@@ -15,7 +15,7 @@ public class Jogador {
 	private int diasNaPrisao = 0;
 	private int vezesQueTirouDadosIguais = 0;
 	private ArrayList<Propriedade> propriedades = new ArrayList<Propriedade>();
-	private ArrayList<SorteOuReves> cartaPrisao;
+	private ArrayList<SorteOuReves> cartaPrisao = new ArrayList<SorteOuReves>();
 	private Random r = new Random();
 
 	/**
@@ -250,7 +250,7 @@ public class Jogador {
 				Propriedade propriedade = this.propriedades.get(i);// Propriedade da lista de propriedades que o jogador
 																	// possui
 				if (propriedade.getTipo().equals("TERRENO")) {// Se for fo tipo TERRENO faça
-					propriedadesJogador += "[" + propriedade.getNome() + "] - propriedade " + this.cor + ", aluguel "
+					propriedadesJogador += "[" + propriedade.getNome() + "] - propriedade " + propriedade.getCor() + ", aluguel "
 							+ propriedade.getInformacoesStatus() + "\n";
 				} else {// Se não é então é companhia
 					propriedadesJogador += "[" + propriedade.getNome() + "] - multiplicador "

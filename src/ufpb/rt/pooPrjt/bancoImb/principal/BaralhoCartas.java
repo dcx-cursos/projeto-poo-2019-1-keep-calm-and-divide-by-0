@@ -67,7 +67,6 @@ public class BaralhoCartas {
 				baralhoEmbaralhado.add(carta);
 			}
 		}
-		
 		return baralhoEmbaralhado;
 
 	}

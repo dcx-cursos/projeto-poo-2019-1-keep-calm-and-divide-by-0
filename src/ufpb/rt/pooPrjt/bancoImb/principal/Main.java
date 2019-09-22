@@ -152,6 +152,11 @@ public class Main {
 									carta.acao(jogador);
 									break;
 								}
+							}else if(jogador.getPosicao() == 0) {
+								System.out.println("O jogador " + jogador.getNome() + " " + jogador.getCor()
+								+ " tirou " + numDadoUm + ", " + numDadoDois + " e o peão avançou para "
+								+ "início - receba 200");
+								jogador.creditar(200);
 
 							} else if ((jogador.getPosicao() != 18 && jogador.getPosicao() != 20)
 									&& (jogador.getPosicao() != 24 && jogador.getPosicao() != 30)) {
@@ -242,7 +247,17 @@ public class Main {
 										System.out.println(indice+" – "+propriedade.getNome()+" tem "+propriedade.getNumCasas()+" casa(s) construidas, casa custa "+propriedade.getPrecoCasa());
 									}
 									System.out.printf("Digite o número da propriedade (0 para sair):");
-									int numEscolhido = leitor.nextInt();
+									int numEscolhido = 0;
+									do {
+										try {
+											numEscolhido = leitor.nextInt();
+											break;
+										} catch (InputMismatchException e) {
+											System.err.printf("", e.getMessage() + "\n");
+											leitor.nextLine();
+											System.out.println("Você precisa digitar inteiros. Por favor tente denovo.");
+										} 
+									} while (true);
 									if(numEscolhido==0) {
 										break;
 									}else if(propriedadesValidasParaConstrucao.size()==0) {
@@ -278,7 +293,18 @@ public class Main {
 									System.out.println(indice+" – "+propriedade.getNome()+" tem "+propriedade.getNumCasas()+" casa(s) construidas, casa custa "+propriedade.getPrecoCasa());
 								}
 								System.out.printf("Digite o número da propriedade (0 para sair):");
-								int numEscolhido = leitor.nextInt();
+								int numEscolhido =0;
+								
+								do {
+									try {
+										numEscolhido = leitor.nextInt();
+										break;
+									} catch (InputMismatchException e) {
+										System.err.printf("", e.getMessage() + "\n");
+										leitor.nextLine();
+										System.out.println("Você precisa digitar inteiros. Por favor tente denovo.");
+									} 
+								} while (true);
 								if(numEscolhido==0) {
 									break;
 								}else if(propriedadesValidasParaVender.size()==0) {
