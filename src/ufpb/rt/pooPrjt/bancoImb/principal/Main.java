@@ -245,6 +245,8 @@ public class Main {
 									int numEscolhido = leitor.nextInt();
 									if(numEscolhido==0) {
 										break;
+									}else if(propriedadesValidasParaConstrucao.size()==0) {
+										break;
 									}
 									if(numEscolhido<=numEscolhido && numEscolhido>=0) {
 										Propriedade propriedadeEscolhida = propriedadesValidasParaConstrucao.get(numEscolhido-1);
@@ -258,13 +260,13 @@ public class Main {
 									}else {
 										System.out.println("Digite um nnúmero válido.");
 									}
+									propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasParaConstrucao);
 								}while(true);
 							}
 							k = k-1;
 							break;
 							
 						}else if(opcao.equals("VENDER")) {
-							
 							ArrayList<Propriedade> propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaVenda(jogador.getPropriedades());
 							
 							do {
@@ -278,6 +280,8 @@ public class Main {
 								System.out.printf("Digite o número da propriedade (0 para sair):");
 								int numEscolhido = leitor.nextInt();
 								if(numEscolhido==0) {
+									break;
+								}else if(propriedadesValidasParaVender.size()==0) {
 									break;
 								}
 								if(numEscolhido<=numEscolhido && numEscolhido>=0) {
@@ -293,7 +297,7 @@ public class Main {
 											}
 										}
 									}
-									
+									propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaVenda(jogador.getPropriedades());
 									
 								}else {
 									System.out.println("Digite um número válido.");

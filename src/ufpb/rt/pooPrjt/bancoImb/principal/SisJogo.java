@@ -85,7 +85,7 @@ public class SisJogo {
 				if(j==k) {
 					j++;
 				}else {
-					if (numCasa>=numCasasDePropriedades[j]+1) {
+					if (numCasa>=numCasasDePropriedades[j]+1 && numCasa<5) {
 						numCasasinValido = true;
 					}
 				}
