@@ -1,5 +1,6 @@
 package ufpb.rt.pooPrjt.bancoImb.interfaces;
 
+import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCasasParaVendaException;
 import ufpb.rt.pooPrjt.bancoImb.principal.Jogador;
 
 public interface Propriedade {
@@ -23,11 +24,14 @@ public interface Propriedade {
     public int valorAserPagoParaODonoDoTerreno();
     
     public int valorAserPagoParaODonoDaCompanhia(int numDados);
-<<<<<<< HEAD
     
     public String getCor();
-=======
 
 	public int getNumCasas();
->>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
+	
+	public void contruirCasa();
+	
+	public void venderCasa() throws SemCasasParaVendaException;
+	
+	public int getPrecoCasa();
 }

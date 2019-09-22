@@ -9,7 +9,7 @@ public class Companhia implements Propriedade {
 	private int precoCompra;
 	private int hipoteca;
 	private int multiplicador;
-	private String cor;
+	private final String cor = "BRANCA";
 	private Jogador dono = null;
 	private String TIPO = "COMPANHIA";
 
@@ -138,15 +138,38 @@ public class Companhia implements Propriedade {
 
 
 	@Override
-<<<<<<< HEAD
 	public String getCor() {
 		// TODO Auto-generated method stub
 		return this.cor;
-=======
+	}
+	
 	public int getNumCasas() {
 		// TODO Auto-generated method stub
 		return 0;
->>>>>>> 345e6c5e49d098737efc4848ce95cbe090d3835b
+	}
+
+
+
+	@Override
+	public void contruirCasa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void venderCasa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public int getPrecoCasa() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -1,5 +1,6 @@
 package ufpb.rt.pooPrjt.bancoImb.logradouros;
 
+import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCasasParaVendaException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.principal.Jogador;
 
@@ -280,5 +281,18 @@ public class Terreno implements Propriedade {
 	public String getCor() {
 		// TODO Auto-generated method stub
 		return this.cor;
+	}
+	@Override
+	public void contruirCasa() {
+		this.numCasas = this.numCasas+1;
+		
+	}
+	@Override
+	public void venderCasa() throws SemCasasParaVendaException {
+		if(this.numCasas<0) {
+			throw new SemCasasParaVendaException("Você não possui casas neste terreno ainda. Construa uma casa primeiro.");
+		}
+		this.numCasas = this.numCasas-1;
+		
 	}
 }

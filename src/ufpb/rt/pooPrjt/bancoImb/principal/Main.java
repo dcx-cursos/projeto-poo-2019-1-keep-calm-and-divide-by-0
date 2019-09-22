@@ -9,6 +9,7 @@ import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCartasDeSairDaPrisao;
+import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCasasParaVendaException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 
@@ -86,8 +87,13 @@ public class Main {
 						break;
 					}
 					if (jogador.getDiasNaPrisao() == 0) { // o jogador nao estar na prisao
-						System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
-								+ "Comandos disponíveis: [jogar][status][sair] \n" + "Digite um comando :");
+						if(sis.verificaSeJogadorPodeConstuir(jogador.getPropriedades())) {
+							System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
+									+ "Comandos disponíveis: [construir][vender][jogar][status][sair] \n" + "Digite um comando :");
+						}else {
+							System.out.printf("A jogada de " + jogador.getNome() + " (" + jogador.getCor() + ") começou.\n"
+									+ "Comandos disponíveis: [vender][jogar][status][sair] \n" + "Digite um comando :");
+						}
 						String opcao = leitor.next().toUpperCase();
 
 						if (opcao.equals("JOGAR")) {
@@ -220,7 +226,83 @@ public class Main {
 
 						} else if (opcao.equals("STATUS")) {
 							System.out.println(jogador.getStatus(sis.getTabuleiro()));
-
+							
+						}else if(sis.verificaSeJogadorPodeConstuir(jogador.getPropriedades())==true) {
+							if(opcao.equalsIgnoreCase("CONSTRUIR")) {
+								ArrayList<Propriedade> propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
+								ArrayList<Propriedade> propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(jogador.getPropriedades());
+								
+								do {
+									System.out.println(jogador.getNome()+" possui $"+jogador.getCarteira()+"\n"
+											+ "Escolha onde quer construir:");
+									int indice = 0;
+									for (Propriedade propriedade: propriedadesValidasParaConstrucao) {
+										indice++;
+										System.out.println(indice+" – "+propriedade.getNome()+" tem "+propriedade.getNumCasas()+" casa(s) construidas, casa custa "+propriedade.getPrecoCasa());
+									}
+									System.out.printf("Digite o número da propriedade (0 para sair):");
+									int numEscolhido = leitor.nextInt();
+									if(numEscolhido==0) {
+										break;
+									}
+									if(numEscolhido<=numEscolhido && numEscolhido>=0) {
+										Propriedade propriedadeEscolhida = propriedadesValidasParaConstrucao.get(numEscolhido-1);									for(Propriedade propriedade: jogador.getPropriedades()) {
+										for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
+											if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
+												propriedadeDoJogador.contruirCasa();
+												jogador.debitar(propriedadeDoJogador.getPrecoCasa());
+											}
+										}
+										
+										}
+										
+									}else {
+										System.out.println("Digite um nnúmero válido.");
+									}
+								}while(true);
+							}
+							k = k-1;
+							break;
+							
+						}else if(opcao.equals("VENDER")) {
+							ArrayList<Propriedade> propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
+							ArrayList<Propriedade> propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaConstrucao(jogador.getPropriedades());
+							
+							do {
+								System.out.println(jogador.getNome()+" possui $"+jogador.getCarteira()+"\n"
+										+ "Escolha onde quer vender:");
+								int indice = 0;
+								for (Propriedade propriedade: propriedadesValidasParaVender) {
+									indice++;
+									System.out.println(indice+" – "+propriedade.getNome()+" tem "+propriedade.getNumCasas()+" casa(s) construidas, casa custa "+propriedade.getPrecoCasa());
+								}
+								System.out.printf("Digite o número da propriedade (0 para sair):");
+								int numEscolhido = leitor.nextInt();
+								if(numEscolhido==0) {
+									break;
+								}
+								if(numEscolhido<=numEscolhido && numEscolhido>=0) {
+									Propriedade propriedadeEscolhida = propriedadesValidasParaVender.get(numEscolhido-1);									for(Propriedade propriedade: jogador.getPropriedades()) {
+									for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
+										if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
+											try {
+												propriedadeDoJogador.venderCasa();
+												jogador.creditar(propriedadeDoJogador.getPrecoCasa());
+											} catch (SemCasasParaVendaException exception) {
+												System.err.printf("Exception: " + exception.getMessage() + "\n");
+												System.out.println("Você precisa digitar uma cor diferente. Porfavor tente denovo.");
+											}
+										}
+									}
+									
+									}
+									
+								}else {
+									System.out.println("Digite um número válido.");
+								}
+							}while(true);
+							k = k-1;
+							break;
 						} else if (opcao.equals("SAIR")) {
 							System.out.printf("Você realmente quer sair (Sim/Não)?");
 							String escolha = leitor.next().toUpperCase();

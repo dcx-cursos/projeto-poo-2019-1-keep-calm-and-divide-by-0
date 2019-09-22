@@ -46,7 +46,7 @@ class JogadorTest {
 	@BeforeEach
 	void setup() {
 		jogador = new Jogador("cleyson", "rosa");
-		terreno = new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6);
+		terreno = new Terreno("Leblon", 100, 6, 30, 90, 270, 400, 500, 50, 50, 0, 6,"VERDE");
 		companhia = new Companhia("Companhia de Taxi Aereo", 200, 100, 50);
 		List<Propriedade> propriedades = new ArrayList<Propriedade>();
 		propriedades.add(companhia);
