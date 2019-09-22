@@ -275,7 +275,8 @@ public class Main {
 									}else {
 										System.out.println("Digite um nnúmero válido.");
 									}
-									propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasParaConstrucao);
+									propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
+									propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 								}while(true);
 							}
 							k = k-1;
