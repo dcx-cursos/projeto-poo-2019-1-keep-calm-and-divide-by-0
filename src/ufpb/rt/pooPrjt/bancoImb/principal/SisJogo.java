@@ -85,7 +85,7 @@ public class SisJogo {
 				if(j==k) {
 					j++;
 				}else {
-					if (numCasa>=numCasasDePropriedades[j]+1 && numCasa<5) {
+					if (numCasa>=numCasasDePropriedades[j]+1 | numCasa>4) {
 						numCasasinValido = true;
 					}
 				}
@@ -106,14 +106,14 @@ public class SisJogo {
 	public ArrayList<Propriedade> getTerrenosDeCorXValidosParaConstrucao(ArrayList<Propriedade> propriedadesJogador){
 		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
 		
-		int numTerrenosVerdesDoJogador = 4;
-		int numTerrenosVermelhasDoJogador = 2;
-		int numTerrenosAmarelasDoJogador = 3;
-		int numTerrenosAzuisDoJogador = 3;
-		int numTerrenosAzulEscuroDoJogador = 2;
-		int numTerrenosBegeDoJogador = 2;
-		int numTerrenosRoxosDoJogador = 3;
-		int numTerrenosRoxoClaroDoJogador = 3;
+		int numTerrenosVerdesDoJogador = 0;
+		int numTerrenosVermelhasDoJogador = 0;
+		int numTerrenosAmarelasDoJogador = 0;
+		int numTerrenosAzuisDoJogador = 0;
+		int numTerrenosAzulEscuroDoJogador = 0;
+		int numTerrenosBegeDoJogador = 0;
+		int numTerrenosRoxosDoJogador = 0;
+		int numTerrenosRoxoClaroDoJogador = 0;
 		
 		for (Propriedade propriedade: propriedadesJogador) {
 			if(propriedade.getCor().equals("VERDE")) {
