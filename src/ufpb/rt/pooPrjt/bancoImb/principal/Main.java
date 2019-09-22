@@ -227,10 +227,11 @@ public class Main {
 						} else if (opcao.equals("STATUS")) {
 							System.out.println(jogador.getStatus(sis.getTabuleiro()));
 							
+						//SE O JOGADOR PUDER CONSTRUIR EM ALGUM TERRENO ELE VERIFICA A OPÇÃO CONSTRUIR
 						}else if(sis.verificaSeJogadorPodeConstuir(jogador.getPropriedades())==true) {
 							if(opcao.equalsIgnoreCase("CONSTRUIR")) {
 								ArrayList<Propriedade> propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
-								ArrayList<Propriedade> propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(jogador.getPropriedades());
+								ArrayList<Propriedade> propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 								
 								do {
 									System.out.println(jogador.getNome()+" possui $"+jogador.getCarteira()+"\n"
@@ -246,14 +247,12 @@ public class Main {
 										break;
 									}
 									if(numEscolhido<=numEscolhido && numEscolhido>=0) {
-										Propriedade propriedadeEscolhida = propriedadesValidasParaConstrucao.get(numEscolhido-1);									for(Propriedade propriedade: jogador.getPropriedades()) {
+										Propriedade propriedadeEscolhida = propriedadesValidasParaConstrucao.get(numEscolhido-1);
 										for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
 											if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
 												propriedadeDoJogador.contruirCasa();
 												jogador.debitar(propriedadeDoJogador.getPrecoCasa());
 											}
-										}
-										
 										}
 										
 									}else {
@@ -265,8 +264,8 @@ public class Main {
 							break;
 							
 						}else if(opcao.equals("VENDER")) {
-							ArrayList<Propriedade> propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
-							ArrayList<Propriedade> propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaConstrucao(jogador.getPropriedades());
+							
+							ArrayList<Propriedade> propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaVenda(jogador.getPropriedades());
 							
 							do {
 								System.out.println(jogador.getNome()+" possui $"+jogador.getCarteira()+"\n"
@@ -282,7 +281,7 @@ public class Main {
 									break;
 								}
 								if(numEscolhido<=numEscolhido && numEscolhido>=0) {
-									Propriedade propriedadeEscolhida = propriedadesValidasParaVender.get(numEscolhido-1);									for(Propriedade propriedade: jogador.getPropriedades()) {
+									Propriedade propriedadeEscolhida = propriedadesValidasParaVender.get(numEscolhido-1);
 									for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
 										if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
 											try {
@@ -295,7 +294,6 @@ public class Main {
 										}
 									}
 									
-									}
 									
 								}else {
 									System.out.println("Digite um número válido.");

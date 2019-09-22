@@ -49,6 +49,23 @@ public class SisJogo {
 	}
 	
 	/**
+	 * Verifica se o jogador algum terreno com pelo menos uma casa construida
+	 * @param propriedadesJogador
+	 * @return ArreyList<Prorpriedade>
+	 */
+	public ArrayList<Propriedade> getTerrenosComNumCasasValidosParaVenda(ArrayList<Propriedade> propriedadesJogador) {
+		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
+		for(Propriedade propriedade: propriedadesJogador) {
+			if(propriedade.getTipo().contentEquals("TERRENO")) {
+				if (propriedade.getNumCasas()>0) {
+					propriedadesValidas.add(propriedade);
+				}
+			}
+		}
+		return propriedadesValidas;
+	}
+	
+	/**
 	 * veridica a quantidade de casas dos terrenos.
 	 * 
 	 * @param propriedadesJogador
