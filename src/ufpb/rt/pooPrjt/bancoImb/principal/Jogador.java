@@ -333,15 +333,22 @@ public class Jogador {
 		this.posicao = posi;
 
 	}
-
+/**
+ * verifica quantas tuplas seguidas o jogador tirou
+ * @return quantidade de tuplas tiradas
+ */
 	public int getVezesQueTirouDadosIguais() {
 		return this.vezesQueTirouDadosIguais;
 	}
-	
+
 	public void zerarVezesQueTirouDadosIguais() {
 		this.vezesQueTirouDadosIguais = 0;
 	}
-	
+	/**
+	 * motodo para realizar a construçao de casas em um terreno
+	 * @param terrenoDoJogador terreno que pertence ao jogador
+	 * @throws DinheiroInsuficienteException caso o jogador tente construir uma casa e esteja sem dinheiro suficiente
+	 */
 	public void construirCasaEmTerreno(Propriedade terrenoDoJogador) throws DinheiroInsuficienteException {
 		if(terrenoDoJogador.getPrecoCasa()>this.carteira) {
 			throw new DinheiroInsuficienteException("Jogador não possui dinheiro sufiente para construir a propriedade"); 
@@ -351,7 +358,11 @@ public class Jogador {
 		}
 		
 	}
-	
+	/**
+	 * metodo para realizar a venda das casas em uma propriedade
+	 * @param terrenoDoJogador terreno que pertence ao jogador
+	 * @throws SemCasasParaVendaException caso o jogador tente vender um casa onde o terreno esta sem casa
+	 */
 	public void venderCasaEmTerreno(Propriedade terrenoDoJogador) throws SemCasasParaVendaException {
 		if(terrenoDoJogador.getNumCasas()<=0) {
 			throw new SemCasasParaVendaException("Você não possui casas neste terreno ainda. Construa uma casa primeiro.");

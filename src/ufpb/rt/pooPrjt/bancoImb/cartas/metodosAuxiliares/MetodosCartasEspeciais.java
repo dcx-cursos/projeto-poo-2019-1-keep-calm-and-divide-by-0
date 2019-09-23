@@ -16,10 +16,9 @@ public class MetodosCartasEspeciais {
 	 */
 	public int debitaValorDeJogadores(Jogador jogador, ArrayList<Jogador> jogadores, int valor) {
 		int valorPagamento = 0;
-		ArrayList<Jogador> jogadoresDebitados = new ArrayList<Jogador>();
-		jogadoresDebitados.remove(jogador);
+		jogadores.remove(jogador);
 		
-		for(Jogador jogadorDebitado:jogadoresDebitados) {
+		for(Jogador jogadorDebitado : jogadores) {
 			jogadorDebitado.debitar(valor);
 			valorPagamento+=valor;
 		}

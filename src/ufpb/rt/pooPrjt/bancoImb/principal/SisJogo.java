@@ -115,6 +115,7 @@ public class SisJogo {
 		int numTerrenosRoxosDoJogador = 0;
 		int numTerrenosRoxoClaroDoJogador = 0;
 		
+	
 		for (Propriedade propriedade: propriedadesJogador) {
 			if(propriedade.getCor().equals("VERDE")) {
 				numTerrenosVerdesDoJogador++;

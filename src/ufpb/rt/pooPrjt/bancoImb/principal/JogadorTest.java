@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
+import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCasasParaVendaException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.logradouros.Companhia;
 import ufpb.rt.pooPrjt.bancoImb.logradouros.Terreno;
@@ -129,6 +130,9 @@ class JogadorTest {
 		jogador.setPosicao(10);
 		assertEquals(10, jogador.getPosicao());
 	}
+	
+	
+	
 }
 
 	
