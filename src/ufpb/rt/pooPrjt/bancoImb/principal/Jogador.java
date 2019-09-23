@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.DinheiroInsuficienteException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCartasDeSairDaPrisao;
+import ufpb.rt.pooPrjt.bancoImb.exceptions.SemCasasParaVendaException;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.interfaces.SorteOuReves;
 
@@ -339,5 +340,24 @@ public class Jogador {
 	
 	public void zerarVezesQueTirouDadosIguais() {
 		this.vezesQueTirouDadosIguais = 0;
+	}
+	
+	public void construirCasaEmTerreno(Propriedade terrenoDoJogador) throws DinheiroInsuficienteException {
+		if(terrenoDoJogador.getPrecoCasa()>this.carteira) {
+			throw new DinheiroInsuficienteException("Jogador não possui dinheiro sufiente para construir a propriedade"); 
+		}else {
+			terrenoDoJogador.contruirCasa();
+			debitar(terrenoDoJogador.getPrecoCasa());
+		}
+		
+	}
+	
+	public void venderCasaEmTerreno(Propriedade terrenoDoJogador) throws SemCasasParaVendaException {
+		if(terrenoDoJogador.getNumCasas()<0) {
+			throw new SemCasasParaVendaException("Você não possui casas neste terreno ainda. Construa uma casa primeiro.");
+		}else {
+			terrenoDoJogador.venderCasa();
+			debitar(terrenoDoJogador.getPrecoCasa());
+		}
 	}
 }

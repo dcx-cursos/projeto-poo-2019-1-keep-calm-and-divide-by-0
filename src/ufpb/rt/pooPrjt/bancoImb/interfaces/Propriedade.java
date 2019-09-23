@@ -31,7 +31,7 @@ public interface Propriedade {
 	
 	public void contruirCasa();
 	
-	public void venderCasa() throws SemCasasParaVendaException;
+	public void venderCasa();
 	
 	public int getPrecoCasa();
 }

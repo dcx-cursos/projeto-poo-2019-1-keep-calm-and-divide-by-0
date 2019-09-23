@@ -78,9 +78,8 @@ public class Main {
 				System.out.println("Jogo encerrado.");
 				break;
 			}
-			int k;
-			for (int j = k; j < sis.getJogadores().size(); j++) {
-				Jogador jogador = sis.getJogadores().get(j);
+			for (int k = 0; k < sis.getJogadores().size(); k++) {
+				Jogador jogador = sis.getJogadores().get(k);
 				while (true) {
 					if (jogador.getCarteira() <= 0) {
 						System.out.println(jogador.getNome() + " perdeu o jogo.");
@@ -268,16 +267,20 @@ public class Main {
 										Propriedade propriedadeEscolhida = propriedadesValidasParaConstrucao.get(numEscolhido-1);
 										for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
 											if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
-												propriedadeDoJogador.contruirCasa();
-												jogador.debitar(propriedadeDoJogador.getPrecoCasa());
+												try {
+													jogador.construirCasaEmTerreno(propriedadeDoJogador);
+												} catch (DinheiroInsuficienteException exception) {
+													// TODO Auto-generated catch block
+													System.err.printf("Exception: " + exception.getMessage() + "\n");
+												}
 											}
 										}
+										propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
+										propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 										
 									}else {
 										System.out.println("Digite um nnúmero válido.");
 									}
-									propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
-									propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 								}while(true);
 							}
 							k = k-1;
@@ -317,11 +320,9 @@ public class Main {
 									for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
 										if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
 											try {
-												propriedadeDoJogador.venderCasa();
-												jogador.creditar(propriedadeDoJogador.getPrecoCasa());
+												jogador.venderCasaEmTerreno(propriedadeDoJogador);
 											} catch (SemCasasParaVendaException exception) {
 												System.err.printf("Exception: " + exception.getMessage() + "\n");
-												System.out.println("Você precisa digitar uma cor diferente. Porfavor tente denovo.");
 											}
 										}
 									}
