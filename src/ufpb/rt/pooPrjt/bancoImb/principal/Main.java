@@ -282,7 +282,7 @@ public class Main {
 							break;
 							
 						//SE O JOGADOR PUDER CONSTRUIR EM ALGUM TERRENO ELE VERIFICA A OPÇÃO CONSTRUIR
-						}else if(opcao.equalsIgnoreCase("CONSTRUIR")) {
+						}else if(opcao.equals("CONSTRUIR")) {
 							if(sis.verificaSeJogadorPodeConstuir(jogador.getPropriedades())==true) {
 								ArrayList<Propriedade> propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
 								ArrayList<Propriedade> propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
