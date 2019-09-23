@@ -78,11 +78,8 @@ public class Main {
 				System.out.println("Jogo encerrado.");
 				break;
 			}
-<<<<<<< HEAD
 			for (int k = 0; k < sis.getJogadores().size();k++) {
-=======
-			for (int k = 0; k < sis.getJogadores().size(); k++) {
->>>>>>> f60835ca6c1d8f81f202d8a9f6bfde8cb6411ff5
+
 				Jogador jogador = sis.getJogadores().get(k);
 				while (true) {
 					if (jogador.getCarteira() <= 0) {
