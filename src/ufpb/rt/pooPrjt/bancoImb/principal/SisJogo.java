@@ -19,14 +19,14 @@ public class SisJogo {
 	private ArrayList<String> cores = new ArrayList<String>();
 	private ArrayList<SorteOuReves> baralho = new ArrayList<SorteOuReves>();
 
-	private final int num_Terrenos_Verdes = 0;
-	private final int num_Terrenos_Vermelhas = 0;
-	private final int num_Terrenos_Amarelas = 0;
-	private final int num_Terrenos_Azuis = 0;
-	private final int num_Terrenos_Azul_Escuro = 0;
-	private final int num_Terrenos_Bege = 0;
-	private final int num_Terrenos_Roxos = 0;
-	private final int num_Terrenos_Roxo_Claro = 0;
+	private final int num_Terrenos_Verdes = 4;
+	private final int num_Terrenos_Vermelhas = 2;
+	private final int num_Terrenos_Amarelas = 3;
+	private final int num_Terrenos_Azuis = 3;
+	private final int num_Terrenos_Azul_Escuro = 2;
+	private final int num_Terrenos_Bege = 2;
+	private final int num_Terrenos_Roxos = 3;
+	private final int num_Terrenos_Roxo_Claro = 3;
 	private BaralhoCartas cartasSorteOuReves = new BaralhoCartas();
 	private Gravador gravador = new Gravador();
 	private Removedor removedor = new Removedor();
@@ -106,14 +106,14 @@ public class SisJogo {
 	public ArrayList<Propriedade> getTerrenosDeCorXValidosParaConstrucao(ArrayList<Propriedade> propriedadesJogador){
 		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
 		
-		int numTerrenosVerdesDoJogador = 4;
-		int numTerrenosVermelhasDoJogador = 2;
-		int numTerrenosAmarelasDoJogador = 3;
-		int numTerrenosAzuisDoJogador = 3;
-		int numTerrenosAzulEscuroDoJogador = 2;
-		int numTerrenosBegeDoJogador = 2;
-		int numTerrenosRoxosDoJogador = 3;
-		int numTerrenosRoxoClaroDoJogador = 3;
+		int numTerrenosVerdesDoJogador = 0;
+		int numTerrenosVermelhasDoJogador = 0;
+		int numTerrenosAmarelasDoJogador = 0;
+		int numTerrenosAzuisDoJogador = 0;
+		int numTerrenosAzulEscuroDoJogador = 0;
+		int numTerrenosBegeDoJogador = 0;
+		int numTerrenosRoxosDoJogador = 0;
+		int numTerrenosRoxoClaroDoJogador = 0;
 		
 		for (Propriedade propriedade: propriedadesJogador) {
 			if(propriedade.getCor().equals("VERDE")) {
