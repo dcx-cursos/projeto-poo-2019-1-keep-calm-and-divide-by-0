@@ -258,7 +258,23 @@ public class Terreno implements Propriedade {
 	 */
 	@Override
 	public void pagamentoDeTaxa(Jogador jogadorVisitante, int aluguel) {
-		jogadorVisitante.debitar(aluguel);
+		if(this.numCasas==1) {
+			aluguel = this.aluguelUmaCasa;
+			setAluguel(aluguel);
+		}else if(this.numCasas==2) {
+			aluguel = this.aluguelDuasCasas;
+			setAluguel(aluguel);
+		}else if(this.numCasas==3) {
+			aluguel = this.aluguelTresCasas;
+			setAluguel(aluguel);
+		}else if(this.numCasas==4) {
+			aluguel = this.aluguelQuatroCasas;
+			setAluguel(aluguel);
+		}else if(this.numCasas==5) {
+			aluguel = this.aluguelHotel;
+			setAluguel(aluguel);
+		}
+		jogadorVisitante.debitar(this.aluguel);
 		this.dono.creditar(aluguel);
 		
 	}

@@ -90,7 +90,7 @@ public class SisJogo {
 					}
 				}
 			}
-			if(numCasasinValido==false) {
+			if(numCasasinValido!=true) {
 				propriedadesValidas.add(propriedadesJogador.get(k));
 			}
 			

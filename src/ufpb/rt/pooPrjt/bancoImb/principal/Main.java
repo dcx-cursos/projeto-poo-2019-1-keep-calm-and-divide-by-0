@@ -289,6 +289,8 @@ public class Main {
 								ArrayList<Propriedade> propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 								
 								do {
+									propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
+									propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 									System.out.println(jogador.getNome()+" possui $"+jogador.getCarteira()+"\n"
 											+ "Escolha onde quer construir:");
 									int indice = 0;
