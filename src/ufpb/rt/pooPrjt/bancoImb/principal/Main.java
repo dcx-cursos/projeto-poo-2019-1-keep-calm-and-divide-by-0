@@ -331,7 +331,7 @@ public class Main {
 									System.out.println("Digite um número válido.");
 								}
 							}while(true);
-							k = k-1;
+							k -=1;
 							break;
 						} else if (opcao.equals("SAIR")) {
 							System.out.printf("Você realmente quer sair (Sim/Não)?");
