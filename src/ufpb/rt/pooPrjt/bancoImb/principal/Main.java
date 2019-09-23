@@ -78,7 +78,8 @@ public class Main {
 				System.out.println("Jogo encerrado.");
 				break;
 			}
-			for (int k = 0; k < sis.getJogadores().size(); k++) {
+			for (int k = 0; k < sis.getJogadores().size();k++) {
+
 				Jogador jogador = sis.getJogadores().get(k);
 				while (true) {
 					if (jogador.getCarteira() <= 0) {

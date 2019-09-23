@@ -252,7 +252,7 @@ public class Jogador {
 																	// possui
 				if (propriedade.getTipo().equals("TERRENO")) {// Se for fo tipo TERRENO faça
 					propriedadesJogador += "[" + propriedade.getNome() + "] - propriedade " + propriedade.getCor() + ", aluguel "
-							+ propriedade.getInformacoesStatus() + "\n";
+							+ propriedade.getInformacoesStatus()+", numeros de casas construidas : " + propriedade.getNumCasas()+"\n";
 				} else {// Se não é então é companhia
 					propriedadesJogador += "[" + propriedade.getNome() + "] - multiplicador "
 							+ propriedade.getInformacoesStatus() + "\n";
