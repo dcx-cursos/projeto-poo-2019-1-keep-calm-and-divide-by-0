@@ -334,9 +334,7 @@ public class Main {
 							}
 							k = k-1;
 							break;
-							
-<<<<<<< HEAD
-=======
+
 						}else if(opcao.equals("VENDER")) {
 							ArrayList<Propriedade> propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaVenda(jogador.getPropriedades());
 							
@@ -385,7 +383,6 @@ public class Main {
 							}while(true);
 							k -=1;
 							break;
->>>>>>> a79963cf9bcb78e450675a141584a11b752995da
 						} else if (opcao.equals("SAIR")) {
 							System.out.printf("Você realmente quer sair (Sim/Não)?");
 							String escolha = leitor.next().toUpperCase();
