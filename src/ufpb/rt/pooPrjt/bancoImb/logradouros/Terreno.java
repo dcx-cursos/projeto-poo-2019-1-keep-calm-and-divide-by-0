@@ -288,10 +288,8 @@ public class Terreno implements Propriedade {
 		
 	}
 	@Override
-	public void venderCasa() throws SemCasasParaVendaException {
-		if(this.numCasas<0) {
-			throw new SemCasasParaVendaException("Você não possui casas neste terreno ainda. Construa uma casa primeiro.");
-		}
+	public void venderCasa(){
+		
 		this.numCasas = this.numCasas-1;
 		
 	}
