@@ -353,11 +353,11 @@ public class Jogador {
 	}
 	
 	public void venderCasaEmTerreno(Propriedade terrenoDoJogador) throws SemCasasParaVendaException {
-		if(terrenoDoJogador.getNumCasas()<0) {
+		if(terrenoDoJogador.getNumCasas()<=0) {
 			throw new SemCasasParaVendaException("Você não possui casas neste terreno ainda. Construa uma casa primeiro.");
 		}else {
 			terrenoDoJogador.venderCasa();
-			debitar(terrenoDoJogador.getPrecoCasa());
+			creditar(terrenoDoJogador.getPrecoCasa());
 		}
 	}
 }
