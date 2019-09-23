@@ -57,7 +57,7 @@ public class SisJogo {
 		ArrayList<Propriedade> propriedadesValidas = new ArrayList<Propriedade>();
 		for(Propriedade propriedade: propriedadesJogador) {
 			if(propriedade.getTipo().contentEquals("TERRENO")) {
-				if (propriedade.getNumCasas()>0) {
+				if (propriedade.getNumCasas()>=0) {
 					propriedadesValidas.add(propriedade);
 				}
 			}
@@ -85,7 +85,7 @@ public class SisJogo {
 				if(j==k) {
 					j++;
 				}else {
-					if (numCasa>=numCasasDePropriedades[j]+1 | numCasa>4) {
+					if (numCasa>numCasasDePropriedades[j]+1 | numCasa>4) {
 						numCasasinValido = true;
 					}
 				}
