@@ -282,8 +282,8 @@ public class Main {
 							break;
 							
 						//SE O JOGADOR PUDER CONSTRUIR EM ALGUM TERRENO ELE VERIFICA A OPÇÃO CONSTRUIR
-						}else if(sis.verificaSeJogadorPodeConstuir(jogador.getPropriedades())==true) {
-							if(opcao.equalsIgnoreCase("CONSTRUIR")) {
+						}else if(opcao.equalsIgnoreCase("CONSTRUIR")) {
+							if(sis.verificaSeJogadorPodeConstuir(jogador.getPropriedades())==true) {
 								ArrayList<Propriedade> propriedadesValidasPelaCor = sis.getTerrenosDeCorXValidosParaConstrucao(jogador.getPropriedades());
 								ArrayList<Propriedade> propriedadesValidasParaConstrucao = sis.getTerrenosComNumCasasValidosParaConstrucao(propriedadesValidasPelaCor);
 								
@@ -331,58 +331,12 @@ public class Main {
 										System.out.println("Digite um nnúmero válido.");
 									}
 								}while(true);
+							}else {
+								System.out.println("Jogador ainda não pode construir.");
 							}
 							k = k-1;
 							break;
 
-						}else if(opcao.equals("VENDER")) {
-							ArrayList<Propriedade> propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaVenda(jogador.getPropriedades());
-							
-							do {
-								System.out.println(jogador.getNome()+" possui $"+jogador.getCarteira()+"\n"
-										+ "Escolha onde quer vender:");
-								int indice = 0;
-								for (Propriedade propriedade: propriedadesValidasParaVender) {
-									indice++;
-									System.out.println(indice+" – "+propriedade.getNome()+" tem "+propriedade.getNumCasas()+" casa(s) construidas, casa custa "+propriedade.getPrecoCasa());
-								}
-								System.out.printf("Digite o número da propriedade (0 para sair):");
-								int numEscolhido =0;
-								
-								do {
-									try {
-										numEscolhido = leitor.nextInt();
-										break;
-									} catch (InputMismatchException e) {
-										System.err.printf("", e.getMessage() + "\n");
-										leitor.nextLine();
-										System.out.println("Você precisa digitar inteiros. Por favor tente denovo.");
-									} 
-								} while (true);
-								if(numEscolhido==0) {
-									break;
-								}else if(propriedadesValidasParaVender.size()==0) {
-									break;
-								}
-								if(numEscolhido<=numEscolhido && numEscolhido>=0) {
-									Propriedade propriedadeEscolhida = propriedadesValidasParaVender.get(numEscolhido-1);
-									for(Propriedade propriedadeDoJogador: jogador.getPropriedades()) {
-										if(propriedadeDoJogador.getNome()==propriedadeEscolhida.getNome()) {
-											try {
-												jogador.venderCasaEmTerreno(propriedadeDoJogador);
-											} catch (SemCasasParaVendaException exception) {
-												System.err.printf("Exception: " + exception.getMessage() + "\n");
-											}
-										}
-									}
-									propriedadesValidasParaVender = sis.getTerrenosComNumCasasValidosParaVenda(jogador.getPropriedades());
-									
-								}else {
-									System.out.println("Digite um número válido.");
-								}
-							}while(true);
-							k -=1;
-							break;
 						} else if (opcao.equals("SAIR")) {
 							System.out.printf("Você realmente quer sair (Sim/Não)?");
 							String escolha = leitor.next().toUpperCase();
