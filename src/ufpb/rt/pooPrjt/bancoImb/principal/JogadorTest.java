@@ -97,7 +97,9 @@ class JogadorTest {
 		assertEquals("Jogador não possui dinheiro sufiente para comprar a propriedade", compra.getMessage());
 
 	}
-	
+	/**
+	 * verifica se o jogador esta andando as casas corretamente com os numros aleatorios
+	 */
 	@Test
 	public void testAndarCasas() {
 		int Dado1 = jogadorMock.lancaDado();
@@ -112,34 +114,77 @@ class JogadorTest {
 	
 	}
 	
-	
+	/**
+	 * verifica se esta adicionando corretamente o dinheiro
+	 */
 	@Test
 	void testAdicionandoDinehiroNaContaDoJogador() {
 	jogador.creditar(100);
 	assertEquals(1600, jogador.getCarteira());
 	}
-	
+	/**
+	 * verifica se esta debitando corretamente o dinheiro
+	 */
 	@Test
 	void testDebitandoDinheiroDaCarteiraDoJogador() {
 		jogador.debitar(500);
 		assertEquals(1000, jogador.getCarteira());
 	}
 	
+	/**
+	 * mudando a posiçao do jogador
+	 */
 	@Test
 	void testSetPosicao() {
 		jogador.setPosicao(10);
 		assertEquals(10, jogador.getPosicao());
 	}
 	
+	/**
+	 * verifica se esta construindo na propriedade
+	 * @throws DinheiroInsuficienteException
+	 */
+	@Test
+	void construindocasas() throws DinheiroInsuficienteException {
+		jogador.construirCasaEmTerreno(terreno);
+		assertEquals(1, terreno.getNumCasas());
+		
+	
+		
+	}
+	/**
+	 * verifica se da erro ao tentar construir e o jogador estar sem dinheiro
+	 */
+	@Test
+	void ConstruirSemDinhero() {
+		jogador.setCarteira(50);
+		Exception construir = assertThrows(DinheiroInsuficienteException.class,
+				() -> jogador.compraPropriedade(100, companhia));
+		assertEquals("Jogador não possui dinheiro sufiente para comprar a propriedade", construir.getMessage());
+
+	}
+	
+	/**
+	 * test para verificar se esta vendendo a propriedade
+	 */
+	@Test
+	void venderpropriedade() {
+		jogador.setCarteira(250);
+		jogador.vendePropriedade(100, terreno);
+		assertEquals(350,jogador.getCarteira());
+	}
+	
+	/**
+	 * teste para saber se ao vender o dineheiro estar sendo creditado na carteira
+	 * @throws DinheiroInsuficienteException
+	 */
+	@Test
+	void venderproprieda() throws DinheiroInsuficienteException {
+		jogador.pagarParaSairDaPrisao(50);
+		assertEquals(1450, jogador.getCarteira());
+	}
+	
 	
 	
 }
-
-	
-	
-	
-	
-	
-	
-	
 

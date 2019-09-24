@@ -1,17 +1,23 @@
 package ufpb.rt.pooPrjt.bancoImb.principal;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import ufpb.rt.pooPrjt.bancoImb.exceptions.CorInvalidaException;
 import ufpb.rt.pooPrjt.bancoImb.exceptions.JogadorComCorEscolhidaExisteException;
+import ufpb.rt.pooPrjt.bancoImb.interfaces.Propriedade;
 import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Gravador;
 import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Removedor;
+import ufpb.rt.pooPrjt.bancoImb.metodosUtilirarios.Verificador;
 
 class SisJogoTest {
 	private SisJogo jogo;
@@ -22,6 +28,21 @@ class SisJogoTest {
 	private Gravador gravador;
 	private Removedor remover;
 
+	
+	
+
+	@Mock
+	SisJogo mockjogo; 
+	Jogador jogadorMock ;
+	Verificador verificamock;
+
+	
+	
+	@BeforeEach
+	  public void init(){
+	    MockitoAnnotations.initMocks(this);
+	}
+	
 	@BeforeEach
 	void setup() {
 		jogo = new SisJogo();
@@ -89,6 +110,10 @@ class SisJogoTest {
 		remover.removeDeLista(jogadores, jogador2);
 		
 		assertEquals(1, jogadores.size());
+		
+	}
+	@Test
+	void test() {
 		
 	}
 	

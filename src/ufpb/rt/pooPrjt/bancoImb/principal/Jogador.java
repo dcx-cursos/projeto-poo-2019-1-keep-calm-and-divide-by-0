@@ -371,4 +371,10 @@ public class Jogador {
 			creditar(terrenoDoJogador.getPrecoCasa());
 		}
 	}
+
+	public void setCarteira(int carteira) {
+		this.carteira = carteira;
+	}
+	
+	
 }
